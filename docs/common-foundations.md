@@ -42,7 +42,7 @@ WSL2 任务适用于使用 Windows 且设备条件允许的候选人。macOS 候
 CI 不属于录取门槛。完成主要学习目标后，候选人可以使用 GitHub Actions 在干净环境中自动执行项目的测试和静态检查。
 
 - Python：运行 pytest、Ruff 和 Pyright。
-- Rust：运行格式检查、Clippy 和测试。
+- Rust：运行格式检查、`cargo check`、Clippy 和测试。
 
 CI 的学习目标是理解项目复现和自动检查，不是考查 YAML 语法或复制复杂 workflow。
 

@@ -111,6 +111,7 @@ rm-recruit-reference client ...
 开发工具包括：
 
 - `cargo fmt`
+- `cargo check`
 - `cargo clippy`
 - `cargo test`
 
