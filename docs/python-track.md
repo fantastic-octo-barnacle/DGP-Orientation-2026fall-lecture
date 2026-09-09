@@ -46,13 +46,20 @@ Demo C 不提供可直接复制的 CI workflow。三个环境 Demo 都不要求�
 
 ## Python 编程项目：结构化日志检查器
 
-候选人自行建立 uv 项目和个人 GitHub 仓库。出题方提供 JSON Lines 日志，其中包含正常记录、缺少字段、非法时间、未知等级和损坏的 JSON 行。
+候选人自行建立 uv 项目和个人 GitHub 仓库。出题方提供 JSON Lines 日志，其中包含正常记录、缺少字段、字段类型错误、非法时间、未知等级、空字符串、多余字段和损坏的 JSON 行。
 
 示意记录：
 
 ```json
-{"time":"2026-09-01T12:00:00","level":"INFO","source":"client","message":"connected"}
+{"time":"2026-09-01T12:00:00+08:00","level":"INFO","source":"client","message":"connected"}
 ```
+
+固定字段为：
+
+- `time`：带时区的 ISO 8601 时间。
+- `level`：`DEBUG`、`INFO`、`WARNING` 或 `ERROR`。
+- `source`：非空字符串。
+- `message`：非空字符串。
 
 ### 固定依赖
 
@@ -79,7 +86,7 @@ Demo C 不提供可直接复制的 CI workflow。三个环境 Demo 都不要求�
 ### 标准层
 
 - 使用 Typer 接收文件路径和筛选参数。
-- 按日志等级、来源或关键词筛选。
+- 只要求按日志等级或来源筛选，避免增加不必要的业务逻辑。
 - 统计各等级和来源的数量。
 - 使用 Rich 输出表格与汇总。
 - 合理拆分读取、验证、筛选、统计和显示逻辑。
@@ -88,7 +95,6 @@ Demo C 不提供可直接复制的 CI workflow。三个环境 Demo 都不要求�
 
 ### 进阶层
 
-- 按时间范围筛选。
 - 支持 JSON 报告输出。
 - 流式处理较大的输入文件。
 - 为错误记录生成独立报告。
