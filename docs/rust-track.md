@@ -122,6 +122,9 @@ rm-recruit-reference client ...
 
 完成 Tokio 层级不是机械的录取门槛。项目未完成但学习进展、问题分析和理解程度突出的候选人仍可录取。
 
-通信协议已经形成草案；参考程序命令行、平台发布方式、退出行为和各层验收案例仍待后续设计。
+通信协议和参考程序行为已经形成草案；实际程序实现、发布流水线、验收数据和各层候选人任务书仍待后续设计。
 
-当前协议草案见 [Rust 通信协议](./tasks/rust-protocol.md)。
+当前具体草案：
+
+- [Rust 通信协议](./tasks/rust-protocol.md)
+- [Rust 参考程序](./tasks/rust-reference-program.md)

@@ -36,9 +36,11 @@
 
 - [Git 与 GitHub](./docs/tasks/git-github.md)
 - [WSL2](./docs/tasks/wsl2.md)
+- [Python 环境 Demo](./docs/tasks/python-environment-demos.md)
 - [Python Demo C](./docs/tasks/python-demo-c.md)
 - [Python 结构化日志检查器](./docs/tasks/python-log-inspector.md)
 - [Rust 通信协议](./docs/tasks/rust-protocol.md)
+- [Rust 参考程序](./docs/tasks/rust-reference-program.md)
 
 ## 当前状态
 

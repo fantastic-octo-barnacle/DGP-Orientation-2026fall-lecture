@@ -117,5 +117,6 @@ Ruff、Pyright 或测试尚有问题时，不自动淘汰候选人。面试重�
 
 当前具体草案：
 
+- [Python 环境 Demo](./tasks/python-environment-demos.md)
 - [Python Demo C](./tasks/python-demo-c.md)
 - [Python 结构化日志检查器](./tasks/python-log-inspector.md)
