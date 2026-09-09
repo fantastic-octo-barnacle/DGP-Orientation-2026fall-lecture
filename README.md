@@ -28,8 +28,17 @@
 - [Python 起点路线](./docs/python-track.md)
 - [Rust 起点路线](./docs/rust-track.md)
 - [面试设计](./docs/interview.md)
+- [面试题库（内部）](./docs/interview-question-bank.md)
 - [评审框架](./docs/evaluation-rubric.md)
 - [核心选拔原则 ADR](./docs/adr/0001-select-for-learning-potential.md)
+
+具体任务草案位于 [`docs/tasks/`](./docs/tasks/)：
+
+- [Git 与 GitHub](./docs/tasks/git-github.md)
+- [WSL2](./docs/tasks/wsl2.md)
+- [Python Demo C](./docs/tasks/python-demo-c.md)
+- [Python 结构化日志检查器](./docs/tasks/python-log-inspector.md)
+- [Rust 通信协议](./docs/tasks/rust-protocol.md)
 
 ## 当前状态
 

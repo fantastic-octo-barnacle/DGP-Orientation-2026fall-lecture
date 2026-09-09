@@ -113,4 +113,9 @@ Demo C 不提供可直接复制的 CI workflow。三个环境 Demo 都不要求�
 
 Ruff、Pyright 或测试尚有问题时，不自动淘汰候选人。面试重点检查其是否理解报告、是否尝试定位，以及如何计划修复。
 
-具体日志格式、数据规模、验收案例和任务书措辞留待后续设计。
+日志格式、基础命令和数据集规模已经形成草案；实际数据文件、验收样例和候选人版任务书仍待后续完善。
+
+当前具体草案：
+
+- [Python Demo C](./tasks/python-demo-c.md)
+- [Python 结构化日志检查器](./tasks/python-log-inspector.md)
