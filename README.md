@@ -26,6 +26,7 @@
 - [共同基础任务](./docs/common-foundations.md)
 - [培训设计](./docs/training.md)
 - [详细设计路线图](./docs/design-roadmap.md)
+- [培训材料](./training/README.md)
 - [Python 起点路线](./docs/python-track.md)
 - [Rust 起点路线](./docs/rust-track.md)
 - [面试设计](./docs/interview.md)
