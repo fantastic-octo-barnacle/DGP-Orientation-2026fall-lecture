@@ -25,6 +25,7 @@
 - [术语表](./CONTEXT.md)
 - [共同基础任务](./docs/common-foundations.md)
 - [培训设计](./docs/training.md)
+- [详细设计路线图](./docs/design-roadmap.md)
 - [Python 起点路线](./docs/python-track.md)
 - [Rust 起点路线](./docs/rust-track.md)
 - [面试设计](./docs/interview.md)
@@ -44,4 +45,4 @@
 
 ## 当前状态
 
-总体结构和边界已经确认。具体项目任务书、测试数据、参考程序协议细节、课程讲义、面试题库和命令行实操题将在后续设计中补充。
+总体结构和边界已经确认。当前进入第一阶段：详细设计半小时 intro、一周预备期和 2 小时基础课。项目正式 spec 与最终面试将在培训方案完成后依次设计。
