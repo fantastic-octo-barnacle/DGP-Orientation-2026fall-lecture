@@ -24,10 +24,11 @@ foundation-demo/
 1. 展示源代码是纯文本。
 2. 比较 Python 解释运行与 Rust 编译运行。
 3. 展示缺少依赖或环境时的失败。
-4. 展示项目元数据与生成环境的区别。
-5. 修改根目录 README，观察 Git 状态和 diff。
-6. 比较 pytest、Ruff、Pyright 与 Cargo 对应工具。
-7. 说明 CI 如何在新环境中重复这些检查。
+4. 展示第三方包、版本要求、直接依赖和间接依赖。
+5. 展示项目元数据、锁文件与生成环境的区别。
+6. 修改根目录 README，观察 Git 状态和 diff。
+7. 比较 pytest、Ruff、Pyright 与 Cargo 对应工具。
+8. 说明 CI 如何在新环境中重复这些检查。
 
 ## 约束
 

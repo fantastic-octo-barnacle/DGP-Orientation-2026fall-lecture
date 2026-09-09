@@ -18,6 +18,7 @@
 - [路线选择自测](./route-self-check.md)
 - [外部资源表](./resource-list.md)
 - [贯穿演示仓库说明](./foundation-demo/README.md)
+- [逐章讲义](./lecture/README.md)
 
 ## 状态
 
