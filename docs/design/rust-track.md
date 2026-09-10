@@ -127,5 +127,5 @@ rm-recruit-reference client ...
 
 当前具体草案：
 
-- [Rust 通信协议](./tasks/rust-protocol.md)
-- [Rust 参考程序](./tasks/rust-reference-program.md)
+- [Rust 通信协议](../drafts/projects/rust-protocol.md)
+- [Rust 参考程序](../drafts/projects/rust-reference-program.md)

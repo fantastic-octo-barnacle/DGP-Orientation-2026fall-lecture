@@ -22,7 +22,7 @@
 使用一棵很小的目录树：
 
 ```text
-foundation-demo/
+foundation/
 ├── README.md
 ├── message.txt
 ├── python-demo/

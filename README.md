@@ -20,30 +20,34 @@
 - 面试主要核验理解和思路，不设置统一算法笔试，也不要求复杂的现场编程。
 - 具体评价维度暂不设置数值权重。
 
-## 文档
+## 仓库结构
 
-- [术语表](./CONTEXT.md)
-- [共同基础任务](./docs/common-foundations.md)
-- [培训设计](./docs/training.md)
-- [详细设计路线图](./docs/design-roadmap.md)
-- [培训材料](./training/README.md)
-- [Python 起点路线](./docs/python-track.md)
-- [Rust 起点路线](./docs/rust-track.md)
-- [面试设计](./docs/interview.md)
-- [面试题库（内部）](./docs/interview-question-bank.md)
-- [评审框架](./docs/evaluation-rubric.md)
+```text
+.
+├── AGENTS.md             # 仓库维护约定
+├── CONTEXT.md            # 术语与方案边界
+├── README.md             # 仓库入口
+├── docs/
+│   ├── design/           # 已确认的总体设计
+│   ├── drafts/           # 尚未定稿的项目与面试草案
+│   └── adr/              # 长期设计决策
+├── training/
+│   ├── intro/            # intro 交接与一周预备期
+│   └── foundation/       # 两小时基础课讲义
+├── slides/
+│   └── foundation/       # 正式 Slidev 幻灯片
+└── demos/
+    ├── foundation/       # 本仓库内的基础课 demo
+    └── projects/         # 正式项目配套 demo 与参考实现
+```
+
+- [术语与统一表述](./CONTEXT.md)
+- [设计文档索引](./docs/README.md)
+- [培训材料索引](./training/README.md)
+- [幻灯片索引](./slides/README.md)
+- [演示项目索引](./demos/README.md)
 - [核心选拔原则 ADR](./docs/adr/0001-select-for-learning-potential.md)
-
-具体任务草案位于 [`docs/tasks/`](./docs/tasks/)：
-
-- [Git 与 GitHub](./docs/tasks/git-github.md)
-- [WSL2](./docs/tasks/wsl2.md)
-- [Python 环境 Demo](./docs/tasks/python-environment-demos.md)
-- [Python Demo C](./docs/tasks/python-demo-c.md)
-- [Python 结构化日志检查器](./docs/tasks/python-log-inspector.md)
-- [Rust 通信协议](./docs/tasks/rust-protocol.md)
-- [Rust 参考程序](./docs/tasks/rust-reference-program.md)
 
 ## 当前状态
 
-总体结构和边界已经确认。当前进入第一阶段：详细设计半小时 intro、一周预备期和 2 小时基础课。项目正式 spec 与最终面试将在培训方案完成后依次设计。
+总体结构和边界已经确认。当前进入第一阶段：详细设计 intro 与后续内容的交接、一周预备期和 2 小时基础课。正式项目 spec 与最终面试将在培训方案完成后依次设计。

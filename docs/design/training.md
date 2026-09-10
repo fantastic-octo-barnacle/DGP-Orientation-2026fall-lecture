@@ -71,4 +71,4 @@ intro 结束前需要：
 
 intro、一周预备内容、详细讲义、演示材料和课堂练习正在设计中。
 
-详细材料现存放在 [`training/`](../training/README.md)。
+详细材料现存放在 [`training/`](../../training/README.md)。

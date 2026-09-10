@@ -1,0 +1,21 @@
+# Slidev / JavaScript
+node_modules/
+dist/
+.slidev/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyright/
+
+# Rust
+target/
+
+# Coverage and local artifacts
+coverage/
+.coverage
+*.log
