@@ -2,11 +2,17 @@
 
 逐章文档描述学习目标、建议幻灯片、讲述主线、演示、课堂活动、常见误解和章节过渡。它们是正式幻灯片与讲师脚本的内容依据。
 
-## 前 60 分钟
+## 操作系统与开发环境基础
 
-- [00：开场与课程地图](./00-opening.md)
-- [01：文件、路径、终端与进程](./01-files-terminal-process.md)
-- [02：解释、编译与运行](./02-running-programs.md)
-- [03：包、版本、依赖与隔离环境](./03-packages-versions-environments.md)
+- [00：操作系统概述与 WSL](./00-operating-systems-wsl.md)
+- [01：终端、shell、命令与命令行](./01-terminal-shell-command-line.md)
+- [02：文件类型、纯文本与 `.docx`](./02-file-types-plain-text-docx.md)
+- [03：文件系统、路径与导航](./03-filesystem-path-navigation.md)
+- [04：环境变量、PATH、可执行文件与进程](./04-environment-path-executables-processes.md)
 
-后 60 分钟将在下一轮设计后加入。
+## 程序与项目环境
+
+- [05：Python、JavaScript、C 与 Rust 怎样运行](./05-programming-execution-models.md)
+- [06：包、版本、依赖与开发环境](./06-packages-versions-dependencies.md)
+
+Git、开发工具、排障和路线交接章节将在下一轮加入。
