@@ -15,4 +15,9 @@
 - [05：Python、JavaScript、C 与 Rust 怎样运行](./05-programming-execution-models.md)
 - [06：包、版本、依赖与开发环境](./06-packages-versions-dependencies.md)
 
-Git、开发工具、排障和路线交接章节将在下一轮加入。
+## 工程实践与交接
+
+- [07：Git、GitHub 与项目基本结构](./07-git-github-project-basics.md)
+- [08：测试与开发检查工具](./08-tests-and-development-tools.md)
+- [09：报错、搜索、求助与 AI 验证](./09-debugging-search-help-ai.md)
+- [10：路线选择与正式项目交接](./10-route-and-project-handoff.md)
