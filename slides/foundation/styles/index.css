@@ -98,6 +98,158 @@
   opacity: 0.72;
 }
 
+.os-tree {
+  --os-tree-line: rgb(255 255 255 / 0.34);
+  margin-top: 0.6rem;
+  font-size: 0.78rem;
+}
+
+.os-tree-node {
+  border: 1.5px solid currentColor;
+  border-radius: 0.55rem;
+  padding: 0.55rem 0.7rem;
+  background: rgb(255 255 255 / 0.045);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.os-tree-node strong,
+.os-tree-node span,
+.os-tree-node small {
+  display: block;
+}
+
+.os-tree-node strong {
+  font-size: 0.92rem;
+}
+
+.os-tree-node span,
+.os-tree-node small {
+  margin-top: 0.2rem;
+  opacity: 0.72;
+}
+
+.os-tree-main {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(0, 0.8fr);
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.os-tree-children {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1.55rem;
+}
+
+.os-tree-children--three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.os-tree-children--one {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.os-tree-children--compact {
+  gap: 0.4rem;
+  margin-top: 1.1rem;
+}
+
+.os-tree-children::before {
+  position: absolute;
+  top: -0.78rem;
+  right: 25%;
+  left: 25%;
+  border-top: 1px solid var(--os-tree-line);
+  content: "";
+}
+
+.os-tree-children::after {
+  position: absolute;
+  top: -1.55rem;
+  left: 50%;
+  height: 0.78rem;
+  border-left: 1px solid var(--os-tree-line);
+  content: "";
+}
+
+.os-tree-children--three::before {
+  right: 16.6667%;
+  left: 16.6667%;
+}
+
+.os-tree-children--one::before {
+  display: none;
+}
+
+.os-tree-children--compact::before {
+  top: -0.55rem;
+}
+
+.os-tree-children--compact::after {
+  top: -1.1rem;
+  height: 0.55rem;
+}
+
+.os-tree-children > .os-tree-column {
+  position: relative;
+}
+
+.os-tree-children > .os-tree-column::before {
+  position: absolute;
+  top: -0.78rem;
+  left: 50%;
+  height: 0.78rem;
+  border-left: 1px solid var(--os-tree-line);
+  content: "";
+}
+
+.os-tree-children--compact > .os-tree-column::before {
+  top: -0.55rem;
+  height: 0.55rem;
+}
+
+.os-tree-family {
+  min-height: 0;
+}
+
+.os-tree-leaf {
+  display: flex;
+  min-height: 2.15rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.25rem;
+}
+
+.os-tree-leaf strong {
+  font-size: 0.72rem;
+}
+
+.os-tree-leaf--distribution {
+  flex-direction: column;
+}
+
+.os-tree-leaf--distribution span {
+  font-size: 0.6rem;
+  line-height: 1.25;
+}
+
+.os-tree-notes {
+  display: grid;
+  gap: 0.18rem;
+  margin-top: 0.65rem;
+  font-size: 0.72rem;
+  line-height: 1.4;
+  opacity: 0.72;
+}
+
+.os-tree-notes p {
+  margin: 0;
+}
+
 .stack {
   display: grid;
   gap: 0.55rem;
@@ -253,7 +405,9 @@
   .two-col,
   .three-col,
   .terminal-grid,
-  .timeline {
+  .timeline,
+  .os-tree-main,
+  .os-tree-children {
     grid-template-columns: 1fr;
   }
 
@@ -263,5 +417,15 @@
 
   .flow-arrow {
     transform: rotate(90deg);
+  }
+
+  .os-tree-children::before,
+  .os-tree-children::after,
+  .os-tree-children > .os-tree-column::before {
+    display: none;
+  }
+
+  .os-tree-children {
+    margin-top: 0.65rem;
   }
 }

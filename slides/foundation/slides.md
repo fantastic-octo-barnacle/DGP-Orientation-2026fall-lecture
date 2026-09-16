@@ -21,76 +21,7 @@ class: cover-slide
 
 # 计算机开发基础
 
-从“能运行”开始，建立一张开发地图
-
-<div class="cover-meta">RM 软件组招新培训 · 2 小时基础课</div>
-
-<!--
-讲师提示：不重新讲软件组 intro。先告诉候选人，这节课建立共同语言和学习地图。
--->
-
----
-layout: statement
----
-
-# 这节课不教会你一门语言
-
-它要让你知道：一个项目为什么能运行、为什么会失败，以及下一步去哪里找答案。
-
----
-
-# 今天要走过一条链
-
-<div class="flow">
-  <div class="diagram-box text-pink">操作系统</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">终端与 shell</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-red">文件与路径</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach">程序与环境</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">项目与学习</div>
-</div>
-
-<p class="lead text-center muted">每一层都回答一个“它负责什么”的问题。</p>
-
----
-
-# 先建立三个观察角度
-
-<div class="card-grid three">
-  <div class="card text-pink">
-    <h3>对象</h3>
-    <p>磁盘上的文件、运行中的进程、远程仓库，分别是什么？</p>
-  </div>
-  <div class="card text-peach">
-    <h3>边界</h3>
-    <p>编辑器、解释器、包管理器和操作系统各自负责什么？</p>
-  </div>
-  <div class="card text-green">
-    <h3>证据</h3>
-    <p>看到什么现象，才能判断下一步实验或搜索方向？</p>
-  </div>
-</div>
-
-<p class="source-note">今天的目标是形成模型，不是背完所有命令。</p>
-
----
-
-# 一次开发活动会跨过多层
-
-<div class="stack">
-  <div class="diagram-box text-pink">操作系统提供资源与进程</div>
-  <div class="diagram-box text-mauve">shell 解释输入并启动程序</div>
-  <div class="diagram-box text-red">路径与环境决定找到什么</div>
-  <div class="diagram-box text-peach">工具链与依赖决定怎样构建</div>
-  <div class="diagram-box text-green">Git、检查和排障留下可验证的证据</div>
-</div>
-
-<!--
-讲师提示：后面的每个小节都可以回到这张图。遇到新术语先问“它位于哪一层”。
--->
+<div class="cover-meta">RM 软件组招新培训</div>
 
 ---
 layout: section
@@ -98,7 +29,7 @@ layout: section
 
 # <Counter :level="1" /> 操作系统与 WSL
 
-<p>0–8 分钟 · 程序工作的地基</p>
+<p>程序工作的地基</p>
 
 ---
 
@@ -117,28 +48,106 @@ layout: section
   </div>
 </div>
 
-<p class="lead">本课只建立全景：操作系统让程序有地方运行、有资源可用。</p>
+<p class="lead">操作系统让程序有地方运行、有资源可用。</p>
 
 ---
 
-# <Counter /> “操作系统”不是一种设备
+# <Counter /> 操作系统的谱系
 
-<div class="card-grid three">
-  <div class="card text-blue">
-    <h3>桌面与服务器</h3>
-    <p>Windows、macOS、Linux</p>
-  </div>
-  <div class="card text-pink">
-    <h3>移动设备</h3>
-    <p>Android、iOS</p>
-  </div>
-  <div class="card text-green">
-    <h3>嵌入式环境</h3>
-    <p>裸机环境、实时操作系统</p>
+<div class="os-tree" role="img" aria-label="操作系统与 UNIX、Unix-like 以及 Windows NT 家族的简化关系图">
+  <div class="os-tree-main">
+    <div class="os-tree-column text-pink">
+      <div class="os-tree-node os-tree-category">
+        <strong>Unix-like</strong>
+        <span>类 Unix 系统</span>
+      </div>
+      <div class="os-tree-children os-tree-children--three">
+        <div class="os-tree-column text-red">
+          <div class="os-tree-node os-tree-family">
+            <strong>UNIX</strong>
+            <span>标准 / 认证语境</span>
+          </div>
+          <div class="os-tree-children os-tree-children--three os-tree-children--compact">
+            <div class="os-tree-column text-red">
+              <div class="os-tree-node os-tree-leaf"><strong>macOS</strong></div>
+            </div>
+            <div class="os-tree-column text-red">
+              <div class="os-tree-node os-tree-leaf"><strong>AIX</strong></div>
+            </div>
+            <div class="os-tree-column text-red">
+              <div class="os-tree-node os-tree-leaf"><strong>Solaris</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="os-tree-column text-green">
+          <div class="os-tree-node os-tree-family">
+            <strong>BSD 家族</strong>
+            <span>Unix-like 家族</span>
+          </div>
+          <div class="os-tree-children os-tree-children--three os-tree-children--compact">
+            <div class="os-tree-column text-green">
+              <div class="os-tree-node os-tree-leaf"><strong>FreeBSD</strong></div>
+            </div>
+            <div class="os-tree-column text-green">
+              <div class="os-tree-node os-tree-leaf"><strong>OpenBSD</strong></div>
+            </div>
+            <div class="os-tree-column text-green">
+              <div class="os-tree-node os-tree-leaf"><strong>NetBSD</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="os-tree-column text-sky">
+          <div class="os-tree-node os-tree-family">
+            <strong>Linux 生态</strong>
+            <span>内核与发行版</span>
+          </div>
+          <div class="os-tree-children os-tree-children--two os-tree-children--compact">
+            <div class="os-tree-column text-sky">
+              <div class="os-tree-node os-tree-leaf"><strong>Linux 内核</strong></div>
+            </div>
+            <div class="os-tree-column text-sky">
+              <div class="os-tree-node os-tree-leaf os-tree-leaf--distribution">
+                <strong>Linux 发行版</strong>
+                <span>Ubuntu · Fedora · Arch Linux</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="os-tree-column text-mauve">
+      <div class="os-tree-node os-tree-category">
+        <strong>其他操作系统家族</strong>
+      </div>
+      <div class="os-tree-children os-tree-children--one os-tree-children--compact">
+        <div class="os-tree-column text-mauve">
+          <div class="os-tree-node os-tree-family">
+            <strong>Windows NT</strong>
+            <span>操作系统家族</span>
+          </div>
+          <div class="os-tree-children os-tree-children--three os-tree-children--compact">
+            <div class="os-tree-column text-mauve">
+              <div class="os-tree-node os-tree-leaf"><strong>Windows 10</strong></div>
+            </div>
+            <div class="os-tree-column text-mauve">
+              <div class="os-tree-node os-tree-leaf"><strong>Windows 11</strong></div>
+            </div>
+            <div class="os-tree-column text-mauve">
+              <div class="os-tree-node os-tree-leaf"><strong>Windows Server</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<p class="muted">分类可以重叠：Linux 既能运行在服务器，也能运行在桌面或嵌入式设备上。</p>
+<div class="os-tree-notes">
+  <p><code>UNIX</code> 指通过了国际开放标准认证组织（The Open Group）单一 UNIX 规范认证（Single UNIX Specification）的系统；</p>
+  <p><code>Unix-like</code> 是描述性术语。</p>
+  <p class="source-note">术语参考：The Open Group · UNIX / Single UNIX Specification</p>
+  <p class="source-note">本图为教学用简化关系图。</p>
+</div>
 
 ---
 
