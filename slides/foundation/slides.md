@@ -151,39 +151,50 @@ layout: section
 
 ---
 
-# <Counter /> Windows、WSL、Linux 发行版不是同一个对象
+# <Counter /> WSL：在 Windows 中使用 Linux
 
 <div class="flow">
-  <div class="diagram-box text-blue">Windows<br><span class="small">宿主操作系统</span></div>
+  <div class="diagram-box text-blue">Windows<br>日常桌面环境</div>
   <div class="flow-arrow">↔</div>
-  <div class="diagram-box text-peach">WSL 2<br><span class="small">协作运行环境</span></div>
-  <div class="flow-arrow">↔</div>
-  <div class="diagram-box text-green">Ubuntu 等发行版<br><span class="small">Linux 用户空间</span></div>
+  <div class="diagram-box text-peach">WSL<br>Linux 运行环境</div>
 </div>
 
-<p class="lead">终端窗口只是入口；它不等于 WSL，也不等于某个发行版。</p>
+<p class="lead"><em>Windows Subsystem for Linux (WSL)</em><br>是 Windows 提供的工具，让你在 Windows 中方便地使用 Linux 环境。</p>
+
+<div class="activity-box text-green mt-5">
+  <h3>怎么理解它？</h3>
+  <p>相比传统虚拟机，WSL 不需要单独安装、启动和维护一套完整系统，和 Windows 之间的交互也更方便。</p>
+</div>
+
+<p class="source-note">本课主要以 WSL2 为例；WSL 提供了诸多 Linux 发行版，比如 Ubuntu、Debian、openSUSE 等。</p>
 
 ---
 
-# <Counter /> WSL 的边界
+# <CounterDisplay /> WSL
 
-<div class="card-grid">
+<div class="card-grid three">
   <div class="card text-pink">
-    <h3>可以协作</h3>
-    <p>Windows 与 WSL 可以访问部分彼此文件，也可以分别运行工具。</p>
+    <h3>文件系统</h3>
+    <p>Windows 和 WSL 可以访问彼此的一部分文件，例如在 WSL 中访问 Windows 的 C 盘文件。</p>
   </div>
   <div class="card text-peach">
-    <h3>不会自动合并</h3>
-    <p>两边安装的软件、PATH 和环境变量不会因为“看起来在一个窗口”就自动共享。</p>
+    <h3>网络通信</h3>
+    <p>WSL 中运行的开发服务，Windows 可以直接访问。</p>
+  </div>
+  <div class="card text-sky">
+    <h3>VS Code</h3>
+    <p>可以用 Windows 中的 VS Code 编辑代码，同时让代码和工具运行在 WSL 的 Linux 环境中。</p>
   </div>
 </div>
 
-<div class="activity-box text-green mt-5">
-  <h3>随讲随做</h3>
-  <p>确认自己的操作系统名称和大致版本。Windows 候选人只需观察是否已有 WSL，不在课堂排障。</p>
+<div class="callout text-mauve mt-5">
+  <h3>但它们不是同一个环境</h3>
+  <p>Windows 和 WSL 可以协作，但两边安装的软件、PATH 和环境仍可能不同。</p>
 </div>
 
-<!-- 过渡：操作系统提供能力，终端是其中一种文本入口。 -->
+<!--
+过渡：操作系统提供能力，终端是其中一种文本入口。
+-->
 
 ---
 layout: section
