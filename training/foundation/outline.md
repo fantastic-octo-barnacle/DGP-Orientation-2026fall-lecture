@@ -16,7 +16,7 @@
   → 排障和自主学习
 ```
 
-[`demos/foundation/`](../../demos/foundation/) 中的课堂 demo 只在第二小时按需穿插，不承担开场和全课叙事，也不同于正式项目的 Demo C。
+[`demos/foundation/`](../../demos/foundation/) 中的课堂 demo 只在第二小时按需穿插，不承担开场和全课叙事，也不同于Python 项目起始仓库。
 
 ## 时间安排
 

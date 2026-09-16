@@ -16,7 +16,7 @@
 在培训内容稳定后，完成：
 
 - 共同 Git、GitHub 和 WSL2 任务指引。
-- Python 环境 Demo 与正式编程项目 spec。
+- Python 项目起始仓库与正式编程项目 spec。
 - Rust 客户端—服务端项目 spec。
 - 示例数据、参考程序、验收场景和候选人版项目文档。
 
