@@ -47,6 +47,10 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.card-grid.five {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .card,
 .diagram-box,
 .activity-box,
@@ -509,12 +513,13 @@
 
 @media (max-width: 800px) {
   .card-grid,
-    .card-grid.three,
-    .two-col,
-    .three-col,
-    .terminal-grid,
-    .program-example-grid,
-    .timeline,
+  .card-grid.three,
+  .card-grid.five,
+  .two-col,
+  .three-col,
+  .terminal-grid,
+  .program-example-grid,
+  .timeline,
   .os-tree-main,
   .os-tree-children {
     grid-template-columns: 1fr;

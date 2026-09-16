@@ -396,31 +396,15 @@ $ open -a Preview
 layout: section
 ---
 
-# <Counter :level="1" /> 文件类型与纯文本
+# <Counter :level="1" /> 文件与文件系统
 
-<p>18–32 分钟 · 文件保存的是什么？</p>
-
----
-
-# <Counter /> 文件系统保存的是字节
-
-<div class="flow">
-  <div class="diagram-box text-pink">磁盘上的字节</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">格式约定</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach">软件解释与呈现</div>
-</div>
-
-<div class="card-grid three">
-  <div class="card text-green"><h3>纯文本</h3><p>按字符编码解释的内容。</p></div>
-  <div class="card text-sky"><h3>图片</h3><p>按图像格式解释像素与元数据。</p></div>
-  <div class="card text-pink"><h3>复合文档</h3><p>由多个资源共同描述内容与布局。</p></div>
-</div>
+<p>从文件内容到路径定位</p>
 
 ---
 
-# <Counter /> 扩展名是提示，不是转换器
+# <Counter /> 文件类型
+
+## <Counter :level="3" /> 扩展名提示文件格式，但不决定
 
 <div class="two-col">
   <div class="stack">
@@ -436,24 +420,28 @@ layout: section
 
 ---
 
-# <Counter /> 纯文本为什么适合写代码
-
-<div class="card-grid">
-  <div class="card text-green">
-    <h3>保存的是字符序列</h3>
-    <p>源代码、Markdown、HTML、XML 都可以是纯文本。</p>
-  </div>
-  <div class="card text-blue">
-    <h3>编辑器只是工具</h3>
-    <p>记事本、终端编辑器和 IDE 都可以修改同一份文本。</p>
-  </div>
+<div class="flow">
+  <div class="diagram-box text-pink">磁盘上的字节（二进制数据）</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-mauve">格式约定</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-peach">软件解释与呈现</div>
 </div>
 
-<p class="lead">IDE 能提供导航、补全和检查，但它不是源码存在的前提。</p>
+<br>
+<br>
+
+<div class="card-grid five">
+  <div class="card text-green"><h3>纯文本</h3><p>按字符编码解释的内容。</p></div>
+  <div class="card text-sky"><h3>图片</h3><p>按图像格式解释像素与元数据。</p></div>
+  <div class="card text-blue"><h3>音视频</h3><p>按音频视频格式解释声音画面。</p></div>
+  <div class="card text-pink"><h3>复合文档</h3><p>多个资源共同描述内容与布局。</p></div>
+  <div class="card text-red"><h3>可执行文件</h3><p>可被操作系统直接运行的程序。</p></div>
+</div>
 
 ---
 
-# <Counter /> `.docx` 是一种复合文档格式
+## <Counter :level="3" /> 示例：`.docx` 是一种复合文档格式
 
 <div class="flow">
   <div class="diagram-box text-pink"><code>document.docx</code></div>
@@ -472,6 +460,23 @@ layout: section
 
 ---
 
+## <Counter :level="3" /> 代码文件：纯文本
+
+<div class="card-grid">
+  <div class="card text-green">
+    <h3>保存的是字符序列</h3>
+    <p>源代码、Markdown、HTML、XML 都可以是纯文本。</p>
+  </div>
+  <div class="card text-blue">
+    <h3>编辑器只是工具</h3>
+    <p>记事本、终端编辑器和 IDE 都可以修改同一份文本。</p>
+  </div>
+</div>
+
+<p class="lead">IDE 能提供导航、补全和检查，但它不是源码存在的前提。</p>
+
+---
+
 # <Counter /> 随讲随做：创建一个纯文本文件
 
 <div class="activity-box text-sky">
@@ -487,16 +492,10 @@ layout: section
 <p class="muted">不要把保存文件变成安装编辑器或排查关联程序的任务。</p>
 
 ---
-layout: section
----
-
-# <Counter :level="1" /> 文件系统、路径与导航
-
-<p>32–47 分钟 · Shell 怎样找到文件？</p>
-
----
 
 # <Counter /> 文件系统是一棵目录树
+
+<p class="small muted">文件保存了内容；接下来还要知道它在文件系统中的位置，Shell 才能找到它。</p>
 
 <div class="two-col">
   <div class="stack">
