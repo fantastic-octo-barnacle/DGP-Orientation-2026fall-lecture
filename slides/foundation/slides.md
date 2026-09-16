@@ -170,7 +170,7 @@ layout: section
 
 ---
 
-# <CounterDisplay /> WSL
+## <CounterDisplay /> WSL
 
 <div class="card-grid three">
   <div class="card text-pink">
@@ -200,116 +200,196 @@ layout: section
 layout: section
 ---
 
-# <Counter :level="1" /> 终端、shell 与命令行
+# <Counter :level="1" /> 终端、Shell 与命令行
 
-<p>8–18 分钟 · 谁在读取你的输入？</p>
+<p>如何运行一个程序</p>
 
 ---
+layout: two-cols-header
+---
 
-# <Counter /> 终端、shell、命令行分别是什么
+# <Counter /> 终端是窗口，Shell 是程序
 
-<div class="flow">
-  <div class="diagram-box text-pink"><strong>终端</strong><br><span class="small">提供文本交互界面</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve"><strong>shell</strong><br><span class="small">读取并解释输入</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach"><strong>命令</strong><br><span class="small">改变状态或启动程序</span></div>
+::left::
+
+<br>
+<div>
+  <div class="architecture-node architecture-main-node text-red">
+    <strong>用户</strong>
+    <span>输入文字，观察结果</span>
+  </div>
+  <div class="architecture-arrow">↓ 输入 / 观察</div>
+  <div class="architecture-node architecture-main-node text-pink">
+    <strong>终端模拟器</strong>
+    <span>显示文本、接收键盘输入</span>
+  </div>
+  <div class="architecture-arrow">↓ 启动 Shell、传递文本</div>
+  <div class="architecture-node architecture-main-node text-peach">
+    <strong>Shell</strong>
+    <span>读取并解释命令</span>
+  </div>
+  <div class="architecture-arrow">↓ 请求操作系统服务</div>
+  <div class="architecture-node architecture-main-node architecture-kernel text-mauve">
+    <strong>操作系统内核</strong>
+    <span>管理进程、文件、内存和硬件设备</span>
+  </div>
 </div>
 
-<p class="lead">“命令行”描述的是交互形式，不是一个独立的软件名称。</p>
+::right::
+
+<br>
+<div class="architecture-side-note text-pink">
+  <strong>终端模拟器</strong>
+  <p>负责显示文本、接收键盘输入的程序。它会将用户的输入传递给 Shell，并将 Shell 的输出显示给用户。</p>
+  <p class="small muted mt-2">例：Windows Terminal、iTerm2、GNOME Terminal、...</p>
+</div>
+<br>
+<div class="architecture-side-note text-peach">
+  <strong>Shell</strong>
+  <p>在终端中运行，负责读取并解释命令的程序。它会通过操作系统提供的接口请求内核服务：启动应用或其他程序、读写文件，以及进行其他系统交互。</p>
+  <p class="small muted mt-2">例：PowerShell、pwsh、Bash、Zsh、fish、...</p>
+</div>
 
 ---
 
-# <Counter /> shell 会记住一些状态
+# <Counter /> Shell 会维护自己的状态
 
 <div class="two-col">
   <div class="diagram-box text-red">
     <h3>当前目录</h3>
-    <p>相对路径从哪里开始解释？</p>
+    <p>决定相对路径从哪里开始解释。</p>
   </div>
   <div class="diagram-box text-peach">
     <h3>环境变量</h3>
-    <p>启动其他程序时，哪些名称和值会传过去？</p>
+    <p>启动其他程序时会传递的一组名称和值。</p>
   </div>
 </div>
 
-<div class="callout text-sky mt-5">
-  <p>shell 本身也是程序，但它不等于操作系统。</p>
+<div class="flow mt-4">
+  <div class="diagram-box text-pink"><code>cd path/to/your/project</code></div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-mauve">Shell 更新自己的当前目录</div>
 </div>
+
+<div class="callout text-sky mt-4">
+  <p><strong>内建命令：</strong><code>cd</code> 等内建命令由 Shell 自己处理，会改变 Shell 自身的状态。</p>
+</div>
+
+<p class="small muted">目录（文件系统）和环境变量的细节，会在后面单独解释。</p>
 
 ---
 
-# <Counter /> 有些命令改变 shell，有些命令启动程序
+# <Counter /> Shell 的使用
 
-<div class="card-grid">
-  <div class="card text-pink">
-    <h3>内建命令</h3>
-    <p>例如切换当前目录。它必须改变 shell 自己的状态。</p>
+<div class="flow">
+  <div class="diagram-box text-mauve">
+    Shell&nbsp;&nbsp;&nbsp;<em>解释命令</em>
   </div>
+  <div class="flow-arrow">⇒ 启动 ⇒</div>
+  <div class="diagram-box text-green">
+    外部程序&nbsp;&nbsp;&nbsp;<em>Git · Python · 自编译程序</em>
+  </div>
+</div>
+
+<div class="two-col mt-5">
   <div class="card text-green">
-    <h3>外部程序</h3>
-    <p>例如 Git。shell 根据规则找到磁盘上的程序并启动它。</p>
+    <h3>程序完成具体工作</h3>
+    <p>例如读取文件、运行代码，或与其他程序通信。</p>
+  </div>
+  <div class="card text-peach">
+    <h3>结果回到终端</h3>
+    <p>程序输出文本，终端模拟器负责把它显示出来。</p>
   </div>
 </div>
 
-<p class="muted">不是所有命令都对应一个同名文件，也不是所有文件都能作为命令运行。</p>
+<p class="lead">命令有时是 Shell 的内建功能，有时是 Shell 要启动的程序。</p>
 
 ---
 
-# <Counter /> 同一个终端窗口不是同一个会话
+## 使用 Shell 运行命令
 
-<div class="two-col">
+<div class="terminal-grid mt-4">
   <div>
-    <div class="terminal-label text-pink">会话 A</div>
-
-```text
-PS> Set-Location project
-PS> Get-Location
-Path
-----
-C:\Users\student\project
-```
-  </div>
-  <div>
-    <div class="terminal-label text-green">会话 B</div>
-
-```text
-PS> Get-Location
-Path
-----
-C:\Users\student
-```
-  </div>
-</div>
-
-<p class="small muted">打开第二个终端窗口，观察它有自己的当前目录和交互状态。</p>
-
----
-
-# <Counter /> 随讲随做：先只看提示符
-
-<div class="terminal-grid">
-  <div>
-    <div class="terminal-label text-blue">PowerShell</div>
+    <div class="terminal-label text-blue">Windows · PowerShell</div>
 
 ```text
 PS> Write-Output "hello"
 hello
+
+PS> Get-Date
+<日期和时间>
+
+PS> Get-Location
+<当前目录>
 ```
   </div>
   <div>
-    <div class="terminal-label text-peach">macOS / Linux</div>
+    <div class="terminal-label text-peach">macOS / Linux · Bash</div>
 
 ```text
 $ printf 'hello\n'
 hello
+
+$ date
+<日期和时间>
+
+$ pwd
+<当前目录>
 ```
   </div>
 </div>
 
-<div class="activity-box text-sky mt-4">
-  <h3>观察</h3>
-  <p>哪一部分像“你输入的命令”？哪一部分像“程序输出的结果”？</p>
+<p class="terminal-legend"><code>PS&gt;</code> / <code>$</code> 是 Shell 给出的提示符（prompt）；下面的输出会因机器而异。</p>
+
+---
+
+## 使用 Shell 运行程序
+
+<div class="program-example-grid mt-3">
+  <div class="program-example-column">
+<div class="terminal-label text-green">Windows · PowerShell · 命令行程序</div>
+
+```text
+PS> git --version
+git version 2.x
+
+PS> python -c "print('hello from Python')"
+hello from Python
+
+PS> curl.exe --version
+curl 8.x
+```
+
+<div class="terminal-label text-peach program-example-label">Windows · PowerShell · GUI 程序</div>
+
+```text
+PS> notepad
+PS> calc
+PS> mspaint
+```
+  </div>
+  <div class="program-example-column">
+<div class="terminal-label text-green">macOS / Linux · Bash · 命令行程序</div>
+
+```text
+$ git --version
+git version 2.x
+
+$ python3 -c 'print("hello from Python")'
+hello from Python
+
+$ curl --version
+curl 8.x
+```
+
+<div class="terminal-label text-peach program-example-label">macOS · Bash · GUI 程序</div>
+
+```text
+$ open -a TextEdit
+$ open -a Calculator
+$ open -a Preview
+```
+  </div>
 </div>
 
 ---
@@ -412,7 +492,7 @@ layout: section
 
 # <Counter :level="1" /> 文件系统、路径与导航
 
-<p>32–47 分钟 · shell 怎样找到文件？</p>
+<p>32–47 分钟 · Shell 怎样找到文件？</p>
 
 ---
 
@@ -457,11 +537,11 @@ layout: section
 <div class="card-grid three">
   <div class="card text-green"><h3><code>.</code></h3><p>当前目录。</p></div>
   <div class="card text-blue"><h3><code>..</code></h3><p>上一级目录。</p></div>
-  <div class="card text-red"><h3>空格</h3><p>需要让 shell 知道它们属于同一个参数。</p></div>
+  <div class="card text-red"><h3>空格</h3><p>需要让 Shell 知道它们属于同一个参数。</p></div>
 </div>
 
 <div class="callout text-mauve mt-5">
-  <p>路径中的引号是给 shell 的边界提示，不会凭空改变文件名。</p>
+  <p>路径中的引号是给 Shell 的边界提示，不会凭空改变文件名。</p>
 </div>
 
 ---
@@ -526,7 +606,7 @@ layout: section
 # <Counter /> 环境变量是传给程序的名称和值
 
 <div class="flow">
-  <div class="diagram-box text-pink">shell</div>
+  <div class="diagram-box text-pink">Shell</div>
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-peach"><code>NAME=value</code></div>
   <div class="flow-arrow">→</div>
@@ -554,7 +634,7 @@ layout: section
 
 <div class="two-col">
   <div class="callout text-red"><p>输入完整路径：明确指定启动哪个程序。</p></div>
-  <div class="callout text-blue"><p>只输入名称：交给 shell 按当前环境寻找。</p></div>
+  <div class="callout text-blue"><p>只输入名称：交给 Shell 按当前环境寻找。</p></div>
 </div>
 
 ---
@@ -564,10 +644,10 @@ layout: section
 <div class="card-grid three">
   <div class="card text-pink"><h3>下载完成</h3><p>磁盘上出现了软件或文件。</p></div>
   <div class="card text-peach"><h3>位置存在</h3><p>它可能在某个目录中，但不在搜索路径里。</p></div>
-  <div class="card text-green"><h3>命令可用</h3><p>当前 shell 的 PATH 能命中正确版本。</p></div>
+  <div class="card text-green"><h3>命令可用</h3><p>当前 Shell 的 PATH 能命中正确版本。</p></div>
 </div>
 
-<p class="lead">同名命令还可能因为 shell、Windows/WSL 或版本不同而命中不同位置。</p>
+<p class="lead">同名命令还可能因为 Shell、Windows/WSL 或版本不同而命中不同位置。</p>
 
 ---
 
@@ -632,7 +712,7 @@ $ git --version
 <div class="flow">
   <div class="diagram-box text-pink">操作系统<br><span class="small">提供文件系统与进程</span></div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">shell<br><span class="small">提供文本操作入口</span></div>
+  <div class="diagram-box text-mauve">Shell<br><span class="small">提供文本操作入口</span></div>
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-red">路径<br><span class="small">定位文件</span></div>
   <div class="flow-arrow">→</div>
@@ -1105,7 +1185,7 @@ layout: section
 
 <div class="card-grid">
   <div class="card text-red"><h3>不要提供</h3><p>密码、令牌、私有密钥或不应公开的项目内容。</p></div>
-  <div class="card text-peach"><h3>执行前检查</h3><p>命令会读取、修改还是删除什么？适用于哪个系统和 shell？</p></div>
+  <div class="card text-peach"><h3>执行前检查</h3><p>命令会读取、修改还是删除什么？适用于哪个系统和 Shell？</p></div>
   <div class="card text-green"><h3>结论要复核</h3><p>用官方文档、实际运行、测试或最小实验验证。</p></div>
   <div class="card text-blue"><h3>最终要能解释</h3><p>能运行不等于理解正确；保留的方案需要说得清楚。</p></div>
 </div>

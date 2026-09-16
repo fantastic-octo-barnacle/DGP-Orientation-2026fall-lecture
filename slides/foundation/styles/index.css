@@ -98,6 +98,94 @@
   opacity: 0.72;
 }
 
+.architecture-chain {
+  display: grid;
+  grid-template-columns: minmax(0, 18rem) minmax(0, 24rem);
+  column-gap: 1rem;
+  row-gap: 0.35rem;
+  max-width: 43rem;
+  margin: 0.65rem auto 0;
+  align-items: center;
+}
+
+.architecture-node {
+  border: 1.5px solid currentColor;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.75rem;
+  background: rgb(255 255 255 / 0.045);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.architecture-node strong,
+.architecture-node span {
+  display: block;
+}
+
+.architecture-node strong {
+  font-size: 0.95rem;
+}
+
+.architecture-node span {
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  opacity: 0.72;
+}
+
+.architecture-chain > .architecture-node,
+.architecture-chain > .architecture-arrow {
+  grid-column: 1;
+}
+
+.architecture-main-node {
+  width: 100%;
+}
+
+.architecture-arrow {
+  display: flex;
+  min-height: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  opacity: 0.7;
+}
+
+.architecture-side-note {
+  grid-column: 2;
+  grid-row: 5;
+  align-self: stretch;
+  box-sizing: border-box;
+  width: 82%;
+  margin: 0 auto;
+  border: 1.5px solid currentColor;
+  border-radius: 0.6rem;
+  padding: 0.7rem 0.8rem;
+  background: rgb(255 255 255 / 0.045);
+  line-height: 1.45;
+}
+
+.architecture-side-note strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.9rem;
+}
+
+.architecture-side-note p {
+  margin: 0;
+  font-size: 0.76rem;
+}
+
+.architecture-kernel {
+  width: 100%;
+}
+
+.terminal-legend {
+  margin: 0.35rem 0 0;
+  font-size: 0.7rem;
+  line-height: 1.45;
+  opacity: 0.72;
+}
+
 .os-tree {
   --os-tree-line: rgb(255 255 255 / 0.34);
   margin-top: 0.6rem;
@@ -293,6 +381,26 @@
   opacity: 0.78;
 }
 
+.program-example-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.program-example-column {
+  min-width: 0;
+}
+
+.program-example-column .slidev-code {
+  margin-top: 0.35rem;
+  min-height: 0;
+}
+
+.program-example-label {
+  margin-top: 0.85rem;
+}
+
 .timeline {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -401,14 +509,30 @@
 
 @media (max-width: 800px) {
   .card-grid,
-  .card-grid.three,
-  .two-col,
-  .three-col,
-  .terminal-grid,
-  .timeline,
+    .card-grid.three,
+    .two-col,
+    .three-col,
+    .terminal-grid,
+    .program-example-grid,
+    .timeline,
   .os-tree-main,
   .os-tree-children {
     grid-template-columns: 1fr;
+  }
+
+  .architecture-chain {
+    grid-template-columns: 1fr;
+  }
+
+  .architecture-chain > .architecture-node,
+  .architecture-chain > .architecture-arrow,
+  .architecture-side-note {
+    grid-column: 1;
+  }
+
+  .architecture-side-note {
+    grid-row: auto;
+    text-align: center;
   }
 
   .flow {
