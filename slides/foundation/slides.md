@@ -96,13 +96,13 @@ layout: statement
 layout: section
 ---
 
-# <Counter /> 操作系统与 WSL
+# <Counter :level="1" /> 操作系统与 WSL
 
 <p>0–8 分钟 · 程序工作的地基</p>
 
 ---
 
-# <Counter :level="2" /> 操作系统负责管理公共资源
+# <Counter /> 操作系统负责管理公共资源
 
 <div class="two-col">
   <div class="stack">
@@ -121,7 +121,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> “操作系统”不是一种设备
+# <Counter /> “操作系统”不是一种设备
 
 <div class="card-grid three">
   <div class="card text-blue">
@@ -142,7 +142,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> Windows、WSL、Linux 发行版不是同一个对象
+# <Counter /> Windows、WSL、Linux 发行版不是同一个对象
 
 <div class="flow">
   <div class="diagram-box text-blue">Windows<br><span class="small">宿主操作系统</span></div>
@@ -156,7 +156,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> WSL 的边界
+# <Counter /> WSL 的边界
 
 <div class="card-grid">
   <div class="card text-pink">
@@ -180,13 +180,13 @@ layout: section
 layout: section
 ---
 
-# <Counter /> 终端、shell 与命令行
+# <Counter :level="1" /> 终端、shell 与命令行
 
 <p>8–18 分钟 · 谁在读取你的输入？</p>
 
 ---
 
-# <Counter :level="2" /> 终端、shell、命令行分别是什么
+# <Counter /> 终端、shell、命令行分别是什么
 
 <div class="flow">
   <div class="diagram-box text-pink"><strong>终端</strong><br><span class="small">提供文本交互界面</span></div>
@@ -200,7 +200,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> shell 会记住一些状态
+# <Counter /> shell 会记住一些状态
 
 <div class="two-col">
   <div class="diagram-box text-red">
@@ -219,7 +219,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 有些命令改变 shell，有些命令启动程序
+# <Counter /> 有些命令改变 shell，有些命令启动程序
 
 <div class="card-grid">
   <div class="card text-pink">
@@ -236,7 +236,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 同一个终端窗口不是同一个会话
+# <Counter /> 同一个终端窗口不是同一个会话
 
 <div class="two-col">
   <div>
@@ -266,7 +266,7 @@ C:\Users\student
 
 ---
 
-# <Counter :level="2" /> 随讲随做：先只看提示符
+# <Counter /> 随讲随做：先只看提示符
 
 <div class="terminal-grid">
   <div>
@@ -296,13 +296,13 @@ hello
 layout: section
 ---
 
-# <Counter /> 文件类型与纯文本
+# <Counter :level="1" /> 文件类型与纯文本
 
 <p>18–32 分钟 · 文件保存的是什么？</p>
 
 ---
 
-# <Counter :level="2" /> 文件系统保存的是字节
+# <Counter /> 文件系统保存的是字节
 
 <div class="flow">
   <div class="diagram-box text-pink">磁盘上的字节</div>
@@ -320,7 +320,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 扩展名是提示，不是转换器
+# <Counter /> 扩展名是提示，不是转换器
 
 <div class="two-col">
   <div class="stack">
@@ -336,7 +336,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 纯文本为什么适合写代码
+# <Counter /> 纯文本为什么适合写代码
 
 <div class="card-grid">
   <div class="card text-green">
@@ -353,7 +353,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> `.docx` 是一种复合文档格式
+# <Counter /> `.docx` 是一种复合文档格式
 
 <div class="flow">
   <div class="diagram-box text-pink"><code>document.docx</code></div>
@@ -372,7 +372,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 随讲随做：创建一个纯文本文件
+# <Counter /> 随讲随做：创建一个纯文本文件
 
 <div class="activity-box text-sky">
   <h3>只验证刚引入的概念</h3>
@@ -390,13 +390,13 @@ layout: section
 layout: section
 ---
 
-# <Counter /> 文件系统、路径与导航
+# <Counter :level="1" /> 文件系统、路径与导航
 
 <p>32–47 分钟 · shell 怎样找到文件？</p>
 
 ---
 
-# <Counter :level="2" /> 文件系统是一棵目录树
+# <Counter /> 文件系统是一棵目录树
 
 <div class="two-col">
   <div class="stack">
@@ -415,7 +415,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 绝对路径与相对路径
+# <Counter /> 绝对路径与相对路径
 
 <div class="two-col">
   <div class="card text-pink">
@@ -432,7 +432,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> `.`、`..` 与空格
+# <Counter /> `.`、`..` 与空格
 
 <div class="card-grid three">
   <div class="card text-green"><h3><code>.</code></h3><p>当前目录。</p></div>
@@ -446,7 +446,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 随讲随做：每次只完成一个导航动作
+# <Counter /> 随讲随做：每次只完成一个导航动作
 
 <div class="terminal-grid">
   <div>
@@ -475,7 +475,7 @@ $ pwd
 
 ---
 
-# <Counter :level="2" /> 文件存在，但相对路径仍然可能失败
+# <Counter /> 文件存在，但相对路径仍然可能失败
 
 <div class="two-col">
   <div class="stack">
@@ -497,13 +497,13 @@ $ pwd
 layout: section
 ---
 
-# <Counter /> 环境变量、PATH、可执行文件与进程
+# <Counter :level="1" /> 环境变量、PATH、可执行文件与进程
 
 <p>47–60 分钟 · 命令名称怎样变成一次运行？</p>
 
 ---
 
-# <Counter :level="2" /> 环境变量是传给程序的名称和值
+# <Counter /> 环境变量是传给程序的名称和值
 
 <div class="flow">
   <div class="diagram-box text-pink">shell</div>
@@ -520,7 +520,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> PATH 是一组搜索位置
+# <Counter /> PATH 是一组搜索位置
 
 <div class="flow">
   <div class="diagram-box text-mauve"><code>git</code></div>
@@ -539,7 +539,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> “安装了”不等于“命令能找到”
+# <Counter /> “安装了”不等于“命令能找到”
 
 <div class="card-grid three">
   <div class="card text-pink"><h3>下载完成</h3><p>磁盘上出现了软件或文件。</p></div>
@@ -551,7 +551,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 程序文件、脚本文件、数据文件
+# <Counter /> 程序文件、脚本文件、数据文件
 
 <div class="card-grid three">
   <div class="card text-red"><h3>本机可执行文件</h3><p>操作系统可以装载并执行机器指令。</p></div>
@@ -563,7 +563,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 磁盘上的程序 ≠ 运行中的进程
+# <Counter /> 磁盘上的程序 ≠ 运行中的进程
 
 <div class="flow">
   <div class="diagram-box text-peach">磁盘上的<br>程序文件</div>
@@ -579,7 +579,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 随讲随做：确认 Git 命中了哪里
+# <Counter /> 随讲随做：确认 Git 命中了哪里
 
 <div class="terminal-grid">
   <div>
@@ -625,13 +625,13 @@ $ git --version
 layout: section
 ---
 
-# <Counter /> Python、JavaScript、C 与 Rust 怎样运行
+# <Counter :level="1" /> Python、JavaScript、C 与 Rust 怎样运行
 
 <p>65–82 分钟 · 源码到行为的不同路径</p>
 
 ---
 
-# <Counter :level="2" /> CPU 最终执行机器指令
+# <Counter /> CPU 最终执行机器指令
 
 <div class="flow">
   <div class="diagram-box text-pink">人写的源码<br><span class="small">纯文本</span></div>
@@ -647,7 +647,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> Python 与 JavaScript：由运行时读取
+# <Counter /> Python 与 JavaScript：由运行时读取
 
 <div class="stack">
   <div class="diagram-box text-pink">Python / JavaScript 源码</div>
@@ -663,7 +663,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> C 与 Rust：先编译，再启动
+# <Counter /> C 与 Rust：先编译，再启动
 
 <div class="stack">
   <div class="diagram-box text-pink">C / Rust 源码</div>
@@ -679,7 +679,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 四种语言：比较路径，不比较优劣
+# <Counter /> 四种语言：比较路径，不比较优劣
 
 <table class="compact">
   <thead>
@@ -697,7 +697,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 同一份源码，不保证得到同一个文件
+# <Counter /> 同一份源码，不保证得到同一个文件
 
 <div class="two-col">
   <div class="stack">
@@ -714,7 +714,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 编译成功，只说明一个问题
+# <Counter /> 编译成功，只说明一个问题
 
 <div class="big-word text-green">能构建</div>
 
@@ -729,13 +729,13 @@ layout: section
 layout: section
 ---
 
-# <Counter /> 包、版本、依赖与开发环境
+# <Counter :level="1" /> 包、版本、依赖与开发环境
 
 <p>82–94 分钟 · 一个项目还需要什么？</p>
 
 ---
 
-# <Counter :level="2" /> “开发环境”不是一个目录
+# <Counter /> “开发环境”不是一个目录
 
 <div class="stack">
   <div class="diagram-box text-pink">操作系统与硬件架构</div>
@@ -749,7 +749,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 包名写进源码，不会自动出现
+# <Counter /> 包名写进源码，不会自动出现
 
 <div class="flow">
   <div class="diagram-box text-pink">源码中引用包名</div>
@@ -765,7 +765,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 版本是行为的一部分
+# <Counter /> 版本是行为的一部分
 
 <div class="two-col">
   <div class="card text-blue">
@@ -784,7 +784,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 直接依赖会带来间接依赖
+# <Counter /> 直接依赖会带来间接依赖
 
 <div class="flow">
   <div class="diagram-box text-pink">项目</div>
@@ -801,7 +801,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 清单、锁文件与可重建内容
+# <Counter /> 清单、锁文件与可重建内容
 
 <table class="compact">
   <thead><tr><th>概念</th><th>Python 示例</th><th>Rust 示例</th></tr></thead>
@@ -816,7 +816,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 一个更可靠的项目边界
+# <Counter /> 一个更可靠的项目边界
 
 <div class="flow">
   <div class="diagram-box text-pink">源码</div>
@@ -834,13 +834,13 @@ layout: section
 layout: section
 ---
 
-# <Counter /> Git、GitHub 与项目基本结构
+# <Counter :level="1" /> Git、GitHub 与项目基本结构
 
 <p>94–106 分钟 · 怎样记录项目及其变化？</p>
 
 ---
 
-# <Counter :level="2" /> Git 与 GitHub 是两个对象
+# <Counter /> Git 与 GitHub 是两个对象
 
 <div class="two-col">
   <div class="card text-pink">
@@ -857,7 +857,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 从修改到提交，再到远程
+# <Counter /> 从修改到提交，再到远程
 
 <div class="flow">
   <div class="diagram-box text-pink">工作区<br><span class="small">文件正在变化</span></div>
@@ -873,7 +873,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 四个命令，观察四种状态
+# <Counter /> 四个命令，观察四种状态
 
 <div class="card-grid">
   <div class="card text-pink"><h3><code>git status</code></h3><p>现在有什么变化？</p></div>
@@ -884,7 +884,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 一次提交应该能说明一个变化
+# <Counter /> 一次提交应该能说明一个变化
 
 <div class="two-col">
   <div class="callout text-green">
@@ -901,7 +901,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 一个项目目录里有什么
+# <Counter /> 一个项目目录里有什么
 
 <div class="card-grid three">
   <div class="card text-pink"><h3>长期维护</h3><p>源码、<code>README.md</code>、测试。</p></div>
@@ -915,7 +915,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 随讲随做：观察一次纯文本修改
+# <Counter /> 随讲随做：观察一次纯文本修改
 
 <div class="terminal-single">
 
@@ -937,13 +937,13 @@ $ git log --oneline -1
 layout: section
 ---
 
-# <Counter /> 测试与开发检查工具
+# <Counter :level="1" /> 测试与开发检查工具
 
 <p>106–112 分钟 · 不同工具分别回答什么问题？</p>
 
 ---
 
-# <Counter :level="2" /> 四类检查，不是四个同义词
+# <Counter /> 四类检查，不是四个同义词
 
 <table class="compact">
   <thead><tr><th>检查</th><th>主要问题</th><th>典型例子</th></tr></thead>
@@ -957,7 +957,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> “能运行”仍然可能有问题
+# <Counter /> “能运行”仍然可能有问题
 
 <div class="flow">
   <div class="diagram-box text-green">能运行</div>
@@ -973,7 +973,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> CI 把已有检查放到新环境执行
+# <Counter /> CI 把已有检查放到新环境执行
 
 <div class="flow">
   <div class="diagram-box text-pink">本地运行检查</div>
@@ -991,7 +991,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 本地与 CI 的关系
+# <Counter /> 本地与 CI 的关系
 
 <div class="two-col">
   <div class="card text-green"><h3>本地检查</h3><p>反馈快，适合边改边验证。</p></div>
@@ -1004,13 +1004,13 @@ layout: section
 layout: section
 ---
 
-# <Counter /> 报错、搜索、求助与 AI 验证
+# <Counter :level="1" /> 报错、搜索、求助与 AI 验证
 
 <p>112–118 分钟 · 失败是下一步的证据</p>
 
 ---
 
-# <Counter :level="2" /> 报错说明模型与实际状态不一致
+# <Counter /> 报错说明模型与实际状态不一致
 
 <div class="two-col">
   <div class="big-word text-red">失败</div>
@@ -1025,7 +1025,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 先判断问题属于哪一层
+# <Counter /> 先判断问题属于哪一层
 
 <div class="card-grid three">
   <div class="card text-pink"><h3>命令 / PATH</h3><p>找不到程序、命中错误版本。</p></div>
@@ -1038,7 +1038,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 排障是一个循环
+# <Counter /> 排障是一个循环
 
 <div class="timeline">
   <div class="text-pink"><strong>1</strong><span>观察完整现象</span></div>
@@ -1052,7 +1052,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 一个有用的问题包含上下文
+# <Counter /> 一个有用的问题包含上下文
 
 <div class="check-list">
   <div><span class="check-icon text-pink">01</span><span>想完成什么？</span></div>
@@ -1064,7 +1064,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 搜索与求助：保留稳定关键词
+# <Counter /> 搜索与求助：保留稳定关键词
 
 <div class="two-col">
   <div class="card text-green">
@@ -1081,7 +1081,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 使用 AI 前后都要验证
+# <Counter /> 使用 AI 前后都要验证
 
 <div class="card-grid">
   <div class="card text-red"><h3>不要提供</h3><p>密码、令牌、私有密钥或不应公开的项目内容。</p></div>
@@ -1092,7 +1092,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 随讲随答：先决定下一条信息
+# <Counter /> 随讲随答：先决定下一条信息
 
 <div class="activity-box text-sky">
   <h3>面对一个失败现象，快速回答：</h3>
@@ -1110,13 +1110,13 @@ layout: section
 layout: section
 ---
 
-# <Counter /> 路线选择与正式项目交接
+# <Counter :level="1" /> 路线选择与正式项目交接
 
 <p>118–120 分钟 · 从共同语言走向自主学习</p>
 
 ---
 
-# <Counter :level="2" /> 两条路线是起点，不是能力等级
+# <Counter /> 两条路线是起点，不是能力等级
 
 <div class="two-col">
   <div class="card route-card text-pink">
@@ -1140,7 +1140,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 用自测决定从哪里开始
+# <Counter /> 用自测决定从哪里开始
 
 <div class="check-list">
   <div><span class="check-icon text-pink">A</span><span>我能否独立创建、运行并修改一个简单程序？</span></div>
@@ -1152,7 +1152,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 正式项目看重可说明的学习证据
+# <Counter /> 正式项目看重可说明的学习证据
 
 <div class="flow">
   <div class="diagram-box text-pink">环境</div>
@@ -1170,7 +1170,7 @@ layout: section
 
 ---
 
-# <Counter :level="2" /> 接下来怎么走
+# <Counter /> 接下来怎么走
 
 <div class="card-grid three">
   <div class="card text-pink"><h3>1</h3><p>完成或跳过已经掌握的预备内容。</p></div>
@@ -1191,4 +1191,3 @@ layout: statement
 先观察现象，再判断边界；做一个小实验，验证一个猜测。
 
 <p class="mt-6 muted">计算机开发基础 · 课程结束</p>
-
