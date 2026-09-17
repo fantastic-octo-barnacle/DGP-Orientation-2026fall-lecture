@@ -8,6 +8,6 @@
 	"devDependencies": {
 		"@slidev/cli": "^52.19.2",
 		"@ktym4a/slidev-theme-ktym4a": "^0.3.2",
-		"slidev-addon-counter": "^0.2.1"
+		"slidev-addon-counter": "^0.3.0-alpha.1"
 	}
 }

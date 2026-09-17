@@ -15,8 +15,8 @@ importers:
         specifier: ^52.19.2
         version: 52.19.2(@nuxt/kit@3.21.11)(@oxc-project/types@0.149.0)(@types/markdown-it@14.2.0)(@types/node@22.20.2)(@vitejs/devtools-kit@0.4.12(@modelcontextprotocol/server@2.0.0)(cac@7.0.0)(srvx@1.0.5)(vite@8.2.2(@types/node@22.20.2)(jiti@2.7.0)(yaml@2.9.1)))(@vue/compiler-sfc@3.5.42)(cac@7.0.0)(hono@4.13.8)(lightningcss@1.33.0)(markdown-it@14.3.2)(oxc-parser@0.131.0)(postcss@8.5.28)(rolldown@1.2.8)(srvx@1.0.5)
       slidev-addon-counter:
-        specifier: ^0.2.1
-        version: 0.2.1(vue@3.5.42(typescript@6.0.3))
+        specifier: ^0.3.0-alpha.1
+        version: 0.3.0-alpha.1(vue@3.5.42(typescript@6.0.3))
 
 packages:
 
@@ -2484,8 +2484,8 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  slidev-addon-counter@0.2.1:
-    resolution: {integrity: sha512-5PV0BPz5zbcDglYlFqd2FwpXtQQ+3VZKdyyujtqZB+uBBMMcgFiORxgbI5Utc0s20VH1q5foSfpSoenwKjYpYw==}
+  slidev-addon-counter@0.3.0-alpha.1:
+    resolution: {integrity: sha512-bTrWCB3/vpjc0fjjcbQz1kVoLpM1kggjO+T6OBWL5QtE77ZNWtroyfRwz/N1MiSXbvdl0qKfO6SBxDJEj/EWeg==}
     engines: {node: '>=22.18.0', slidev: '>=52.0.0'}
     peerDependencies:
       vue: ^3.5.0
@@ -5945,7 +5945,7 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  slidev-addon-counter@0.2.1(vue@3.5.42(typescript@6.0.3)):
+  slidev-addon-counter@0.3.0-alpha.1(vue@3.5.42(typescript@6.0.3)):
     dependencies:
       htmlparser2: 12.0.0
       jiti: 2.7.0
