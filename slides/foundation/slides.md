@@ -456,7 +456,7 @@ layout: section
   <div class="card text-mauve"><h3>嵌入资源</h3><p>图片等媒体可以作为内部文件保存。</p></div>
 </div>
 
-<p class="small muted">这是 `.docx` 的结构，不代表所有 Word 文件都相同；旧式 `.doc` 是另一种格式。</p>
+<p class="small muted">这是 <code>.docx</code> 的结构，不代表所有 Word 文件都相同；旧式 <code>.doc</code> 是另一种格式。</p>
 
 ---
 
@@ -469,7 +469,7 @@ layout: section
   </div>
   <div class="card text-blue">
     <h3>编辑器只是工具</h3>
-    <p>记事本、终端编辑器和 IDE 都可以修改同一份文本。</p>
+    <p>同一份纯文本可以被不同编辑器打开和修改，不绑定某个软件。</p>
   </div>
 </div>
 
@@ -477,19 +477,28 @@ layout: section
 
 ---
 
-# <Counter /> 随讲随做：创建一个纯文本文件
+## <Counter :level="3" /> 常见的纯文本编辑器
 
-<div class="activity-box text-sky">
-  <h3>只验证刚引入的概念</h3>
-  <ol>
-    <li>用普通文本编辑器新建文件。</li>
-    <li>写入一句话并保存。</li>
-    <li>确认文件名、扩展名和位置。</li>
-    <li>重新打开，确认内容仍然是原来的文字。</li>
-  </ol>
+<div class="two-col">
+  <div class="card text-blue">
+    <h3>Windows · 记事本</h3>
+    <p>系统自带，改一个 <code>.txt</code> 最方便的方式。</p>
+    <p class="mt-3">保存时确认保存类型是 <code>.txt</code>。</p>
+  </div>
+  <div class="card text-green">
+    <h3>macOS · TextEdit</h3>
+    <p>系统自带，但新建的是富文本文档。</p>
+    <p class="mt-3">先「格式 → 制作纯文本」，再写 <code>.txt</code>。</p>
+  </div>
 </div>
 
-<p class="muted">不要把保存文件变成安装编辑器或排查关联程序的任务。</p>
+<div class="callout text-mauve mt-5">
+  <p>第三方编辑器：</p>
+  <ul>
+    <li>GUI 编辑器：<code>VS Code</code>、<code>Sublime Text</code>、<code>Notepad++</code></li>
+    <li>终端编辑器：<code>nano</code>、<code>vim</code></li>
+  </ul>
+</div>
 
 ---
 
