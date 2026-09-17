@@ -957,31 +957,31 @@ printenv PATH          # 显示 PATH 的值
 
 ---
 
-# <Counter /> 随讲随做：确认 Git 命中了哪里
+## 目标程序到底命中了哪里？
 
 <div class="terminal-grid">
   <div>
     <div class="terminal-label text-blue">PowerShell</div>
 
-```text
-PS> Get-Command git
-PS> git --version
+```powershell
+Get-Command git
+where.exe git
 ```
   </div>
   <div>
     <div class="terminal-label text-green">macOS / Linux</div>
 
-```text
-$ command -v git
-$ git --version
+```bash
+command -v git
+where git
+which git
 ```
   </div>
 </div>
 
-<div class="activity-box text-peach mt-4">
-  <h3>问题</h3>
-  <p>你看到的是命令名、文件路径，还是一次运行的进程？</p>
-</div>
+`PATH` 是有序的，Shell 会按顺序查找每个目录，直到找到第一个可执行文件。
+
+如果有多个同名程序，Shell 只会执行第一个找到的。
 
 ---
 layout: section
