@@ -8,16 +8,13 @@ themeConfig:
   colorPattern: rotation
 addons:
   - slidev-addon-counter
+layout: cover
+class: cover-slide
 ---
 
 <style>
 @import './styles/index.css';
 </style>
-
----
-layout: cover
-class: cover-slide
----
 
 # 计算机开发基础
 
@@ -327,7 +324,7 @@ PS> Get-Location
     <div class="terminal-label text-peach">macOS / Linux · Bash</div>
 
 ```text
-$ printf 'hello\n'
+$ echo hello
 hello
 
 $ date
@@ -391,6 +388,228 @@ $ open -a Preview
 ```
   </div>
 </div>
+
+---
+
+# <Counter /> Shell 如何解释一行命令
+
+## 命令名与参数
+
+```bash
+python3 -c "print('hello from Python')"
+```
+
+<table class="compact">
+  <thead><tr><th>命令名：调用谁（程序）</th><th>参数 1</th><th>参数 2：整段代码</th></tr></thead>
+  <tbody><tr><td>Python 3.x</td><td><code>-c</code></td><td><code>print('hello from Python')</code></td></tr></tbody>
+</table>
+
+<div class="flow mt-5">
+  <div class="diagram-box text-peach">Shell 处理命令行：<br>识别命令和目标程序、分割参数</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">Python 解释参数：<br>执行传入的代码</div>
+</div>
+
+<p class="lead">Shell 负责传入参数，命令决定参数的含义。</p>
+<p class="small muted">命令也可以是 Shell 的内建功能，不一定是外部程序。</p>
+
+<!--
+用时约 1 分钟。从前面的 Python 运行示例接过来，不引入新命令。
+Shell 传入两个参数：-c 和整段代码。外层双引号用于分组，不是参数内容；内部单引号保留，交给 Python 解释。
+Python 将 -c 后面的参数作为代码执行，输出 hello from Python。下一页再展开空格与引号的规则。
+本机若使用 python3 命令，替换命令名即可。
+只建立简单命令的模型，不将其概括成所有 Shell 语法；暂不讲展开、管道和重定向。
+-->
+
+---
+
+## 空格分隔，引号分组
+
+<div class="program-example-grid mt-4">
+  <div>
+    <div class="terminal-label text-peach">Bash · 两个参数</div>
+
+```bash
+echo hello RM
+echo hello    RM
+```
+
+```text
+hello RM
+hello RM
+```
+
+<p class="small">参数：<code>hello</code>、<code>RM</code>；<code>hello</code>、<code>RM</code></p>
+  </div>
+  <div>
+    <div class="terminal-label text-green">Bash · 一段含空格的文字</div>
+
+```bash
+echo "hello RM"
+echo "hello    RM"
+```
+
+```text
+hello RM
+hello    RM
+```
+
+<p class="small">参数：<code>hello RM</code>；<code>hello&nbsp;&nbsp;&nbsp;RM</code></p>
+  </div>
+</div>
+
+- 未被引用的空格或 Tab 通常分隔各部分；连续多个空格不是空参数。
+- 引号可以让含空格的内容留在一个参数中；这里的外层引号不传给命令。
+- 使用成对的英文半角引号；单引号与双引号并不总是等价。
+
+<p class="small muted">引号未闭合时，Shell 可能继续等待输入；可用 <kbd>Ctrl</kbd>+<kbd>C</kbd> 取消，再重新输入。</p>
+
+<!--
+用时约 2 分钟。echo 将文字输出到终端，不引入格式字符串。
+指着参数标注比较两个参数与一个参数；输出相同不代表拆分相同，不能只凭 echo 的输出判断参数数量。
+这里只分析没有展开或特殊操作符的简单示例；单双引号的展开差异留待后续学习。
+-->
+
+---
+
+## 文字本身带引号怎么办？
+
+<div class="program-example-grid mt-4">
+  <div>
+    <div class="terminal-label text-green">Bash · 外层换一种引号</div>
+
+```bash
+echo 'hello "RM"'
+echo "it's ready"
+```
+
+<p class="small">外层单引号保留里面的双引号；外层双引号也可以保留里面的单引号。</p>
+  </div>
+  <div>
+    <div class="terminal-label text-peach">Bash · 在双引号内转义</div>
+
+```bash
+echo "hello \"RM\""
+```
+
+<p class="small"><code>\"</code> 让这个双引号成为文字，而不是结束外层引号。</p>
+  </div>
+</div>
+
+<p><strong>转义：</strong>让原本有语法含义的字符，在这里作为普通文字。</p>
+<p class="small">第一条与右侧命令都输出 <code>hello "RM"</code>，文字仍是一个参数。</p>
+<p class="small">注意：Bash 的单引号内不能用 <code>\'</code> 保留单引号；例如 <code>it's ready</code>，可改用外层双引号。</p>
+<p class="small muted">PowerShell 的转义符是反引号 <code>&#96;</code>，不是反斜杠；例如 <code>Write-Output "hello &#96;"RM&#96;""</code>。也可用外层单引号包住含双引号的文字。</p>
+
+<!--
+用时约 1 分钟，接在“引号分组”之后。先讲换外层引号，再讲 Bash 双引号中的反斜杠。
+强调外层引号负责分组，里面需要保留的引号属于参数内容；不要教成“所有特殊字符前加反斜杠就行”。
+Bash 单引号中反斜杠没有转义作用；单双引号仍有展开差异，本页只使用普通文字，不展开变量规则。
+PowerShell 只作平台提醒，不延伸外部程序参数传递和多层嵌套。
+-->
+
+---
+
+# <Counter /> 程序如何解释参数
+
+<div class="terminal-label text-peach">Linux / macOS · 列出当前目录的内容</div>
+
+```bash
+ls -l -a .
+```
+
+<table class="compact">
+  <thead><tr><th>部分</th><th>角色</th><th>含义</th></tr></thead>
+  <tbody>
+    <tr><td><code>-l</code>、<code>-a</code></td><td>短选项</td><td>详细列出；包含隐藏项</td></tr>
+    <tr><td><code>.</code></td><td>位置参数</td><td>操作对象：当前目录</td></tr>
+    <tr><td><code>--version</code></td><td>长选项</td><td>如 <code>git --version</code> 中的版本查询</td></tr>
+    <tr><td><code>--color=auto</code></td><td>长选项及其值</td><td>GNU ls：让 <code>--color</code> 的值为 <code>auto</code></td></tr>
+  </tbody>
+</table>
+
+<p class="lead">选项也是参数；有的选项是开关，有的还需要值。</p>
+<p class="small muted">位置参数的含义由位置和命令规则决定。目录与路径下一章再展开。</p>
+
+<!--
+用时约 1.5 分钟。按命令名、两个选项、操作对象读一遍，不在此讲 ls 的完整用法。
+GNU ls 的长选项不套用到 macOS 自带 ls；Windows PowerShell 的 ls 别名也不直接照搬这些参数。
+-->
+
+---
+
+## 常见写法
+
+<table class="compact mt-4">
+  <thead><tr><th>形式</th><th>例子</th><th>注意</th></tr></thead>
+  <tbody>
+    <tr><td>合并短选项</td><td><code>ls -la .</code></td><td>这里等同于 <code>ls -l -a .</code>，不是处处适用</td></tr>
+    <tr><td>选项与值分开</td><td><code>git -C . --version</code></td><td><code>.</code> 是 <code>-C</code> 的值，不是位置参数</td></tr>
+    <tr><td>用 <code>=</code> 连接值</td><td><code>ls --color=auto .</code></td><td>GNU ls；不能随意改为空格</td></tr>
+    <tr><td>子命令</td><td><code>git status --short</code></td><td><code>status</code> 选择 Git 的功能，后面是它的选项</td></tr>
+  </tbody>
+</table>
+
+<p class="small muted">PowerShell 自身的命令常用 <code>-Name</code> 这样的参数名，不是多个短选项；调用 Git 等外部程序时，则要查该程序的参数规则。</p>
+
+<!--
+用时约 1.5 分钟。git -C . 表示让 Git 在当前目录运行，这里只示范选项吃掉后面的值。
+GNU ls 的 --color 接受可选值，使用 = 的写法；不教“等号和空格总能互换”。
+git status 只用于辨认子命令，不要求执行或提前教授仓库操作。
+不要猜 -v 一定是版本（它也常表示 verbose），也不要凭选项长度猜含义。
+-->
+
+---
+
+# <Counter /> 遇到陌生命令怎么办
+
+<table class="compact">
+  <thead><tr><th>要确认什么</th><th>以 Git 为例</th></tr></thead>
+  <tbody>
+    <tr><td>用途与来源</td><td>先确认是哪个工具，不执行来历不明的命令</td></tr>
+    <tr><td>本机版本</td><td><code>git --version</code> 或 <code>git -v</code></td></tr>
+    <tr><td>总体用法</td><td><code>git --help</code> 或 <code>git -h</code></td></tr>
+    <tr><td>具体功能的用法</td><td><code>git status -h</code>：简要帮助；<code>git help status</code>：手册</td></tr>
+  </tbody>
+</table>
+
+<p class="no-margin"><strong>读帮助：</strong>用途 → 调用格式 → 必需参数 → 选项说明 → 示例。</p>
+<p class="small">常见记号：<code>[…]</code> 表示可选项，<code>&lt;…&gt;</code> 表示必选项，<code>...</code> 常表示可重复，<code>|</code> 表示“或”。</p>
+
+```text
+usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>] [--exec-path[=<path>]] [--html-path] [--man-path]
+           [--info-path] [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare] [--git-dir=<path>]
+           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>] <command> [<args>]
+```
+
+<!--
+用时约 2 分钟。现场展示 git --version、git --help、git status -h，无需初始化仓库。
+git help status 可能打开浏览器或手册分页器，也可能因未安装手册而失败；可回到简要帮助或官方文档。
+若进入常见的 less 分页器，用 q 退出；不把这当成所有交互程序的通用退出键。
+不要为“试试看”运行会删除、覆盖文件或修改系统配置的示例。
+-->
+
+---
+
+# <Counter /> 在终端里操作
+
+<table class="compact mt-4">
+  <thead><tr><th>操作</th><th>用途</th><th>习惯与边界</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>翻阅历史命令</td><td>调回后可以编辑；检查后再按 <kbd>Enter</kbd></td></tr>
+    <tr><td><kbd>Tab</kbd></td><td>尝试补全命令或路径</td><td>有多个候选时，继续输入；具体行为依 Shell 而异</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>取消当前输入，或请求中断前台程序</td><td>不是撤销，已经发生的修改不会自动恢复</td></tr>
+    <tr><td>清屏</td><td>Bash：<code>clear</code><br>PowerShell：<code>Clear-Host</code></td><td>整理显示，不是删除命令历史</td></tr>
+  </tbody>
+</table>
+
+<p class="small muted">快捷键可能被终端或交互程序接管；<kbd>Ctrl</kbd>+<kbd>C</kbd> 不保证所有程序都立即退出。</p>
+
+<!--
+用时约 1.5 分钟。在命令提示符处演示上键调回、编辑和 Tab 补全；避免引入新工具。
+输入一条不执行的命令，按 Ctrl+C 取消；解释运行中的程序也通常可请求中断，但不等于撤销操作。
+复制粘贴快捷键依终端设置而异，不把 Ctrl+C 教成通用复制键。
+-->
 
 ---
 layout: section
