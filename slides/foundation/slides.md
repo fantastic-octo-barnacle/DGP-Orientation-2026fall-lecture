@@ -531,83 +531,75 @@ layout: section
 
 ---
 
-# <Counter /> 绝对路径与相对路径
+## <Counter :level="3" /> 在文件系统中导航
 
 <div class="two-col">
   <div class="card text-pink">
     <h3>绝对路径</h3>
     <p>从固定的根位置开始。无论当前目录在哪里，指向都不变。</p>
-    <p class="mt-3"><code>/home/Alice/course/hello.txt</code></p>
+    <p class="mt-3"><code>/usr/bin/git</code></p>
+    <p class="mt-3"><code>/home/Alice/projects/hello.py</code></p>
+    <p class="mt-3"><code>~/courses/MAT2001/Homework1</code></p>
+    <p class="mt-3"><code>~/courses/MAT2001/../CSC3100/Homework1</code></p>
+    <p class="mt-3"><code>"~/courses/GFH1000/Midterm Essay"</code></p>
   </div>
   <div class="card text-peach">
     <h3>相对路径</h3>
-    <p>以当前目录为起点。同一个名字可能在不同位置指向不同文件。</p>
+    <p>以当前目录为起点。同一个名字可能在不同位置指向不同文件/目录。</p>
     <p class="mt-3"><code>./hello.txt</code></p>
+    <p class="mt-3"><code>hello.txt</code></p>
+    <p class="mt-3"><code>./Homework1/main.py</code></p>
+    <p class="mt-3"><code>Homework1/main.py</code></p>
+    <p class="mt-3"><code>../../Bob/projects</code></p>
   </div>
 </div>
 
----
-
-# <Counter /> `.`、`..` 与空格
-
-<div class="card-grid three">
-  <div class="card text-green"><h3><code>.</code></h3><p>当前目录。</p></div>
-  <div class="card text-blue"><h3><code>..</code></h3><p>上一级目录。</p></div>
-  <div class="card text-red"><h3>空格</h3><p>需要让 Shell 知道它们属于同一个参数。</p></div>
-</div>
-
-<div class="callout text-mauve mt-5">
-  <p>路径中的引号是给 Shell 的边界提示，不会凭空改变文件名。</p>
-</div>
+<p><code>..</code> 表示上一级目录，<code>.</code> 表示当前目录，<code>~</code> 表示当前用户的家目录。</p>
 
 ---
 
-# <Counter /> 随讲随做：每次只完成一个导航动作
+## <Counter :level="3" /> 常用 Shell 命令
 
 <div class="terminal-grid">
   <div>
-    <div class="terminal-label text-blue">PowerShell</div>
+    <div class="terminal-label text-blue">Windows · PowerShell</div>
 
-```text
+```powershell
+PS> Get-Location                      # 显示当前目录
+PS> Get-ChildItem                     # 列出当前目录的文件和子目录
+PS> Set-Location projects/homework1   # 切换到指定目录（相对路径）
 PS> Get-Location
-PS> Get-ChildItem
-PS> Set-Location ..
+PS> Set-Location ..                   # 切换到上一级目录
 PS> Get-Location
+
+PS> Set-Location ~/courses/ECE3080    # （绝对路径）
+PS> Get-Location
+PS> Get-ChildItem ~                   # 列出家目录的文件和子目录
+PS> Get-ChildItem -Force ~            # 包括隐藏文件
 ```
+
   </div>
   <div>
-    <div class="terminal-label text-green">macOS / Linux</div>
+    <div class="terminal-label text-green">macOS / Linux · Bash</div>
 
-```text
+```bash
+$ pwd                    # print working directory
+$ ls                     # list files and directories
+$ cd projects/homework1  # change directory
 $ pwd
-$ ls
 $ cd ..
 $ pwd
+
+$ cd ~/courses/ECE3080
+$ pwd
+$ ls ~                   # list files and directories in home
+$ ls -a ~                # list all files, including hidden ones
 ```
+
   </div>
 </div>
 
-<p class="small muted">课堂不发放一长串命令清单；每个命令只用来验证刚出现的概念。</p>
-
----
-
-# <Counter /> 文件存在，但相对路径仍然可能失败
-
-<div class="two-col">
-  <div class="stack">
-    <div class="diagram-box text-pink">文件真实位置<br><code>course/hello.txt</code></div>
-    <div class="flow-arrow">↑</div>
-    <div class="diagram-box text-peach">当前目录<br><code>course/scripts/</code></div>
-  </div>
-  <div class="callout text-red">
-    <h3>现象</h3>
-    <p>读取 <code>hello.txt</code> 失败。</p>
-    <h3 class="mt-4">变化</h3>
-    <p>切换当前目录，或改用从当前目录出发的正确路径。</p>
-    <h3 class="mt-4">没有变化</h3>
-    <p>文件和源码本身没有改变。</p>
-  </div>
-</div>
+许多 Bash 命令十分经典，PowerShell 也常常提供别名来兼容 Bash 的命令名称（但参数和含义不一定完全等价）。
 
 ---
 layout: section
