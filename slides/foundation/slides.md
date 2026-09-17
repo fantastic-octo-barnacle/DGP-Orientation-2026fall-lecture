@@ -561,6 +561,64 @@ git status 只用于辨认子命令，不要求执行或提前教授仓库操作
 
 ---
 
+# <Counter /> 不同 Shell，同名命令未必相同
+
+<table class="compact">
+  <thead><tr><th>区别</th><th>Bash / Zsh</th><th>PowerShell</th></tr></thead>
+  <tbody>
+    <tr><td>常见命令风格</td><td><code>ls -a .</code></td><td><code>Get-ChildItem -Force .</code></td></tr>
+    <tr><td>管道传递什么</td><td>字节流，常作为文本处理</td><td>cmdlet 之间通常传递对象，可保留属性</td></tr>
+    <tr><td>转义字符</td><td>反斜杠 <code>\</code></td><td>反引号 <code>&#96;</code></td></tr>
+  </tbody>
+</table>
+
+<p><strong>Windows 上的 PowerShell 提供了许多熟悉名字的别名（alias）：</strong></p>
+<p class="small"><code>ls</code> → <code>Get-ChildItem</code>；<code>cat</code> → <code>Get-Content</code>；<code>cp</code> → <code>Copy-Item</code></p>
+<p class="lead">别名只是另一个名字，不会把 Unix 参数翻译成 PowerShell 参数。</p>
+<p class="small muted">不要直接照搬 <code>ls -la</code>；可用 <code>Get-Alias ls</code> 查看别名，用 <code>Get-Help Get-ChildItem</code> 查实际命令的用法。</p>
+
+<!--
+用时约 1.5 分钟。Bash 与 Zsh 同属 Unix 风格 Shell，但语法并非完全相同；这里合并比较常见使用习惯。
+PowerShell 不是“换了名字的 Bash”。cmdlet 常按“动词-名词”命名，参数常用 -Name 形式。
+管道只建立“文本与带属性的对象”这一层直觉，不展开语法；PowerShell 调用外部程序时另有字节流和版本差异。
+别名示例限定 Windows 上的默认 PowerShell 环境，用户配置可改变别名；不宣称所有平台都有相同别名。
+ls -a 与 Get-ChildItem -Force 只比较显示隐藏项的常见意图，不宣称行为完全等价。
+参考：https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases
+参考：https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines
+-->
+
+---
+
+## Coreutils for Windows
+
+<p>想在 Windows 原生环境中使用 Unix 风格工具？可选装微软维护的 <strong>Coreutils for Windows</strong>。</p>
+<p class="small">基于 uutils，打包 coreutils、findutils 与 grep，提供 <code>ls</code>、<code>cat</code>、<code>cp</code> 等工具。</p>
+
+```powershell
+winget install Microsoft.Coreutils
+```
+
+<table class="compact mt-4">
+  <thead><tr><th>注意</th><th>边界</th></tr></thead>
+  <tbody>
+    <tr><td>使用 PowerShell 时</td><td>要求 7.4+，推荐 7.6+；不要当作 Windows PowerShell 5.1</td></tr>
+    <tr><td>同名命令可能冲突</td><td>Shell、别名与 PATH 都可能影响实际执行哪个命令</td></tr>
+    <tr><td>工具集，不是 Linux 环境</td><td>不会把 PowerShell 变成 Bash；路径、权限等仍有差异</td></tr>
+  </tbody>
+</table>
+
+<p class="small muted">项目与安装说明：<a href="https://github.com/microsoft/coreutils">microsoft/coreutils</a>；各工具支持 <code>--help</code>。</p>
+
+<!--
+用时约 1.5 分钟。推荐给希望在 Windows 原生环境复用 Unix 风格命令的候选人，不要求现场安装，也不修改别名或 Shell 配置。
+安装命令和版本要求以项目 README 为准，授课前复核；不是 GNU coreutils 官方 Windows 构建，而是微软维护的 uutils 打包。
+项目通过 PSReadLine 集成交互输入改写，但不会删除 PowerShell 别名。因此 Get-Command ls / Get-Help ls 仍可能显示别名，不能据此断定改写后实际调用的工具。
+不承诺 Linux 脚本原样运行，不把工具集当作 WSL 或完整 Linux 环境的替代品。
+参考：https://github.com/microsoft/coreutils
+-->
+
+---
+
 # <Counter /> 遇到陌生命令怎么办
 
 <table class="compact">
