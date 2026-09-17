@@ -824,13 +824,11 @@ $ ls -a ~                # list all files, including hidden ones
 layout: section
 ---
 
-# <Counter :level="1" /> 环境变量、PATH、可执行文件与进程
-
-<p>47–60 分钟 · 命令名称怎样变成一次运行？</p>
+# <Counter :level="1" /> 环境变量，PATH
 
 ---
 
-# <Counter /> 环境变量是传给程序的名称和值
+# <Counter /> 环境变量：传给程序的名称和值
 
 <div class="flow">
   <div class="diagram-box text-pink">Shell</div>
@@ -840,14 +838,54 @@ layout: section
   <div class="diagram-box text-green">被启动的程序</div>
 </div>
 
-<div class="card-grid">
-  <div class="card text-blue"><h3>可以表示</h3><p>路径、配置、开关、凭据等信息。</p></div>
-  <div class="card text-red"><h3>不要混淆</h3><p>环境变量不是第三方依赖，也不是自动保存到项目中的配置文件。</p></div>
-</div>
+可以表示 *路径*、*配置*、*开关*、*凭据* 等信息。
 
 ---
 
-# <Counter /> PATH 是一组搜索位置
+# <Counter /> PATH：搜索程序的位置
+
+<div class="two-col">
+  <div class="callout text-red">
+  <p>输入完整路径：明确指定启动哪个程序。</p>
+
+<p class="small muted">Bash：</p>
+
+```bash
+/usr/bin/git --version
+```
+
+<p class="small muted">PowerShell （反引号转义空格或使用 Call Operator 调用）：</p>
+
+```powershell
+C:\Program` Files\Git\bin\git.exe --version
+& "C:\Program Files\Git\bin\git.exe" --version
+```
+  
+  </div>
+  <div class="callout text-blue">
+  <p>只输入名称：交给 Shell 按当前环境寻找。</p>
+  
+<p class="small muted">Bash：</p>
+
+```bash
+git --version
+```
+
+<p class="small muted">PowerShell：</p>
+
+```powershell
+git --version
+git.exe --version
+```
+
+  </div>
+</div>
+
+<br>
+
+```bash
+printenv PATH          # 显示 PATH 的值
+```
 
 <div class="flow">
   <div class="diagram-box text-mauve"><code>git</code></div>
@@ -856,52 +894,7 @@ layout: section
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-peach">PATH 位置 2</div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">找到可执行程序</div>
-</div>
-
-<div class="two-col">
-  <div class="callout text-red"><p>输入完整路径：明确指定启动哪个程序。</p></div>
-  <div class="callout text-blue"><p>只输入名称：交给 Shell 按当前环境寻找。</p></div>
-</div>
-
----
-
-# <Counter /> “安装了”不等于“命令能找到”
-
-<div class="card-grid three">
-  <div class="card text-pink"><h3>下载完成</h3><p>磁盘上出现了软件或文件。</p></div>
-  <div class="card text-peach"><h3>位置存在</h3><p>它可能在某个目录中，但不在搜索路径里。</p></div>
-  <div class="card text-green"><h3>命令可用</h3><p>当前 Shell 的 PATH 能命中正确版本。</p></div>
-</div>
-
-<p class="lead">同名命令还可能因为 Shell、Windows/WSL 或版本不同而命中不同位置。</p>
-
----
-
-# <Counter /> 程序文件、脚本文件、数据文件
-
-<div class="card-grid three">
-  <div class="card text-red"><h3>本机可执行文件</h3><p>操作系统可以装载并执行机器指令。</p></div>
-  <div class="card text-mauve"><h3>脚本</h3><p>通常需要对应解释器，启动规则也可能依赖平台。</p></div>
-  <div class="card text-blue"><h3>数据文件</h3><p>通常由其他程序打开，不是文件自身“执行”。</p></div>
-</div>
-
-<p class="small muted">本课不展开 PE、Mach-O、ELF、权限位和平台命令扩展细节。</p>
-
----
-
-# <Counter /> 磁盘上的程序 ≠ 运行中的进程
-
-<div class="flow">
-  <div class="diagram-box text-peach">磁盘上的<br>程序文件</div>
-  <div class="flow-arrow">启动</div>
-  <div class="diagram-box text-pink">进程 A</div>
-  <div class="flow-arrow">再启动</div>
-  <div class="diagram-box text-green">进程 B</div>
-</div>
-
-<div class="callout text-sky">
-  <p>同一个可执行文件通常可以产生多个进程；是否限制单实例是应用策略，不是操作系统的一般要求。</p>
+  <div class="diagram-box text-green">直到找到可执行程序</div>
 </div>
 
 ---
@@ -931,22 +924,6 @@ $ git --version
   <h3>问题</h3>
   <p>你看到的是命令名、文件路径，还是一次运行的进程？</p>
 </div>
-
----
-
-# 到这里，第一张大图已经闭合
-
-<div class="flow">
-  <div class="diagram-box text-pink">操作系统<br><span class="small">提供文件系统与进程</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">Shell<br><span class="small">提供文本操作入口</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-red">路径<br><span class="small">定位文件</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach">PATH<br><span class="small">寻找程序</span></div>
-</div>
-
-<p class="lead text-center">接下来：源码怎样经过工具链产生行为？</p>
 
 ---
 layout: section
