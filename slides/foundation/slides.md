@@ -886,17 +886,83 @@ layout: section
 
 ---
 
-# <Counter /> 环境变量：传给程序的名称和值
+# <Counter /> Shell 变量
 
-<div class="flow">
-  <div class="diagram-box text-pink">Shell</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach"><code>NAME=value</code></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">被启动的程序</div>
-</div>
+<table class="compact mt-4">
+  <thead><tr><th>操作</th><th>Bash / Zsh</th><th>PowerShell</th></tr></thead>
+  <tbody>
+    <tr><td>赋值</td><td><code>name="RM"</code></td><td><code>$name = "RM"</code></td></tr>
+    <tr><td>取值并输出</td><td><code>echo "$name"</code></td><td><code>echo $name</code></td></tr>
+    <tr><td>赋值时注意</td><td>不写 <code>$</code>；等号两侧不能有空格</td><td>写 <code>$name</code>；等号两侧可以有空格</td></tr>
+  </tbody>
+</table>
 
-可以表示 *路径*、*配置*、*开关*、*凭据* 等信息。
+<p>两边都输出 <code>RM</code>。修改变量的值，后续取到的值也随之改变。</p>
+<p class="lead">普通 Shell 变量不会自动作为环境变量传给新启动的程序。</p>
+<p class="small muted">Bash / Zsh 中用双引号包住 <code>"$name"</code>，可避免含空格的值被意外拆开。</p>
+
+<!--
+用时约 1 分钟。只讲名字、赋值和取值，不讲类型、数组或作用域。
+示例使用新建的普通变量；Bash 中已导出的变量再次赋值仍保留导出属性，不把“不自动传递”讲成绝对不能传递。
+echo "$name" 是 Shell 先取值再作为参数传入，与程序自行读取环境变量不同。
+Zsh 默认的参数拆分行为与 Bash 不完全相同，双引号作为通用习惯介绍。
+-->
+
+---
+
+# <Counter /> 环境变量：传给新启动的程序
+
+<p>程序启动时会继承父进程的环境变量：一组<strong>名称与字符串值</strong>。</p>
+
+<table class="compact mt-4">
+  <thead><tr><th>操作</th><th>Bash / Zsh</th><th>PowerShell</th></tr></thead>
+  <tbody>
+    <tr><td>设置并传给子程序</td><td><code>export VAR="RM"</code></td><td><code>$env:VAR = "RM"</code></td></tr>
+    <tr><td>查看一个值</td><td><code>printenv VAR</code></td><td><code>$env:VAR</code></td></tr>
+    <tr><td>列出环境变量</td><td><code>printenv</code></td><td><code>Get-ChildItem Env:</code></td></tr>
+  </tbody>
+</table>
+
+<p class="small">Bash / Zsh 用 <code>export</code> 标记变量供子程序继承；PowerShell 用 <code>$env:</code>，与普通变量 <code>$name</code> 区分。</p>
+<p class="lead">这里的设置不永久保存，也不会同步修改已经运行的其他程序。</p>
+<p class="small muted">修改影响当前 Shell 及其后续启动的子程序。列出的环境变量可能包含令牌等凭据，不要直接截图或公开粘贴。</p>
+
+<!--
+用时约 1.5 分钟。环境变量并非只能由 Shell 创建，Shell 本身也从父进程继承环境；这里只教在 Shell 中查看与设置。
+可先尝试 VAR="RM" 再 printenv VAR，对比 export 后的结果；确保演示变量此前未导出。
+继承是启动时复制，不是进程间共享一个实时更新的变量。子程序的修改也不会反向修改父 Shell。
+不讲 shell 配置文件、系统设置面板、setx 或持久化配置。
+参考：https://www.gnu.org/software/bash/manual/html_node/Environment.html
+参考：https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables
+-->
+
+---
+
+## 环境变量有什么用？给程序传配置
+
+<p>先按上一页设置 <code>VAR="RM"</code>，再从<strong>同一个 Shell</strong> 启动 Python：</p>
+
+```bash
+python3 -c "import os; print('Hello,', os.getenv('VAR'))"
+```
+
+```text
+Hello, RM
+```
+
+<p><strong>Shell 设置配置 → Python 读取环境变量 → 改变问候的名字。</strong></p>
+
+<p class="small">把值改成 <code>RoboMaster</code> 后重新运行，输出变为 <code>Hello, RoboMaster</code>；未设置时使用默认值 <code>None</code>。</p>
+<p class="small"><code>VAR</code> 是本例约定的名字，不是系统内置功能。<strong>变量的作用由读取它的程序决定。</strong></p>
+<p class="small muted">Windows 上若使用 <code>python</code>，替换命令名即可。接下来：真实的环境变量 <code>PATH</code> 如何参与查找程序？</p>
+
+<!--
+用时约 1.5 分钟。沿用前面 python -c 的形式，不要求理解 Python 模块机制。
+os.getenv 读取 Python 进程自己的环境变量；第二个参数是变量不存在时的默认值。
+命令中的 VAR 没有 $，不是 Shell 将其替换成值，而是 Python 主动按名字读取。
+示例输出依赖上一页的设置；只设置普通变量不会自动获得同样结果。
+参考：https://docs.python.org/3/library/os.html#os.getenv
+-->
 
 ---
 
