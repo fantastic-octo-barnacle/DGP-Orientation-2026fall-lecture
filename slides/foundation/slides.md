@@ -1053,29 +1053,33 @@ which git
 layout: section
 ---
 
-# <Counter :level="1" /> Python、JavaScript、C 与 Rust 怎样运行
+# <Counter :level="1" /> 代码如何运行
 
-<p>65–82 分钟 · 源码到行为的不同路径</p>
+<p>源码到行为的不同路径</p>
 
 ---
 
-# <Counter /> CPU 最终执行机器指令
+# <Counter /> CPU 执行机器指令
+
+<br>
+<br>
+<br>
 
 <div class="flow">
-  <div class="diagram-box text-pink">人写的源码<br><span class="small">纯文本</span></div>
+  <div class="diagram-box text-pink">纯文本的源代码</div>
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-peach">解释器、运行时<br>或编译器</div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">机器指令<br><span class="small">CPU 执行</span></div>
+  <div class="diagram-box text-green">二进制机器指令</div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-blue">程序行为</div>
+  <div class="diagram-box text-blue">CPU 执行</div>
 </div>
 
 <p class="muted">不同语言的区别之一，是源码到机器执行之间经过了哪些工具和中间结果。</p>
 
 ---
 
-# <Counter /> Python 与 JavaScript：由运行时读取
+## 脚本语言/解释型语言：由运行时读取
 
 <div class="stack">
   <div class="diagram-box text-pink">Python / JavaScript 源码</div>
@@ -1091,16 +1095,16 @@ layout: section
 
 ---
 
-# <Counter /> C 与 Rust：先编译，再启动
+## 编译型语言：先编译，再启动
 
 <div class="stack">
-  <div class="diagram-box text-pink">C / Rust 源码</div>
+  <div class="diagram-box text-pink">C / C++ / Rust 源码</div>
   <div class="flow-arrow">↓</div>
   <div class="diagram-box text-mauve">编译与必要的链接</div>
   <div class="flow-arrow">↓</div>
   <div class="diagram-box text-peach">本机可执行文件</div>
   <div class="flow-arrow">↓</div>
-  <div class="diagram-box text-green">操作系统启动进程</div>
+  <div class="diagram-box text-green">操作系统启动进程（仍然可能需要相应的环境，比如动态链接库等）</div>
 </div>
 
 <p class="small muted">编译工具链、目标系统和链接所需的库都会影响构建结果。</p>
