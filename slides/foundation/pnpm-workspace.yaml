@@ -1,2 +1,2 @@
 minimumReleaseAgeExclude:
-  - slidev-addon-counter@0.3.0-alpha.1
+  - slidev-addon-counter
