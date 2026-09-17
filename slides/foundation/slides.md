@@ -844,13 +844,16 @@ layout: section
 ```powershell
 PS> Get-Location                      # 显示当前目录
 PS> Get-ChildItem                     # 列出当前目录的文件和子目录
+
 PS> Set-Location projects/homework1   # 切换到指定目录（相对路径）
 PS> Get-Location
+
 PS> Set-Location ..                   # 切换到上一级目录
 PS> Get-Location
 
 PS> Set-Location ~/courses/ECE3080    # （绝对路径）
 PS> Get-Location
+
 PS> Get-ChildItem ~                   # 列出家目录的文件和子目录
 PS> Get-ChildItem -Force ~            # 包括隐藏文件
 ```
@@ -862,13 +865,16 @@ PS> Get-ChildItem -Force ~            # 包括隐藏文件
 ```bash
 $ pwd                    # print working directory
 $ ls                     # list files and directories
+
 $ cd projects/homework1  # change directory
 $ pwd
+
 $ cd ..
 $ pwd
 
 $ cd ~/courses/ECE3080
 $ pwd
+
 $ ls ~                   # list files and directories in home
 $ ls -a ~                # list all files, including hidden ones
 ```
