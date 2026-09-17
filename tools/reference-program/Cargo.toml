@@ -1,0 +1,10 @@
+[package]
+name = "rm-recruit-reference"
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.85"
+
+[dependencies]
+serde_json = "1"
+tokio = { version = "1", features = ["full"] }
+clap = { version = "4", features = ["derive"] }

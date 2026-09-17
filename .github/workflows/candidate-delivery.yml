@@ -1,0 +1,78 @@
+name: Candidate delivery verification
+on:
+  push:
+    branches: [delivery/candidate-v1]
+    paths: ['tools/**', '.github/workflows/candidate-delivery.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            asset: windows-x86_64
+            suffix: .exe
+          - os: ubuntu-latest
+            asset: linux-x86_64
+            suffix: ''
+          - os: macos-14
+            asset: macos-arm64
+            suffix: ''
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
+        with:
+          toolchain: stable
+          components: rustfmt, clippy
+      - uses: astral-sh/setup-uv@v10.1.0
+        with:
+          version: '0.12.15'
+      - name: Python baseline
+        working-directory: tools/delivery-validation/candidate/projects/python
+        shell: bash
+        run: |
+          set -euo pipefail
+          uv sync --locked
+          uv run ruff format --check .
+          uv run ruff check .
+          uv run pyright
+          uv run pytest
+      - name: Rust baselines
+        working-directory: tools/delivery-validation/candidate/projects/rust
+        shell: bash
+        run: |
+          set -euo pipefail
+          for project in client-sync server-sync server-async; do
+            cargo fmt --manifest-path "$project/Cargo.toml" --check
+            cargo clippy --locked --manifest-path "$project/Cargo.toml" --all-targets -- -D warnings
+            cargo test --locked --manifest-path "$project/Cargo.toml"
+            cargo build --locked --manifest-path "$project/Cargo.toml"
+          done
+      - name: Reference behavior and release build
+        working-directory: tools/reference-program
+        shell: bash
+        run: |
+          set -euo pipefail
+          cargo fmt --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo test --locked
+          cargo build --release --locked
+      - name: Cross-process interoperability
+        shell: bash
+        run: |
+          set -euo pipefail
+          uv run --no-project --python 3.12 python tools/reference-program/verify_delivery.py --candidate-root tools/delivery-validation/candidate --reference tools/reference-program/target/release/rm-recruit-reference${{ matrix.suffix }}
+      - name: Prepare executable
+        shell: bash
+        run: |
+          mkdir -p release
+          cp tools/reference-program/target/release/rm-recruit-reference${{ matrix.suffix }} release/rm-recruit-reference-${{ matrix.asset }}${{ matrix.suffix }}
+      - uses: actions/upload-artifact@v7.0.1
+        with:
+          name: reference-${{ matrix.asset }}
+          path: release/*
+          if-no-files-found: error
