@@ -502,24 +502,32 @@ layout: section
 
 ---
 
-# <Counter /> 文件系统是一棵目录树
+# <Counter /> 文件系统：目录树
 
-<p class="small muted">文件保存了内容；接下来还要知道它在文件系统中的位置，Shell 才能找到它。</p>
-
-<div class="two-col">
-  <div class="stack">
-    <div class="diagram-box text-blue">根位置</div>
-    <div class="diagram-box text-mauve">用户主目录</div>
-    <div class="diagram-box text-pink">当前目录</div>
-  </div>
-  <div class="stack">
-    <div class="diagram-box text-green">子目录</div>
-    <div class="diagram-box text-peach">文件</div>
-    <div class="diagram-box text-red">另一个分支</div>
-  </div>
+<div class="filesystem-trees">
+  <section>
+    <h3>Windows</h3>
+    <FilesystemTree os="windows" />
+    <p class="filesystem-system-note"><code>Windows</code>：系统资源，<code>Program Files</code>：应用</p>
+  </section>
+  <section>
+    <h3>Linux</h3>
+    <FilesystemTree os="linux" />
+    <p class="filesystem-system-note"><code>etc</code>：系统配置，<code>usr/bin</code>：程序</p>
+  </section>
+  <section>
+    <h3>macOS</h3>
+    <FilesystemTree os="macos" />
+    <p class="filesystem-system-note"><code>System</code>：系统，<code>Applications</code>：应用</p>
+  </section>
 </div>
 
-<p class="lead">用户主目录是常用起点，但它不是文件系统的根。</p>
+<div class="small">
+  <p class="filesystem-hidden">以上都是多用户系统。用户 Alice 和 Bob 各有自己的用户主目录（家目录）。</p>
+  <p class="filesystem-hidden">Linux 和 macOS 中，以 <code>.</code> 开头的文件或目录是隐藏项。</p>
+  <p class="filesystem-hidden">Linux 和 macOS 都是单根文件系统，而 Windows 是多根文件系统（不同盘符就是不同的根）。</p>
+  <p class="filesystem-hidden">在 Linux 中，文件和目录的名称区分大小写；而 Windows 和 macOS 不区分大小写。</p>
+</div>
 
 ---
 
@@ -529,7 +537,7 @@ layout: section
   <div class="card text-pink">
     <h3>绝对路径</h3>
     <p>从固定的根位置开始。无论当前目录在哪里，指向都不变。</p>
-    <p class="mt-3"><code>/home/student/course/hello.txt</code></p>
+    <p class="mt-3"><code>/home/Alice/course/hello.txt</code></p>
   </div>
   <div class="card text-peach">
     <h3>相对路径</h3>

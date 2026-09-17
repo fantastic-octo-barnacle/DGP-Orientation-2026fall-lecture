@@ -373,6 +373,49 @@
   margin-top: 0.7rem;
 }
 
+.filesystem-trees {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.filesystem-trees > section {
+  min-width: 0;
+}
+
+#app #slide-content .slidev-layout .filesystem-trees h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.slidev-layout .filesystem-trees .filesystem-root-note {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.78rem;
+  opacity: 0.66;
+}
+
+.filesystem-home {
+  font-weight: 800;
+}
+
+.slidev-layout .filesystem-trees .filesystem-system-note {
+  margin: 0.3rem 0 0;
+  font-size: 0.66rem;
+  opacity: 0.66;
+}
+
+.slidev-layout .filesystem-takeaway {
+  margin: 0.4rem 0 0;
+  font-size: 1rem;
+}
+
+#app #slide-content .slidev-layout .filesystem-hidden {
+  margin: 0.3rem 0 0;
+  line-height: 1.4;
+}
+
 .terminal-grid .slidev-code,
 .terminal-single .slidev-code {
   margin-top: 0.35rem;
