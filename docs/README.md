@@ -16,6 +16,12 @@
 
 [`drafts/`](./drafts/) 保存早期项目与面试题草案。它们用于延续讨论，不代表候选人版 spec 或最终面试内容。
 
+Rust 项目配套草案：
+
+- [起始仓库与分层任务](./drafts/projects/rust-starter.md)
+- [通信协议与生命周期要求](./drafts/projects/rust-protocol.md)
+- [独立参考程序](./drafts/projects/rust-reference-program.md)
+
 ## 决策记录
 
 [`adr/`](./adr/) 保存需要长期保持一致的关键决策：
