@@ -1181,106 +1181,372 @@ layout: section
 layout: section
 ---
 
-# <Counter :level="1" /> 包、版本、依赖与开发环境
-
-<p>82–94 分钟 · 一个项目还需要什么？</p>
+# <Counter :level="1" /> 环境与依赖管理
 
 ---
 
-# <Counter /> “开发环境”不是一个目录
+## 一段 Python 代码的依赖
 
-<div class="stack">
-  <div class="diagram-box text-pink">操作系统与硬件架构</div>
-  <div class="diagram-box text-mauve">解释器、运行时或编译工具链及版本</div>
-  <div class="diagram-box text-red">系统库与链接环境</div>
-  <div class="diagram-box text-peach">第三方包及其版本</div>
-  <div class="diagram-box text-green">项目源码、配置和环境变量</div>
+<div class="two-col">
+  <div>
+
+```python
+# 标准库：随 Python 提供
+import math
+import os
+
+# 第三方库：需要额外安装
+import numpy as np
+import pandas as pd
+
+print("Hello from", os.name, "with Python", os.sys.version)
+
+values = np.array([1, 4, 9], dtype=float)
+table = pd.DataFrame({"value": values})
+table["root"] = np.sqrt(table["value"])
+
+print(table)
+print(f"Total: {math.fsum(table['root']):.1f}")
+```
+
+  </div>
+  <div>
+    <div class="card text-pink">
+      <h4>解释器</h4>
+      <p>Python 解释器负责读取并执行这段代码。</p>
+    </div>
+    <div class="card text-mauve mt-3">
+      <h4>标准库</h4>
+      <p><code>math</code>、<code>os</code> 随 Python 提供，不需要单独安装。</p>
+    </div>
+    <div class="card text-peach mt-3">
+      <h4>第三方包</h4>
+      <p><code>numpy</code>、<code>pandas</code> 不随 Python 提供，需要安装到正确环境。</p>
+    </div>
+  </div>
 </div>
-
-<p class="small muted">虚拟环境只解决其中一部分隔离问题，不等同于虚拟机。</p>
 
 ---
 
-# <Counter /> 包名写进源码，不会自动出现
-
-<div class="flow">
-  <div class="diagram-box text-pink">源码中引用包名</div>
-  <div class="flow-arrow">≠</div>
-  <div class="diagram-box text-red">包已经安装</div>
-  <div class="flow-arrow">需要</div>
-  <div class="diagram-box text-green">取得并安装到正确环境</div>
-</div>
-
-<div class="callout text-peach">
-  <p>编辑器能补全一个名称，也不代表解释器或编译器真的能找到对应包。</p>
-</div>
-
----
-
-# <Counter /> 版本是行为的一部分
+## 版本也是环境要求的一部分
 
 <div class="two-col">
   <div class="card text-blue">
     <h3>项目要求</h3>
-    <p><code>package &gt;= 2.0, &lt; 3.0</code></p>
-    <p class="small mt-3">描述可接受的范围。</p>
+    <p><code>Python &gt;= 3.12, &lt; 3.14</code></p>
+    <p><code>numpy &gt;= 2, &lt; 3</code></p>
+    <p><code>pandas &gt;= 2, &lt; 3</code></p>
+    <p class="small mt-3">描述可以接受的版本范围。</p>
   </div>
   <div class="card text-red">
-    <h3>实际选择</h3>
-    <p><code>package 2.4.1</code></p>
-    <p class="small mt-3">包管理器解析出的具体版本。</p>
+    <h3>实际环境</h3>
+    <p><code>Python 3.12.x</code></p>
+    <p><code>numpy 2.x</code></p>
+    <p><code>pandas 2.x</code></p>
+    <p class="small mt-3">最终需要选出具体且相互兼容的版本。</p>
   </div>
 </div>
 
-<p class="lead">“已经安装”不等于“版本匹配”。</p>
+<p class="lead muted">这里的 Python 版本包括解释器及其对应的标准库。</p>
+<p class="lead">版本匹配是确保代码在不同环境中一致运行的关键。</p>
 
 ---
 
-# <Counter /> 直接依赖会带来间接依赖
+# <Counter /> 传统的 Python 包管理方案
 
-<div class="flow">
-  <div class="diagram-box text-pink">项目</div>
-  <div class="flow-arrow">使用</div>
-  <div class="diagram-box text-peach">直接依赖 A</div>
-  <div class="flow-arrow">继续使用</div>
-  <div class="diagram-box text-green">间接依赖 B</div>
+## <Counter :level="3" /> 系统级 pip
+
+```bash
+pip install numpy pandas
+```
+
+<div class="card-grid mt-5">
+  <div class="card text-red">
+    <h3>环境耦合</h3>
+    <p>多个项目共享系统 Python 和同一组已安装包，版本要求可能互相冲突。</p>
+  </div>
+  <div class="card text-peach">
+    <h3>难以同步环境</h3>
+    <p>安装状态藏在这台机器里；其他机器无法仅凭源码知道需要哪些包和版本。</p>
+    <p>手动一个一个地安装和管理非常繁琐。</p>
+  </div>
 </div>
 
-<div class="card-grid">
-  <div class="card text-mauve"><h3>构建依赖</h3><p>构建项目时需要，运行程序时未必仍然需要。</p></div>
-  <div class="card text-blue"><h3>运行依赖</h3><p>程序启动或工作时仍然需要。</p></div>
+<p class="small muted">终端里名为 <code>pip</code> 的命令也可能指向不同的 Python 环境，需要能够检查它实际调用了什么。</p>
+
+<!--
+如何解决这两个问题呢？
+-->
+
+---
+
+## <Counter :level="3" /> 虚拟环境 venv：给项目一个隔离环境
+
+<div class="terminal-grid">
+  <div>
+    <div class="terminal-label text-blue">创建、激活、安装</div>
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install numpy pandas
+```
+
+  </div>
+  <div>
+    <div class="terminal-label text-green">检查实际调用路径</div>
+
+```text
+$ command -v python
+.../project/.venv/bin/python
+
+$ command -v pip
+.../project/.venv/bin/pip
+```
+
+  </div>
+</div>
+
+注意：Windows PowerShell 中的路径、指令等有所不同。
+
+<div class="callout text-mauve mt-4">
+  <p>路径指向 <code>.venv</code>，说明当前项目使用的是隔离环境，而不是系统级 Python。</p>
+</div>
+
+<!--
+## 实操展示
+
+```powershell
+where.exe python
+where.exe pip
+pip list
+
+ls
+python -m venv .venv
+ls
+
+.\.venv\Scripts\activate
+
+where.exe python
+where.exe pip
+printenv PATH
+pip list
+
+deactivate        # 提问：为什么这里不用像 activate 一样写完整路径？
+
+printenv PATH
+where.exe pip
+pip list
+```
+-->
+
+---
+
+## <Counter :level="3" /> `requirements.txt` 依赖清单
+
+<div class="three-col">
+  <div>
+    <div class="terminal-label text-green">1. 在当前环境中导出</div>
+
+```bash
+pip freeze > requirements.txt
+```
+
+  </div>
+  <div>
+    <div class="terminal-label text-peach">2. 形成一份依赖清单</div>
+
+```text
+# requirements.txt
+numpy==2.5.3
+pandas==3.0.6
+python-dateutil==2.9.0.post0
+six==1.17.0
+tzdata==2026.4
+```
+
+  </div>
+  <div>
+    <div class="terminal-label text-green">3. 在目标环境中安装</div>
+
+```bash
+pip install -r requirements.txt
+```
+
+  </div>
+</div>
+
+<div class="card-grid mt-5">
+  <div class="card text-blue"><h3>它描述什么？</h3><p>项目需要哪些 Python 包，以及允许或要求什么版本。</p></div>
+  <div class="card text-red"><h3>它没有描述什么？</h3><p>不会自动提供隔离环境，也不会完整描述 Python、编译器和系统库。</p></div>
 </div>
 
 ---
 
-# <Counter /> 清单、锁文件与可重建内容
+## <Counter :level="3" /> Python 版本的管理
 
-<table class="compact">
-  <thead><tr><th>概念</th><th>Python 示例</th><th>Rust 示例</th></tr></thead>
+如果不同项目需要不同的 Python 版本，系统级 Python 和 venv 都无法自动切换。
+
+一些解决方案：
+
+- pyenv：在同一台机器上安装多个 Python 版本，并在不同项目间切换。
+- asdf：支持多种语言的版本管理器，类似 pyenv，但可以管理更多语言。
+- Python Install Manager：微软和 Python 官方提供的 Windows 安装器，支持安装多个版本并切换。
+
+---
+
+# <Counter /> 更现代的解决方案
+
+## <Counter :level="3" /> Conda：适用于数据科学的跨平台环境管理器
+
+```bash
+conda create -n demo python=3.12 numpy pandas
+conda activate demo
+```
+
+<div class="card-grid mt-5">
+  <div class="card text-green">
+    <h3>熟悉的优点</h3>
+    <p>可以把 Python、第三方包和部分底层库一起放进一个命名环境。</p>
+  </div>
+  <div class="card text-peach">
+    <h3>仍需留意</h3>
+    <p>环境来源、频道和平台差异仍可能影响“在另一台机器上能否一样运行”。</p>
+  </div>
+</div>
+
+<p class="lead">Conda 解决了很多入门阶段的问题，但“有环境”仍不等于“环境可重建”。</p>
+
+---
+
+## <Counter :level="3" /> 更“软件工程”的方案
+
+<div class="three-col">
+  <div class="card text-blue">
+    <h3>项目描述</h3>
+    <p>把项目名称、Python 要求和直接依赖写进 <code>pyproject.toml</code>。（遵循 PEP 621 规范）</p>
+  </div>
+  <div class="card text-mauve">
+    <h3>环境管理</h3>
+    <p>工具可以创建或使用项目隔离环境，减少手工切换和遗漏。</p>
+  </div>
+  <div class="card text-green">
+    <h3>可重建信息</h3>
+    <p>锁文件保存更具体的版本选择，方便团队和 CI 使用同一组结果。</p>
+  </div>
+</div>
+
+<div class="callout text-peach mt-5">
+  <p>常见工具：Poetry、PDM、uv 等</p>
+</div>
+
+---
+
+## uv：几条命令建立项目环境
+
+<div class="two-col">
+  <div class="card text-blue">
+    <h4>创建项目</h4>
+
+```bash
+uv init
+uv add numpy
+```
+
+  <p class="small">生成 <code>pyproject.toml</code> 等项目文件，并创建虚拟环境、添加依赖。</p>
+  </div>
+  <div class="card text-mauve">
+    <h4>安装依赖、同步环境</h4>
+
+```bash
+uv sync
+```
+
+  <p class="small">根据 <code>pyproject.toml</code> 和 <code>uv.lock</code> 解析依赖、安装到隔离环境。</p>
+  </div>
+</div>
+
+
+<table class="compact mt-5">
+  <thead><tr><th>项目中的东西</th><th>uv 维护的内容</th></tr></thead>
   <tbody>
-    <tr><td>项目清单</td><td><code>pyproject.toml</code></td><td><code>Cargo.toml</code></td></tr>
-    <tr><td>锁文件</td><td><code>uv.lock</code></td><td><code>Cargo.lock</code></td></tr>
-    <tr><td>本机环境 / 构建结果</td><td><code>.venv</code></td><td><code>target/</code></td></tr>
+    <tr><td><code>pyproject.toml</code> 项目描述</td><td>项目要求、Python 版本和直接依赖的版本信息</td></tr>
+    <tr><td><code>uv.lock</code> 锁文件</td><td>解析得到的更具体版本信息</td></tr>
+    <tr><td><code>.venv/</code> 虚拟环境</td><td>当前项目实际使用的隔离环境</td></tr>
   </tbody>
 </table>
 
-<p class="muted">清单描述要求；锁文件记录具体解析结果；本机生成内容应当能够重建。</p>
+<p class="lead">把“安装什么、用哪个版本、环境在哪里”变成项目可以携带的描述。</p>
 
 ---
 
-# <Counter /> 一个更可靠的项目边界
+# <Counter /> C/C++：工具链和库
 
 <div class="flow">
-  <div class="diagram-box text-pink">源码</div>
+  <div class="diagram-box text-pink">编译器<br>gcc / clang / MSVC</div>
   <div class="flow-arrow">+</div>
-  <div class="diagram-box text-peach">清单与锁文件</div>
+  <div class="diagram-box text-mauve">链接器与构建系统<br>linker / CMake</div>
   <div class="flow-arrow">+</div>
-  <div class="diagram-box text-blue">工具链约定</div>
+  <div class="diagram-box text-peach">第三方库<br>头文件、库文件、ABI</div>
+</div>
+
+<div class="card-grid mt-4">
+  <div class="card text-red">
+    <h3>原始方案（但仍然常见）</h3>
+    <p>直接把库的源码复制进项目，例如放在 <code>third_party/</code>，再和项目一起构建。</p>
+  </div>
+  <div class="card text-blue">
+    <h3>包管理器方案</h3>
+    <p>系统包管理器、vcpkg、Conan 等都能帮忙，但平台、构建系统、ABI 和分发方式容易碎片化。</p>
+  </div>
+</div>
+
+<p class="lead">C/C++ 的环境管理原始而复杂，需要手动处理编译器、链接器、构建系统等多个环节。</p>
+
+<i class="muted">所以我们放弃了 C/C++</i>
+
+---
+
+# <Counter /> Rust：Cargo 带来现代化体验
+
+<div class="two-col">
+  <div class="card text-blue">
+    <h3>Python + uv</h3>
+    <p><code>pyproject.toml</code> 描述项目，<code>uv.lock</code> 固定解析结果，<code>.venv/</code> 承载隔离环境。</p>
+  </div>
+  <div class="card text-peach">
+    <h3>Rust + Cargo</h3>
+    <p><code>Cargo.toml</code> 描述项目，<code>Cargo.lock</code> 固定解析结果，<code>target/</code> 保存构建结果。</p>
+  </div>
+</div>
+
+<div class="card-grid mt-5">
+  <div class="card text-mauve"><h3>工具链</h3><p>C/C++ 需要组合编译器、链接器和构建系统；Rust 通常由 rustup 提供工具链，Cargo 负责项目构建。</p></div>
+  <div class="card text-green"><h3>依赖体验</h3><p>Cargo 把清单、依赖解析、构建和运行放进一套约定，体验上类似 uv 带来的现代化工作流。</p></div>
+</div>
+
+---
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="flow">
+  <div class="diagram-box text-pink">工具链</div>
+  <div class="flow-arrow">+</div>
+  <div class="diagram-box text-peach">库依赖</div>
+  <div class="flow-arrow">+</div>
+  <div class="diagram-box text-blue">源代码</div>
+  <div class="flow-arrow">+</div>
+  <div class="diagram-box text-sky">构建规则</div>
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-green">可重建的环境</div>
 </div>
 
-<p class="lead text-center">项目不是“我电脑上的那个目录”，而是一组可说明、可恢复的条件。</p>
+<p class="lead text-center">一个可靠的工程项目不是 <i>It runs on my machine</i></p>
 
 ---
 layout: section
@@ -1371,12 +1637,12 @@ layout: section
 
 <div class="terminal-single">
 
-```text
-$ git status
-$ git diff
-$ git add README.md
-$ git commit -m "补充说明"
-$ git log --oneline -1
+```bash
+git status
+git diff
+git add README.md
+git commit -m "补充说明"
+git log --oneline -1
 ```
 
 </div>
