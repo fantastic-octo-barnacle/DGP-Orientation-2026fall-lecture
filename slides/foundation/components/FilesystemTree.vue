@@ -18,54 +18,59 @@ const rows = computed(() => {
   const windows = props.os === 'windows'
   const separator = windows ? '\\' : '/'
   const system = windows ? ['Windows', 'Program Files'] : ['System', 'Applications']
-  const systemChildren = windows ? ['System32', 'Common Files']
-    : ['Library', 'Utilities']
-  const files = windows ? ['todo.txt', 'setup.exe', 'report.docx']
+  const systemChildren = windows ? ['System32', 'Common Files'] : ['Library', 'Utilities']
+  const files = windows
+    ? ['todo.txt', 'setup.exe', 'report.docx']
     : ['photo.png', 'guide.pdf', 'draft.pages']
-  const entries: TreeRow[] = props.os === 'linux' ? [
-    { name: '', depth: 0 },
-    { name: 'etc', depth: 1, muted: true },
-    { name: 'hosts', depth: 2, last: true, muted: true, file: true },
-    { name: 'usr', depth: 1, muted: true },
-    { name: 'bin', depth: 2, last: true },
-    { name: 'bash', depth: 3, file: true, paired: true },
-    { name: 'git', depth: 3, file: true, paired: true },
-    { name: 'python3', depth: 3, last: true, file: true },
-    { name: 'home', depth: 1, last: true },
-    { name: 'Alice', depth: 2, home: true, personal: true },
-    { name: '.bashrc', depth: 3, file: true, paired: true },
-    { name: '.bash_history', depth: 3, file: true, paired: true },
-    { name: '.gitconfig', depth: 3, file: true, paired: true },
-    { name: 'my_projects', depth: 3, last: true, personal: true },
-    { name: 'hello.py', depth: 4, last: true, file: true },
-    { name: 'Bob', depth: 2, last: true, home: true, personal: true },
-  ] : [
-    { name: windows ? 'C:' : '', depth: 0 },
-    ...system.flatMap((name, index): TreeRow[] => [
-      { name, depth: 1, muted: true },
-      {
-        name: systemChildren[index],
-        depth: 2,
-        last: windows || index === 0,
-        muted: true,
-      },
-      ...(!windows && index === 1 ? [
-        { name: 'Firefox.app', depth: 2, muted: true },
-        { name: 'VLC.app', depth: 2, last: true, muted: true },
-      ] : []),
-    ]),
-    { name: 'Users', depth: 1, last: true },
-    { name: 'Alice', depth: 2, home: true, personal: true },
-    { name: 'Desktop', depth: 3, personal: true },
-    { name: files[0], depth: 4, last: true, file: true },
-    { name: 'Downloads', depth: 3, personal: true },
-    { name: files[1], depth: 4, last: true, file: true },
-    { name: 'Documents', depth: 3, last: true, personal: true },
-    { name: files[2], depth: 4, last: true, file: true },
-    { name: 'Bob', depth: 2, last: true, home: true, personal: true },
-  ]
+  const entries: TreeRow[] =
+    props.os === 'linux'
+      ? [
+          { name: '', depth: 0 },
+          { name: 'etc', depth: 1, muted: true },
+          { name: 'hosts', depth: 2, last: true, muted: true, file: true },
+          { name: 'usr', depth: 1, muted: true },
+          { name: 'bin', depth: 2, last: true },
+          { name: 'bash', depth: 3, file: true, paired: true },
+          { name: 'git', depth: 3, file: true, paired: true },
+          { name: 'python3', depth: 3, last: true, file: true },
+          { name: 'home', depth: 1, last: true },
+          { name: 'Alice', depth: 2, home: true, personal: true },
+          { name: '.bashrc', depth: 3, file: true, paired: true },
+          { name: '.bash_history', depth: 3, file: true, paired: true },
+          { name: '.gitconfig', depth: 3, file: true, paired: true },
+          { name: 'my_projects', depth: 3, last: true, personal: true },
+          { name: 'hello.py', depth: 4, last: true, file: true },
+          { name: 'Bob', depth: 2, last: true, home: true, personal: true },
+        ]
+      : [
+          { name: windows ? 'C:' : '', depth: 0 },
+          ...system.flatMap((name, index): TreeRow[] => [
+            { name, depth: 1, muted: true },
+            {
+              name: systemChildren[index],
+              depth: 2,
+              last: windows || index === 0,
+              muted: true,
+            },
+            ...(!windows && index === 1
+              ? [
+                  { name: 'Firefox.app', depth: 2, muted: true },
+                  { name: 'VLC.app', depth: 2, last: true, muted: true },
+                ]
+              : []),
+          ]),
+          { name: 'Users', depth: 1, last: true },
+          { name: 'Alice', depth: 2, home: true, personal: true },
+          { name: 'Desktop', depth: 3, personal: true },
+          { name: files[0], depth: 4, last: true, file: true },
+          { name: 'Downloads', depth: 3, personal: true },
+          { name: files[1], depth: 4, last: true, file: true },
+          { name: 'Documents', depth: 3, last: true, personal: true },
+          { name: files[2], depth: 4, last: true, file: true },
+          { name: 'Bob', depth: 2, last: true, home: true, personal: true },
+        ]
   const continuing: boolean[] = []
-  return entries.map(row => {
+  return entries.map((row) => {
     const ancestors = continuing.slice(0, row.depth)
     continuing[row.depth] = !row.last
     return { ...row, ancestors, label: row.name + (row.file ? '' : separator) }
@@ -87,13 +92,16 @@ const rows = computed(() => {
         }"
         aria-hidden="true"
       />
-      <span :class="{
-        muted: row.muted,
-        'text-green': row.personal,
-        'text-peach': row.file && !row.paired,
-        'text-mauve': row.paired,
-        'filesystem-home': row.home,
-      }">{{ row.label }}</span>
+      <span
+        :class="{
+          muted: row.muted,
+          'text-green': row.personal,
+          'text-peach': row.file && !row.paired,
+          'text-mauve': row.paired,
+          'filesystem-home': row.home,
+        }"
+        >{{ row.label }}</span
+      >
     </div>
   </div>
 </template>

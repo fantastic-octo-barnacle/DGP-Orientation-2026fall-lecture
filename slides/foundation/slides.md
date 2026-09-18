@@ -319,6 +319,7 @@ PS> Get-Date
 PS> Get-Location
 <当前目录>
 ```
+
   </div>
   <div>
     <div class="terminal-label text-peach">macOS / Linux · Bash</div>
@@ -333,6 +334,7 @@ $ date
 $ pwd
 <当前目录>
 ```
+
   </div>
 </div>
 
@@ -364,6 +366,7 @@ PS> notepad
 PS> calc
 PS> mspaint
 ```
+
   </div>
   <div class="program-example-column">
 <div class="terminal-label text-green">macOS / Linux · Bash · 命令行程序</div>
@@ -386,6 +389,7 @@ $ open -a TextEdit
 $ open -a Calculator
 $ open -a Preview
 ```
+
   </div>
 </div>
 
@@ -990,11 +994,11 @@ os.getenv 读取 Python 进程自己的环境变量；第二个参数是变量�
 C:\Program` Files\Git\bin\git.exe --version
 & "C:\Program Files\Git\bin\git.exe" --version
 ```
-  
+
   </div>
   <div class="callout text-blue">
   <p>只输入名称：交给 Shell 按当前环境寻找。</p>
-  
+
 <p class="small muted">Bash：</p>
 
 ```bash
@@ -1039,6 +1043,7 @@ printenv PATH          # 显示 PATH 的值
 Get-Command git
 where.exe git
 ```
+
   </div>
   <div>
     <div class="terminal-label text-green">macOS / Linux</div>
@@ -1048,6 +1053,7 @@ command -v git
 where git       # Zsh built-in command
 which git
 ```
+
   </div>
 </div>
 
@@ -1372,6 +1378,7 @@ $ git add README.md
 $ git commit -m "补充说明"
 $ git log --oneline -1
 ```
+
 </div>
 
 <div class="activity-box text-sky mt-4">

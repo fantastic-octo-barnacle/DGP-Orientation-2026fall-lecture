@@ -1,7 +1,7 @@
 :root {
   --foundation-font:
-    "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
-    "Hiragino Sans GB", sans-serif;
+    'Noto Sans CJK SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB',
+    sans-serif;
 }
 
 #app #slide-content .slidev-layout {
@@ -10,7 +10,7 @@
 
 #app #slide-content .slidev-layout code,
 #app #slide-content .slidev-layout pre {
-  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
 }
 
 .kicker {
@@ -256,7 +256,7 @@
   right: 25%;
   left: 25%;
   border-top: 1px solid var(--os-tree-line);
-  content: "";
+  content: '';
 }
 
 .os-tree-children::after {
@@ -265,7 +265,7 @@
   left: 50%;
   height: 0.78rem;
   border-left: 1px solid var(--os-tree-line);
-  content: "";
+  content: '';
 }
 
 .os-tree-children--three::before {
@@ -296,7 +296,7 @@
   left: 50%;
   height: 0.78rem;
   border-left: 1px solid var(--os-tree-line);
-  content: "";
+  content: '';
 }
 
 .os-tree-children--compact > .os-tree-column::before {
