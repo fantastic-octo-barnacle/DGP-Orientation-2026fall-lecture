@@ -12,6 +12,13 @@ pnpm build
 
 课件入口是 [`slides.md`](./slides.md)。内容依据 [`training/foundation/`](../../training/foundation/) 中的讲义结构、各节内容和讲师备注；Slides 负责课堂呈现，不替代讲义。
 
+## 格式化
+
+```bash
+pnpm fmt        # 写入格式化结果
+pnpm fmt:check  # 仅检查
+```
+
 ## 约定
 
 - 使用 `@ktym4a/slidev-theme-ktym4a`，当前启用主题的颜色轮转模式。

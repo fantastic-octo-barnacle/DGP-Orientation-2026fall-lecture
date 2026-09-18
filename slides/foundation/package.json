@@ -1,13 +1,17 @@
 {
-	"name": "@rm-orientation/foundation-slides",
-	"private": true,
-	"scripts": {
-		"dev": "slidev slides.md",
-		"build": "slidev build slides.md"
-	},
-	"devDependencies": {
-		"@ktym4a/slidev-theme-ktym4a": "^0.3.2",
-		"@slidev/cli": "^52.20.1",
-		"slidev-addon-counter": "^0.3.0"
-	}
+  "name": "@rm-orientation/foundation-slides",
+  "private": true,
+  "scripts": {
+    "dev": "slidev slides.md",
+    "build": "slidev build slides.md",
+    "fmt": "prettier --write .",
+    "fmt:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@ktym4a/slidev-theme-ktym4a": "^0.3.2",
+    "@slidev/cli": "^52.20.1",
+    "prettier": "^3.9.7",
+    "prettier-plugin-slidev": "1.0.5",
+    "slidev-addon-counter": "^0.3.0"
+  }
 }
