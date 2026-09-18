@@ -1037,7 +1037,7 @@ printenv PATH          # 显示 PATH 的值
 
 <div class="terminal-grid">
   <div>
-    <div class="terminal-label text-blue">PowerShell</div>
+    <div class="terminal-label text-blue">Windows · PowerShell</div>
 
 ```powershell
 Get-Command git
@@ -1046,7 +1046,7 @@ where.exe git
 
   </div>
   <div>
-    <div class="terminal-label text-green">macOS / Linux</div>
+    <div class="terminal-label text-green">macOS / Linux · Bash/Zsh</div>
 
 ```bash
 command -v git
