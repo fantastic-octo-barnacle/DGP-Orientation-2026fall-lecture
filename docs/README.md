@@ -16,6 +16,10 @@
 
 [`drafts/`](./drafts/) 保存早期项目与面试题草案。它们用于延续讨论，不代表候选人版 spec 或最终面试内容。
 
+当前 Python 项目草案：
+
+- [客户端—服务端项目任务与协议](./drafts/projects/python-client-server.md)
+- [项目起始仓库设计](./drafts/projects/python-starter.md)
 Rust 项目配套草案：
 
 - [起始仓库与分层任务](./drafts/projects/rust-starter.md)

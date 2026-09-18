@@ -1575,8 +1575,8 @@ layout: section
   <div class="card route-card text-pink">
     <strong>Python 起点</strong>
     <ul>
-      <li>尚不能独立编写并运行简单程序。</li>
-      <li>先补齐编程与开发环境基础。</li>
+      <li>刚学完变量、分支、循环和函数。</li>
+      <li>在可运行的两端代码上逐步扩展功能。</li>
     </ul>
   </div>
   <div class="card route-card text-blue">
@@ -1601,7 +1601,7 @@ layout: section
   <div><span class="check-icon text-green">C</span><span>我能否说明输入、处理和输出分别发生了什么？</span></div>
 </div>
 
-<p class="source-note"><a href="../../training/foundation/route-self-check.md">打开路线选择自测</a></p>
+<p class="source-note">尚未掌握基础语法者，先补学再进入项目。<a href="../../training/foundation/route-self-check.md">打开路线选择自测</a></p>
 
 ---
 
