@@ -6,6 +6,7 @@
 
 - [详细设计路线图](./design/roadmap.md)
 - [候选人交付仓库需求记录](./design/candidate-delivery.md)
+- [候选人交付 v1 验证记录](./design/candidate-delivery-validation.md)
 - [共同基础任务](./design/common-foundations.md)
 - [培训设计](./design/training.md)
 - [Python 起点路线](./design/python-track.md)
