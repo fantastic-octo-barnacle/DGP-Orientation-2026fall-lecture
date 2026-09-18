@@ -1531,6 +1531,39 @@ layout: section
 
 ---
 
+```bash
+uv run pyrefly check
+```
+
+```text
+ INFO Checking project configured at `/home/Alice/my-project/pyproject.toml`
+
+ERROR Class `State` has no class attribute `RECOVERY` [missing-attribute]
+   --> app/core/atom.py:796:51
+    |
+796 |             events.append(self._record_transition(State.RECOVERY, "operator reset", source))
+    |                                                   ^^^^^^^^^^^^^^
+    |
+  Did you mean `RECOVEY`?
+
+ERROR Returned type `Decimal` is not assignable to declared return type `float` [bad-return]
+  --> app/units.py:42:12
+   |
+37 | def scaled_to_percent(scaled: int) -> float:
+   |                                       ----- declared return type
+38 |     """Convert scaled integer units back to a percentage (display-only; lossy).
+39 |
+40 |     For presentation and JSON formatting only — never feed the result back into a decision.
+41 |     """
+42 |     return scaled_to_decimal(scaled)
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+
+ INFO 2 error (43 suppressed, 2 warnings not shown)
+```
+
+---
+
 # <Counter /> Linting：检查可疑写法和维护风险
 
 <div class="two-col">
@@ -1549,6 +1582,29 @@ layout: section
 - Python：Ruff、Pylint、Flake8
 - C/C++：clang-tidy、include-what-you-use（IWYU）
 - Rust：Clippy
+
+---
+
+```bash
+uv run ruff check .
+```
+
+```text
+E711 Comparison to `None` should be `cond is None`
+   --> app/cli.py:99:21
+    |
+ 97 |     atom = build_atom(log_path=log, start_percent=start_percent)
+ 98 |     y_axis_id = atom._config.y_axis_id
+ 99 |     if y_axis_id == None:
+    |                     ^^^^
+100 |         typer.echo("this cell has no Y axis configured; ALIGN_2D needs one")
+101 |         raise typer.Exit(code=2)
+    |
+help: Replace with `cond is None`
+
+Found 1 error.
+No fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).
+```
 
 ---
 
@@ -1587,6 +1643,35 @@ layout: section
 </div>
 
 <p class="lead">“难以写测试”也是一种提醒：代码的依赖关系和职责边界还不够清楚。</p>
+
+---
+
+### 常见测试框架
+
+- Python：pytest、unittest
+- C++：Google Test、Catch2
+
+```bash
+uv run pytest
+```
+
+```text
+============================================================ FAILURES ============================================================
+________________________________________________ test_stale_encoder_fault_via_api ________________________________________________
+
+client = <starlette.testclient.TestClient object at 0x7fd462447ac0>
+
+    def test_stale_encoder_fault_via_api(client: TestClient) -> None:
+        client.post("/v1/simulation/faults", json={"fault": "STALE_ENCODER"})
+        rejected = client.post("/v1/motion/proposals", json=_valid_proposal())
+>       assert rejected.json()["rejection_reason"] == "STALE_FEEDBACK"
+E       AssertionError: assert None == 'STALE_FEEDBACK'
+
+tests/test_api_faults.py:90: AssertionError
+==================================================== short test summary info =====================================================
+FAILED tests/test_api_faults.py::test_stale_encoder_fault_via_api - AssertionError: assert None == 'STALE_FEEDBACK'
+1 failed, 348 passed in 1.20s
+```
 
 ---
 
