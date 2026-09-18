@@ -1452,6 +1452,195 @@ uv sync
 layout: section
 ---
 
+# <Counter :level="1" /> 开发规范与代码质量管理
+
+<p>从“能运行”到“可协作、可维护、可验证”</p>
+
+---
+
+<h2>代码质量检查的几种类型</h2>
+<table class="compact">
+  <thead><tr><th></th><th>内容</th><th>具体示例</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Formatting</strong></td><td>排版与代码风格</td><td>缩进、空格、换行、命名等可见形式</td></tr>
+    <tr><td><strong>Type / Build Checking</strong></td><td>语言/类型系统的一致性，构建的正确性</td><td>类型、名称、借用、依赖与构建条件</td></tr>
+    <tr><td><strong>Linting</strong></td><td>静态规则与可疑模式</td><td>规则、反模式、无效代码、include / import 等</td></tr>
+    <tr><td><strong>Testing</strong></td><td>运行时的实际行为</td><td>选定输入和环境下运行后的输出、状态</td></tr>
+    <tr><td><strong>Code Review</strong></td><td>人工评审</td><td>自动工具不了解的上下文、风险与可维护性</td></tr>
+  </tbody>
+</table>
+
+---
+
+# <Counter /> Formatting：统一代码风格
+
+### PEP 8 – Style Guide for Python Code
+
+<div class="two-col">
+  <div >
+    <ul>
+      <li>使用 4 个空格缩进，不混用 Tab。</li>
+      <li>函数和变量：<code>snake_case</code>，类名：<code>CapWords</code>。</li>
+      <li>逗号、运算符和括号附近保持一致的空格。</li>
+      <li>import 集中在顶部，顶层定义之间保留空行。</li>
+      <li>过长的表达式主动换行，让结构可读。</li>
+    </ul>
+  </div>
+  <iframe src="https://peps.python.org/pep-0008/#pet-peeves" width="100%" height="350"></iframe>
+</div>
+
+---
+
+## 代码风格是团队协作的共同约定
+
+<div class="card-grid three">
+  <div class="card text-pink"><h3>减少噪声</h3><p>统一排版后，diff 更小，评审可以集中在逻辑变化。</p></div>
+  <div class="card text-peach"><h3>减少争论</h3><p>格式交给工具和配置，不把个人偏好变成评审阻塞。</p></div>
+  <div class="card text-blue"><h3>降低协作成本</h3><p>新成员能更快读懂代码，也更少制造无意义的合并冲突。</p></div>
+</div>
+
+<div class="two-col mt-4">
+  <div class="card text-green">
+    <h3>常见 Formatter</h3>
+    <p>Python：Ruff formatter、Black、autopep8<br>Rust：rustfmt<br>C/C++：clang-format</p>
+  </div>
+  <div class="card text-mauve">
+    <h3>C/C++ 没有唯一标准</h3>
+    <p>GNU、Google、LLVM、Linux 内核等组织都有自己的风格文档。项目需要明确内部约定，正说明风格规范本身很重要。</p>
+  </div>
+</div>
+
+---
+
+# <Counter /> Type / Build Checking：语法检查
+
+<div class="two-col">
+  <div class="card text-blue">
+    <h3>Python：静态类型检查</h3>
+    <p>结合类型标注和推断，检查参数、返回值和对象使用是否一致。</p>
+    <p class="small">常见工具：Pyright、Mypy、Pyrefly</p>
+  </div>
+  <div class="card text-peach">
+    <h3>Rust：编译器级检查</h3>
+    <p><code>cargo check</code> 检查类型、名称、借用和项目编译条件，通常不生成最终可执行文件。</p>
+    <p class="small">Rust 的编译器把许多检查整合进了语言工具链。</p>
+  </div>
+</div>
+
+这一步关注“代码结构是否自洽、项目能否通过静态检查”，不验证业务行为。
+
+---
+
+# <Counter /> Linting：检查可疑写法和维护风险
+
+<div class="two-col">
+  <div class="card text-pink">
+    <h3>与语法检查不同</h3>
+    <p>Linting 更关心“这种写法是否容易出错、难以维护或违反项目约定”。</p>
+  </div>
+  <div class="card text-green">
+    <h3>常见目标</h3>
+    <p>未使用的代码、可疑条件、过时写法、重复逻辑、不必要的 include / import，以及易隐藏 bug 的模式。</p>
+  </div>
+</div>
+
+### 常见 Linter
+
+- Python：Ruff、Pylint、Flake8
+- C/C++：clang-tidy、include-what-you-use（IWYU）
+- Rust：Clippy
+
+---
+
+# <Counter /> Testing：用运行结果验证行为
+
+<div class="card-grid">
+  <div class="card text-pink"><h3>单元测试</h3><p>验证一个函数、模块或小对象，通常隔离外部依赖。</p></div>
+  <div class="card text-peach"><h3>集成测试</h3><p>验证多个模块、进程或真实依赖协作时的接口。</p></div>
+  <div class="card text-blue"><h3>系统 / 端到端测试</h3><p>从用户或协议入口观察完整程序的行为。</p></div>
+  <div class="card text-green"><h3>HiL 测试</h3><p>Hardware-in-the-Loop：软件连接真实或仿真的硬件环境，验证控制链路。</p></div>
+</div>
+
+<p>静态检查可以发现某些结构问题，但不替代测试；测试覆盖了选定场景，也不能证明没有遗漏的输入、环境和时序。</p>
+
+---
+
+## 为了便于测试，代码要留下“接缝”
+
+<div class="two-col">
+  <div class="card text-blue">
+    <h3>隔离外部依赖</h3>
+    <ul>
+      <li>用 mock、stub 或 fake 替代网络、硬件、时钟等依赖。</li>
+      <li>通过依赖注入，让测试可以传入替身。</li>
+      <li>不要让每个单元测试都必须启动完整系统。</li>
+    </ul>
+  </div>
+  <div class="card text-green">
+    <h3>设计可测试的模块</h3>
+    <ul>
+      <li>模块化、职责清晰、低耦合。</li>
+      <li>把纯计算逻辑与 I/O、设备和网络边界分开。</li>
+      <li>让测试独立、可重复，并覆盖正常、边界、错误和回归场景。</li>
+    </ul>
+  </div>
+</div>
+
+<p class="lead">“难以写测试”也是一种提醒：代码的依赖关系和职责边界还不够清楚。</p>
+
+---
+
+# <Counter /> 质量管理需要工具和人一起维护
+
+<div class="two-col">
+  <div class="card text-blue">
+    <h3>CI：重复执行约定</h3>
+    <p>在干净、可重复的环境中运行 fmt、typecheck / buildcheck、lint 和 test，避免“我本机能过”成为唯一证据。</p>
+    <p class="small">CI 只会执行配置中写明的检查，不会自动提高质量标准。</p>
+  </div>
+  <div class="card text-pink">
+    <h3>Code Review：人工评审</h3>
+    <p>检查需求是否满足、设计是否清楚、错误处理和测试是否充分，以及取舍是否值得长期维护。</p>
+    <p class="small">工具擅长重复和明确的规则，人负责上下文、风险和责任。</p>
+  </div>
+</div>
+
+<div class="flow mt-5">
+  <div class="diagram-box text-peach">本地检查</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">CI 重跑</div>
+  <div class="flow-arrow">+</div>
+  <div class="diagram-box text-blue">人工评审</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-pink">可合并的变化</div>
+</div>
+
+---
+
+# <Counter /> 检查不能包办全部质量
+
+<div class="flow">
+  <div class="diagram-box text-pink">Formatting</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-peach">Type / Build Check</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-blue">Linting</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">Testing</div>
+</div>
+
+<div class="card-grid three mt-5">
+  <div class="card text-pink"><h3>自动化</h3><p>尽早、重复、客观地发现一部分问题。</p></div>
+  <div class="card text-peach"><h3>模块化</h3><p>让代码更容易隔离、验证和替换依赖。</p></div>
+  <div class="card text-blue"><h3>协作</h3><p>用配置、CI 和人工评审把个人习惯变成团队约定。</p></div>
+</div>
+
+<p class="lead">接下来，Git 负责记录代码变化，让协作过程和项目历史可追踪。</p>
+
+---
+layout: section
+---
+
 # <Counter :level="1" /> Git 与版本控制
 
 <p>94–106 分钟 · 怎样记录项目及其变化？</p>
