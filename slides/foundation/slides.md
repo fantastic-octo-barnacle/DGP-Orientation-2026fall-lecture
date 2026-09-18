@@ -598,7 +598,7 @@ ls -a 与 Get-ChildItem -Force 只比较显示隐藏项的常见意图，不宣�
 <p>想在 Windows 原生环境中使用 Unix 风格工具？可选装微软维护的 <strong>Coreutils for Windows</strong>。</p>
 <p class="small">基于 uutils，打包 coreutils、findutils 与 grep，提供 <code>ls</code>、<code>cat</code>、<code>cp</code> 等工具。</p>
 
-```powershell
+```sh
 winget install Microsoft.Coreutils
 ```
 
@@ -846,20 +846,20 @@ layout: section
     <div class="terminal-label text-blue">Windows · PowerShell</div>
 
 ```powershell
-PS> Get-Location                      # 显示当前目录
-PS> Get-ChildItem                     # 列出当前目录的文件和子目录
+Get-Location                      # 显示当前目录
+Get-ChildItem                     # 列出当前目录的文件和子目录
 
-PS> Set-Location projects/homework1   # 切换到指定目录（相对路径）
-PS> Get-Location
+Set-Location projects/homework1   # 切换到指定目录（相对路径）
+Get-Location
 
-PS> Set-Location ..                   # 切换到上一级目录
-PS> Get-Location
+Set-Location ..                   # 切换到上一级目录
+Get-Location
 
-PS> Set-Location ~/courses/ECE3080    # （绝对路径）
-PS> Get-Location
+Set-Location ~/courses/ECE3080    # （绝对路径）
+Get-Location
 
-PS> Get-ChildItem ~                   # 列出家目录的文件和子目录
-PS> Get-ChildItem -Force ~            # 包括隐藏文件
+Get-ChildItem ~                   # 列出家目录的文件和子目录
+Get-ChildItem -Force ~            # 包括隐藏文件
 ```
 
   </div>
@@ -867,20 +867,20 @@ PS> Get-ChildItem -Force ~            # 包括隐藏文件
     <div class="terminal-label text-green">macOS / Linux · Bash</div>
 
 ```bash
-$ pwd                    # print working directory
-$ ls                     # list files and directories
+pwd                    # print working directory
+ls                     # list files and directories
 
-$ cd projects/homework1  # change directory
-$ pwd
+cd projects/homework1  # change directory
+pwd
 
-$ cd ..
-$ pwd
+cd ..
+pwd
 
-$ cd ~/courses/ECE3080
-$ pwd
+cd ~/courses/ECE3080
+pwd
 
-$ ls ~                   # list files and directories in home
-$ ls -a ~                # list all files, including hidden ones
+ls ~                   # list files and directories in home
+ls -a ~                # list all files, including hidden ones
 ```
 
   </div>
@@ -1400,22 +1400,30 @@ pip install -r requirements.txt
 ## <Counter :level="3" /> Conda：适用于数据科学的跨平台环境管理器
 
 ```bash
-conda create -n demo python=3.12 numpy pandas
-conda activate demo
+conda create --name myenv-A python=3.11 numpy pandas
+conda activate myenv-A
+```
+```bash
+conda create --name myenv-B python=3.13 ruff pyright requests
+conda activate myenv-B
 ```
 
-<div class="card-grid mt-5">
+<div class="card-grid two mt-4">
   <div class="card text-green">
-    <h3>熟悉的优点</h3>
-    <p>可以把 Python、第三方包和部分底层库一起放进一个命名环境。</p>
+    <h3>专攻数据科学</h3>
+    <p>可以把 Python、数值计算包和部分底层库一起放进一个跨平台环境。</p>
   </div>
-  <div class="card text-peach">
-    <h3>仍需留意</h3>
-    <p>环境来源、频道和平台差异仍可能影响“在另一台机器上能否一样运行”。</p>
+  <div class="card text-red">
+    <h3>环境增加后，管理困难</h3>
+    <p>需要记住名称、手动切换、确认当前环境，并定期清理不再使用的环境。</p>
   </div>
 </div>
 
-<p class="lead">Conda 解决了很多入门阶段的问题，但“有环境”仍不等于“环境可重建”。</p>
+<p class="lead">少量、明确命名的环境很方便；项目和环境数量增加后，环境映射与切换的管理成本也会增加。</p>
+
+<!--
+`environment.yml` 可以记录环境和依赖，便于分享与重建；Conda 也支持把环境显式放到项目目录，但这些做法仍需要额外维护。
+-->
 
 ---
 
@@ -1465,7 +1473,6 @@ uv sync
   <p class="small">根据 <code>pyproject.toml</code> 和 <code>uv.lock</code> 解析依赖、安装到隔离环境。</p>
   </div>
 </div>
-
 
 <table class="compact mt-5">
   <thead><tr><th>项目中的东西</th><th>uv 维护的内容</th></tr></thead>
