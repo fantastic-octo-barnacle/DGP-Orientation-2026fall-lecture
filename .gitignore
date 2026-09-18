@@ -19,3 +19,14 @@ target/
 coverage/
 .coverage
 *.log
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+*Zone.Identifier

@@ -8,89 +8,17 @@ themeConfig:
   colorPattern: rotation
 addons:
   - slidev-addon-counter
+layout: cover
+class: cover-slide
 ---
 
 <style>
 @import './styles/index.css';
 </style>
 
----
-layout: cover
-class: cover-slide
----
-
 # 计算机开发基础
 
-从“能运行”开始，建立一张开发地图
-
-<div class="cover-meta">RM 软件组招新培训 · 2 小时基础课</div>
-
-<!--
-讲师提示：不重新讲软件组 intro。先告诉候选人，这节课建立共同语言和学习地图。
--->
-
----
-layout: statement
----
-
-# 这节课不教会你一门语言
-
-它要让你知道：一个项目为什么能运行、为什么会失败，以及下一步去哪里找答案。
-
----
-
-# 今天要走过一条链
-
-<div class="flow">
-  <div class="diagram-box text-pink">操作系统</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">终端与 shell</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-red">文件与路径</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach">程序与环境</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">项目与学习</div>
-</div>
-
-<p class="lead text-center muted">每一层都回答一个“它负责什么”的问题。</p>
-
----
-
-# 先建立三个观察角度
-
-<div class="card-grid three">
-  <div class="card text-pink">
-    <h3>对象</h3>
-    <p>磁盘上的文件、运行中的进程、远程仓库，分别是什么？</p>
-  </div>
-  <div class="card text-peach">
-    <h3>边界</h3>
-    <p>编辑器、解释器、包管理器和操作系统各自负责什么？</p>
-  </div>
-  <div class="card text-green">
-    <h3>证据</h3>
-    <p>看到什么现象，才能判断下一步实验或搜索方向？</p>
-  </div>
-</div>
-
-<p class="source-note">今天的目标是形成模型，不是背完所有命令。</p>
-
----
-
-# 一次开发活动会跨过多层
-
-<div class="stack">
-  <div class="diagram-box text-pink">操作系统提供资源与进程</div>
-  <div class="diagram-box text-mauve">shell 解释输入并启动程序</div>
-  <div class="diagram-box text-red">路径与环境决定找到什么</div>
-  <div class="diagram-box text-peach">工具链与依赖决定怎样构建</div>
-  <div class="diagram-box text-green">Git、检查和排障留下可验证的证据</div>
-</div>
-
-<!--
-讲师提示：后面的每个小节都可以回到这张图。遇到新术语先问“它位于哪一层”。
--->
+<div class="cover-meta">RM 软件组招新培训</div>
 
 ---
 layout: section
@@ -98,7 +26,7 @@ layout: section
 
 # <Counter :level="1" /> 操作系统与 WSL
 
-<p>0–8 分钟 · 程序工作的地基</p>
+<p>程序工作的地基</p>
 
 ---
 
@@ -117,210 +45,647 @@ layout: section
   </div>
 </div>
 
-<p class="lead">本课只建立全景：操作系统让程序有地方运行、有资源可用。</p>
+<p class="lead">操作系统让程序有地方运行、有资源可用。</p>
 
 ---
 
-# <Counter /> “操作系统”不是一种设备
+# <Counter /> 操作系统的谱系
 
-<div class="card-grid three">
-  <div class="card text-blue">
-    <h3>桌面与服务器</h3>
-    <p>Windows、macOS、Linux</p>
-  </div>
-  <div class="card text-pink">
-    <h3>移动设备</h3>
-    <p>Android、iOS</p>
-  </div>
-  <div class="card text-green">
-    <h3>嵌入式环境</h3>
-    <p>裸机环境、实时操作系统</p>
+<div class="os-tree" role="img" aria-label="操作系统与 UNIX、Unix-like 以及 Windows NT 家族的简化关系图">
+  <div class="os-tree-main">
+    <div class="os-tree-column text-pink">
+      <div class="os-tree-node os-tree-category">
+        <strong>Unix-like</strong>
+        <span>类 Unix 系统</span>
+      </div>
+      <div class="os-tree-children os-tree-children--three">
+        <div class="os-tree-column text-red">
+          <div class="os-tree-node os-tree-family">
+            <strong>UNIX</strong>
+            <span>标准 / 认证语境</span>
+          </div>
+          <div class="os-tree-children os-tree-children--three os-tree-children--compact">
+            <div class="os-tree-column text-red">
+              <div class="os-tree-node os-tree-leaf"><strong>macOS</strong></div>
+            </div>
+            <div class="os-tree-column text-red">
+              <div class="os-tree-node os-tree-leaf"><strong>AIX</strong></div>
+            </div>
+            <div class="os-tree-column text-red">
+              <div class="os-tree-node os-tree-leaf"><strong>Solaris</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="os-tree-column text-green">
+          <div class="os-tree-node os-tree-family">
+            <strong>BSD 家族</strong>
+            <span>Unix-like 家族</span>
+          </div>
+          <div class="os-tree-children os-tree-children--three os-tree-children--compact">
+            <div class="os-tree-column text-green">
+              <div class="os-tree-node os-tree-leaf"><strong>FreeBSD</strong></div>
+            </div>
+            <div class="os-tree-column text-green">
+              <div class="os-tree-node os-tree-leaf"><strong>OpenBSD</strong></div>
+            </div>
+            <div class="os-tree-column text-green">
+              <div class="os-tree-node os-tree-leaf"><strong>NetBSD</strong></div>
+            </div>
+          </div>
+        </div>
+        <div class="os-tree-column text-sky">
+          <div class="os-tree-node os-tree-family">
+            <strong>Linux 生态</strong>
+            <span>内核与发行版</span>
+          </div>
+          <div class="os-tree-children os-tree-children--two os-tree-children--compact">
+            <div class="os-tree-column text-sky">
+              <div class="os-tree-node os-tree-leaf"><strong>Linux 内核</strong></div>
+            </div>
+            <div class="os-tree-column text-sky">
+              <div class="os-tree-node os-tree-leaf os-tree-leaf--distribution">
+                <strong>Linux 发行版</strong>
+                <span>Ubuntu · Fedora · Arch Linux</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="os-tree-column text-mauve">
+      <div class="os-tree-node os-tree-category">
+        <strong>其他操作系统家族</strong>
+      </div>
+      <div class="os-tree-children os-tree-children--one os-tree-children--compact">
+        <div class="os-tree-column text-mauve">
+          <div class="os-tree-node os-tree-family">
+            <strong>Windows NT</strong>
+            <span>操作系统家族</span>
+          </div>
+          <div class="os-tree-children os-tree-children--three os-tree-children--compact">
+            <div class="os-tree-column text-mauve">
+              <div class="os-tree-node os-tree-leaf"><strong>Windows 10</strong></div>
+            </div>
+            <div class="os-tree-column text-mauve">
+              <div class="os-tree-node os-tree-leaf"><strong>Windows 11</strong></div>
+            </div>
+            <div class="os-tree-column text-mauve">
+              <div class="os-tree-node os-tree-leaf"><strong>Windows Server</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<p class="muted">分类可以重叠：Linux 既能运行在服务器，也能运行在桌面或嵌入式设备上。</p>
+<div class="os-tree-notes">
+  <p><code>UNIX</code> 指通过了国际开放标准认证组织（The Open Group）单一 UNIX 规范认证（Single UNIX Specification）的系统；</p>
+  <p><code>Unix-like</code> 是描述性术语。</p>
+  <p class="source-note">术语参考：The Open Group · UNIX / Single UNIX Specification</p>
+  <p class="source-note">本图为教学用简化关系图。</p>
+</div>
 
 ---
 
-# <Counter /> Windows、WSL、Linux 发行版不是同一个对象
+# <Counter /> WSL：在 Windows 中使用 Linux
 
 <div class="flow">
-  <div class="diagram-box text-blue">Windows<br><span class="small">宿主操作系统</span></div>
+  <div class="diagram-box text-blue">Windows<br>日常桌面环境</div>
   <div class="flow-arrow">↔</div>
-  <div class="diagram-box text-peach">WSL 2<br><span class="small">协作运行环境</span></div>
-  <div class="flow-arrow">↔</div>
-  <div class="diagram-box text-green">Ubuntu 等发行版<br><span class="small">Linux 用户空间</span></div>
+  <div class="diagram-box text-peach">WSL<br>Linux 运行环境</div>
 </div>
 
-<p class="lead">终端窗口只是入口；它不等于 WSL，也不等于某个发行版。</p>
+<p class="lead"><em>Windows Subsystem for Linux (WSL)</em><br>是 Windows 提供的工具，让你在 Windows 中方便地使用 Linux 环境。</p>
+
+<div class="activity-box text-green mt-5">
+  <h3>怎么理解它？</h3>
+  <p>相比传统虚拟机，WSL 不需要单独安装、启动和维护一套完整系统，和 Windows 之间的交互也更方便。</p>
+</div>
+
+<p class="source-note">本课主要以 WSL2 为例；WSL 提供了诸多 Linux 发行版，比如 Ubuntu、Debian、openSUSE 等。</p>
 
 ---
 
-# <Counter /> WSL 的边界
+## <CounterDisplay /> WSL
 
-<div class="card-grid">
+<div class="card-grid three">
   <div class="card text-pink">
-    <h3>可以协作</h3>
-    <p>Windows 与 WSL 可以访问部分彼此文件，也可以分别运行工具。</p>
+    <h3>文件系统</h3>
+    <p>Windows 和 WSL 可以访问彼此的一部分文件，例如在 WSL 中访问 Windows 的 C 盘文件。</p>
   </div>
   <div class="card text-peach">
-    <h3>不会自动合并</h3>
-    <p>两边安装的软件、PATH 和环境变量不会因为“看起来在一个窗口”就自动共享。</p>
+    <h3>网络通信</h3>
+    <p>WSL 中运行的开发服务，Windows 可以直接访问。</p>
+  </div>
+  <div class="card text-sky">
+    <h3>VS Code</h3>
+    <p>可以用 Windows 中的 VS Code 编辑代码，同时让代码和工具运行在 WSL 的 Linux 环境中。</p>
   </div>
 </div>
 
-<div class="activity-box text-green mt-5">
-  <h3>随讲随做</h3>
-  <p>确认自己的操作系统名称和大致版本。Windows 候选人只需观察是否已有 WSL，不在课堂排障。</p>
+<div class="callout text-mauve mt-5">
+  <h3>但它们不是同一个环境</h3>
+  <p>Windows 和 WSL 可以协作，但两边安装的软件、PATH 和环境仍可能不同。</p>
 </div>
 
-<!-- 过渡：操作系统提供能力，终端是其中一种文本入口。 -->
+<!--
+过渡：操作系统提供能力，终端是其中一种文本入口。
+-->
 
 ---
 layout: section
 ---
 
-# <Counter :level="1" /> 终端、shell 与命令行
+# <Counter :level="1" /> 终端、Shell 与命令行
 
-<p>8–18 分钟 · 谁在读取你的输入？</p>
+<p>如何运行一个程序</p>
 
 ---
+layout: two-cols-header
+---
 
-# <Counter /> 终端、shell、命令行分别是什么
+# <Counter /> 终端是窗口，Shell 是程序
 
-<div class="flow">
-  <div class="diagram-box text-pink"><strong>终端</strong><br><span class="small">提供文本交互界面</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve"><strong>shell</strong><br><span class="small">读取并解释输入</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach"><strong>命令</strong><br><span class="small">改变状态或启动程序</span></div>
+::left::
+
+<br>
+<div>
+  <div class="architecture-node architecture-main-node text-red">
+    <strong>用户</strong>
+    <span>输入文字，观察结果</span>
+  </div>
+  <div class="architecture-arrow">↓ 输入 / 观察</div>
+  <div class="architecture-node architecture-main-node text-pink">
+    <strong>终端模拟器</strong>
+    <span>显示文本、接收键盘输入</span>
+  </div>
+  <div class="architecture-arrow">↓ 启动 Shell、传递文本</div>
+  <div class="architecture-node architecture-main-node text-peach">
+    <strong>Shell</strong>
+    <span>读取并解释命令</span>
+  </div>
+  <div class="architecture-arrow">↓ 请求操作系统服务</div>
+  <div class="architecture-node architecture-main-node architecture-kernel text-mauve">
+    <strong>操作系统内核</strong>
+    <span>管理进程、文件、内存和硬件设备</span>
+  </div>
 </div>
 
-<p class="lead">“命令行”描述的是交互形式，不是一个独立的软件名称。</p>
+::right::
+
+<br>
+<div class="architecture-side-note text-pink">
+  <strong>终端模拟器</strong>
+  <p>负责显示文本、接收键盘输入的程序。它会将用户的输入传递给 Shell，并将 Shell 的输出显示给用户。</p>
+  <p class="small muted mt-2">例：Windows Terminal、iTerm2、GNOME Terminal、...</p>
+</div>
+<br>
+<div class="architecture-side-note text-peach">
+  <strong>Shell</strong>
+  <p>在终端中运行，负责读取并解释命令的程序。它会通过操作系统提供的接口请求内核服务：启动应用或其他程序、读写文件，以及进行其他系统交互。</p>
+  <p class="small muted mt-2">例：PowerShell、pwsh、Bash、Zsh、fish、...</p>
+</div>
 
 ---
 
-# <Counter /> shell 会记住一些状态
+# <Counter /> Shell 会维护自己的状态
 
 <div class="two-col">
   <div class="diagram-box text-red">
     <h3>当前目录</h3>
-    <p>相对路径从哪里开始解释？</p>
+    <p>决定相对路径从哪里开始解释。</p>
   </div>
   <div class="diagram-box text-peach">
     <h3>环境变量</h3>
-    <p>启动其他程序时，哪些名称和值会传过去？</p>
+    <p>启动其他程序时会传递的一组名称和值。</p>
   </div>
 </div>
 
-<div class="callout text-sky mt-5">
-  <p>shell 本身也是程序，但它不等于操作系统。</p>
+<div class="flow mt-4">
+  <div class="diagram-box text-pink"><code>cd path/to/your/project</code></div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-mauve">Shell 更新自己的当前目录</div>
 </div>
+
+<div class="callout text-sky mt-4">
+  <p><strong>内建命令：</strong><code>cd</code> 等内建命令由 Shell 自己处理，会改变 Shell 自身的状态。</p>
+</div>
+
+<p class="small muted">目录（文件系统）和环境变量的细节，会在后面单独解释。</p>
 
 ---
 
-# <Counter /> 有些命令改变 shell，有些命令启动程序
+# <Counter /> Shell 的使用
 
-<div class="card-grid">
-  <div class="card text-pink">
-    <h3>内建命令</h3>
-    <p>例如切换当前目录。它必须改变 shell 自己的状态。</p>
+<div class="flow">
+  <div class="diagram-box text-mauve">
+    Shell&nbsp;&nbsp;&nbsp;<em>解释命令</em>
   </div>
+  <div class="flow-arrow">⇒ 启动 ⇒</div>
+  <div class="diagram-box text-green">
+    外部程序&nbsp;&nbsp;&nbsp;<em>Git · Python · 自编译程序</em>
+  </div>
+</div>
+
+<div class="two-col mt-5">
   <div class="card text-green">
-    <h3>外部程序</h3>
-    <p>例如 Git。shell 根据规则找到磁盘上的程序并启动它。</p>
+    <h3>程序完成具体工作</h3>
+    <p>例如读取文件、运行代码，或与其他程序通信。</p>
+  </div>
+  <div class="card text-peach">
+    <h3>结果回到终端</h3>
+    <p>程序输出文本，终端模拟器负责把它显示出来。</p>
   </div>
 </div>
 
-<p class="muted">不是所有命令都对应一个同名文件，也不是所有文件都能作为命令运行。</p>
+<p class="lead">命令有时是 Shell 的内建功能，有时是 Shell 要启动的程序。</p>
 
 ---
 
-# <Counter /> 同一个终端窗口不是同一个会话
+## 使用 Shell 运行命令
 
-<div class="two-col">
+<div class="terminal-grid mt-4">
   <div>
-    <div class="terminal-label text-pink">会话 A</div>
-
-```text
-PS> Set-Location project
-PS> Get-Location
-Path
-----
-C:\Users\student\project
-```
-  </div>
-  <div>
-    <div class="terminal-label text-green">会话 B</div>
-
-```text
-PS> Get-Location
-Path
-----
-C:\Users\student
-```
-  </div>
-</div>
-
-<p class="small muted">打开第二个终端窗口，观察它有自己的当前目录和交互状态。</p>
-
----
-
-# <Counter /> 随讲随做：先只看提示符
-
-<div class="terminal-grid">
-  <div>
-    <div class="terminal-label text-blue">PowerShell</div>
+    <div class="terminal-label text-blue">Windows · PowerShell</div>
 
 ```text
 PS> Write-Output "hello"
 hello
+
+PS> Get-Date
+<日期和时间>
+
+PS> Get-Location
+<当前目录>
 ```
+
   </div>
   <div>
-    <div class="terminal-label text-peach">macOS / Linux</div>
+    <div class="terminal-label text-peach">macOS / Linux · Bash</div>
 
 ```text
-$ printf 'hello\n'
+$ echo hello
 hello
+
+$ date
+<日期和时间>
+
+$ pwd
+<当前目录>
 ```
+
   </div>
 </div>
 
-<div class="activity-box text-sky mt-4">
-  <h3>观察</h3>
-  <p>哪一部分像“你输入的命令”？哪一部分像“程序输出的结果”？</p>
+<p class="terminal-legend"><code>PS&gt;</code> / <code>$</code> 是 Shell 给出的提示符（prompt）；下面的输出会因机器而异。</p>
+
+---
+
+## 使用 Shell 运行程序
+
+<div class="program-example-grid mt-3">
+  <div class="program-example-column">
+<div class="terminal-label text-green">Windows · PowerShell · 命令行程序</div>
+
+```text
+PS> git --version
+git version 2.x
+
+PS> python -c "print('hello from Python')"
+hello from Python
+
+PS> curl.exe --version
+curl 8.x
+```
+
+<div class="terminal-label text-peach program-example-label">Windows · PowerShell · GUI 程序</div>
+
+```text
+PS> notepad
+PS> calc
+PS> mspaint
+```
+
+  </div>
+  <div class="program-example-column">
+<div class="terminal-label text-green">macOS / Linux · Bash · 命令行程序</div>
+
+```text
+$ git --version
+git version 2.x
+
+$ python3 -c 'print("hello from Python")'
+hello from Python
+
+$ curl --version
+curl 8.x
+```
+
+<div class="terminal-label text-peach program-example-label">macOS · Bash · GUI 程序</div>
+
+```text
+$ open -a TextEdit
+$ open -a Calculator
+$ open -a Preview
+```
+
+  </div>
 </div>
+
+---
+
+# <Counter /> Shell 如何解释一行命令
+
+## 命令名与参数
+
+```bash
+python3 -c "print('hello from Python')"
+```
+
+<table class="compact">
+  <thead><tr><th>命令名：调用谁（程序）</th><th>参数 1</th><th>参数 2：整段代码</th></tr></thead>
+  <tbody><tr><td>Python 3.x</td><td><code>-c</code></td><td><code>print('hello from Python')</code></td></tr></tbody>
+</table>
+
+<div class="flow mt-5">
+  <div class="diagram-box text-peach">Shell 处理命令行：<br>识别命令和目标程序、分割参数</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">Python 解释参数：<br>执行传入的代码</div>
+</div>
+
+<p class="lead">Shell 负责传入参数，命令决定参数的含义。</p>
+<p class="small muted">命令也可以是 Shell 的内建功能，不一定是外部程序。</p>
+
+<!--
+用时约 1 分钟。从前面的 Python 运行示例接过来，不引入新命令。
+Shell 传入两个参数：-c 和整段代码。外层双引号用于分组，不是参数内容；内部单引号保留，交给 Python 解释。
+Python 将 -c 后面的参数作为代码执行，输出 hello from Python。下一页再展开空格与引号的规则。
+本机若使用 python3 命令，替换命令名即可。
+只建立简单命令的模型，不将其概括成所有 Shell 语法；暂不讲展开、管道和重定向。
+-->
+
+---
+
+## 空格分隔，引号分组
+
+<div class="program-example-grid mt-4">
+  <div>
+    <div class="terminal-label text-peach">Bash · 两个参数</div>
+
+```bash
+echo hello RM
+echo hello    RM
+```
+
+```text
+hello RM
+hello RM
+```
+
+<p class="small">参数：<code>hello</code>、<code>RM</code>；<code>hello</code>、<code>RM</code></p>
+  </div>
+  <div>
+    <div class="terminal-label text-green">Bash · 一段含空格的文字</div>
+
+```bash
+echo "hello RM"
+echo "hello    RM"
+```
+
+```text
+hello RM
+hello    RM
+```
+
+<p class="small">参数：<code>hello RM</code>；<code>hello&nbsp;&nbsp;&nbsp;RM</code></p>
+  </div>
+</div>
+
+- 未被引用的空格或 Tab 通常分隔各部分；连续多个空格不是空参数。
+- 引号可以让含空格的内容留在一个参数中；这里的外层引号不传给命令。
+- 使用成对的英文半角引号；单引号与双引号并不总是等价。
+
+<p class="small muted">引号未闭合时，Shell 可能继续等待输入；可用 <kbd>Ctrl</kbd>+<kbd>C</kbd> 取消，再重新输入。</p>
+
+<!--
+用时约 2 分钟。echo 将文字输出到终端，不引入格式字符串。
+指着参数标注比较两个参数与一个参数；输出相同不代表拆分相同，不能只凭 echo 的输出判断参数数量。
+这里只分析没有展开或特殊操作符的简单示例；单双引号的展开差异留待后续学习。
+-->
+
+---
+
+## 文字本身带引号怎么办？
+
+<div class="program-example-grid mt-4">
+  <div>
+    <div class="terminal-label text-green">Bash · 外层换一种引号</div>
+
+```bash
+echo 'hello "RM"'
+echo "it's ready"
+```
+
+<p class="small">外层单引号保留里面的双引号；外层双引号也可以保留里面的单引号。</p>
+  </div>
+  <div>
+    <div class="terminal-label text-peach">Bash · 在双引号内转义</div>
+
+```bash
+echo "hello \"RM\""
+```
+
+<p class="small"><code>\"</code> 让这个双引号成为文字，而不是结束外层引号。</p>
+  </div>
+</div>
+
+<p><strong>转义：</strong>让原本有语法含义的字符，在这里作为普通文字。</p>
+<p class="small">第一条与右侧命令都输出 <code>hello "RM"</code>，文字仍是一个参数。</p>
+<p class="small">注意：Bash 的单引号内不能用 <code>\'</code> 保留单引号；例如 <code>it's ready</code>，可改用外层双引号。</p>
+<p class="small muted">PowerShell 的转义符是反引号 <code>&#96;</code>，不是反斜杠；例如 <code>Write-Output "hello &#96;"RM&#96;""</code>。也可用外层单引号包住含双引号的文字。</p>
+
+<!--
+用时约 1 分钟，接在“引号分组”之后。先讲换外层引号，再讲 Bash 双引号中的反斜杠。
+强调外层引号负责分组，里面需要保留的引号属于参数内容；不要教成“所有特殊字符前加反斜杠就行”。
+Bash 单引号中反斜杠没有转义作用；单双引号仍有展开差异，本页只使用普通文字，不展开变量规则。
+PowerShell 只作平台提醒，不延伸外部程序参数传递和多层嵌套。
+-->
+
+---
+
+# <Counter /> 程序如何解释参数
+
+<div class="terminal-label text-peach">Linux / macOS · 列出当前目录的内容</div>
+
+```bash
+ls -l -a .
+```
+
+<table class="compact">
+  <thead><tr><th>部分</th><th>角色</th><th>含义</th></tr></thead>
+  <tbody>
+    <tr><td><code>-l</code>、<code>-a</code></td><td>短选项</td><td>详细列出；包含隐藏项</td></tr>
+    <tr><td><code>.</code></td><td>位置参数</td><td>操作对象：当前目录</td></tr>
+    <tr><td><code>--version</code></td><td>长选项</td><td>如 <code>git --version</code> 中的版本查询</td></tr>
+    <tr><td><code>--color=auto</code></td><td>长选项及其值</td><td>GNU ls：让 <code>--color</code> 的值为 <code>auto</code></td></tr>
+  </tbody>
+</table>
+
+<p class="lead">选项也是参数；有的选项是开关，有的还需要值。</p>
+<p class="small muted">位置参数的含义由位置和命令规则决定。目录与路径下一章再展开。</p>
+
+<!--
+用时约 1.5 分钟。按命令名、两个选项、操作对象读一遍，不在此讲 ls 的完整用法。
+GNU ls 的长选项不套用到 macOS 自带 ls；Windows PowerShell 的 ls 别名也不直接照搬这些参数。
+-->
+
+---
+
+## 常见写法
+
+<table class="compact mt-4">
+  <thead><tr><th>形式</th><th>例子</th><th>注意</th></tr></thead>
+  <tbody>
+    <tr><td>合并短选项</td><td><code>ls -la .</code></td><td>这里等同于 <code>ls -l -a .</code>，不是处处适用</td></tr>
+    <tr><td>选项与值分开</td><td><code>git -C . --version</code></td><td><code>.</code> 是 <code>-C</code> 的值，不是位置参数</td></tr>
+    <tr><td>用 <code>=</code> 连接值</td><td><code>ls --color=auto .</code></td><td>GNU ls；不能随意改为空格</td></tr>
+    <tr><td>子命令</td><td><code>git status --short</code></td><td><code>status</code> 选择 Git 的功能，后面是它的选项</td></tr>
+  </tbody>
+</table>
+
+<p class="small muted">PowerShell 自身的命令常用 <code>-Name</code> 这样的参数名，不是多个短选项；调用 Git 等外部程序时，则要查该程序的参数规则。</p>
+
+<!--
+用时约 1.5 分钟。git -C . 表示让 Git 在当前目录运行，这里只示范选项吃掉后面的值。
+GNU ls 的 --color 接受可选值，使用 = 的写法；不教“等号和空格总能互换”。
+git status 只用于辨认子命令，不要求执行或提前教授仓库操作。
+不要猜 -v 一定是版本（它也常表示 verbose），也不要凭选项长度猜含义。
+-->
+
+---
+
+# <Counter /> 不同 Shell，同名命令未必相同
+
+<table class="compact">
+  <thead><tr><th>区别</th><th>Bash / Zsh</th><th>PowerShell</th></tr></thead>
+  <tbody>
+    <tr><td>常见命令风格</td><td><code>ls -a .</code></td><td><code>Get-ChildItem -Force .</code></td></tr>
+    <tr><td>管道传递什么</td><td>字节流，常作为文本处理</td><td>cmdlet 之间通常传递对象，可保留属性</td></tr>
+    <tr><td>转义字符</td><td>反斜杠 <code>\</code></td><td>反引号 <code>&#96;</code></td></tr>
+  </tbody>
+</table>
+
+<p><strong>Windows 上的 PowerShell 提供了许多熟悉名字的别名（alias）：</strong></p>
+<p class="small"><code>ls</code> → <code>Get-ChildItem</code>；<code>cat</code> → <code>Get-Content</code>；<code>cp</code> → <code>Copy-Item</code></p>
+<p class="lead">别名只是另一个名字，不会把 Unix 参数翻译成 PowerShell 参数。</p>
+<p class="small muted">不要直接照搬 <code>ls -la</code>；可用 <code>Get-Alias ls</code> 查看别名，用 <code>Get-Help Get-ChildItem</code> 查实际命令的用法。</p>
+
+<!--
+用时约 1.5 分钟。Bash 与 Zsh 同属 Unix 风格 Shell，但语法并非完全相同；这里合并比较常见使用习惯。
+PowerShell 不是“换了名字的 Bash”。cmdlet 常按“动词-名词”命名，参数常用 -Name 形式。
+管道只建立“文本与带属性的对象”这一层直觉，不展开语法；PowerShell 调用外部程序时另有字节流和版本差异。
+别名示例限定 Windows 上的默认 PowerShell 环境，用户配置可改变别名；不宣称所有平台都有相同别名。
+ls -a 与 Get-ChildItem -Force 只比较显示隐藏项的常见意图，不宣称行为完全等价。
+参考：https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_aliases
+参考：https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_pipelines
+-->
+
+---
+
+## Coreutils for Windows
+
+<p>想在 Windows 原生环境中使用 Unix 风格工具？可选装微软维护的 <strong>Coreutils for Windows</strong>。</p>
+<p class="small">基于 uutils，打包 coreutils、findutils 与 grep，提供 <code>ls</code>、<code>cat</code>、<code>cp</code> 等工具。</p>
+
+```powershell
+winget install Microsoft.Coreutils
+```
+
+<table class="compact mt-4">
+  <thead><tr><th>注意</th><th>边界</th></tr></thead>
+  <tbody>
+    <tr><td>使用 PowerShell 时</td><td>要求 7.4+，推荐 7.6+；不要当作 Windows PowerShell 5.1</td></tr>
+    <tr><td>同名命令可能冲突</td><td>Shell、别名与 PATH 都可能影响实际执行哪个命令</td></tr>
+    <tr><td>工具集，不是 Linux 环境</td><td>不会把 PowerShell 变成 Bash；路径、权限等仍有差异</td></tr>
+  </tbody>
+</table>
+
+<p class="small muted">项目与安装说明：<a href="https://github.com/microsoft/coreutils">microsoft/coreutils</a>；各工具支持 <code>--help</code>。</p>
+
+<!--
+用时约 1.5 分钟。推荐给希望在 Windows 原生环境复用 Unix 风格命令的候选人，不要求现场安装，也不修改别名或 Shell 配置。
+安装命令和版本要求以项目 README 为准，授课前复核；不是 GNU coreutils 官方 Windows 构建，而是微软维护的 uutils 打包。
+项目通过 PSReadLine 集成交互输入改写，但不会删除 PowerShell 别名。因此 Get-Command ls / Get-Help ls 仍可能显示别名，不能据此断定改写后实际调用的工具。
+不承诺 Linux 脚本原样运行，不把工具集当作 WSL 或完整 Linux 环境的替代品。
+参考：https://github.com/microsoft/coreutils
+-->
+
+---
+
+# <Counter /> 遇到陌生命令怎么办
+
+<table class="compact">
+  <thead><tr><th>要确认什么</th><th>以 Git 为例</th></tr></thead>
+  <tbody>
+    <tr><td>用途与来源</td><td>先确认是哪个工具，不执行来历不明的命令</td></tr>
+    <tr><td>本机版本</td><td><code>git --version</code> 或 <code>git -v</code></td></tr>
+    <tr><td>总体用法</td><td><code>git --help</code> 或 <code>git -h</code></td></tr>
+    <tr><td>具体功能的用法</td><td><code>git status -h</code>：简要帮助；<code>git help status</code>：手册</td></tr>
+  </tbody>
+</table>
+
+<p class="no-margin"><strong>读帮助：</strong>用途 → 调用格式 → 必需参数 → 选项说明 → 示例。</p>
+<p class="small">常见记号：<code>[…]</code> 表示可选项，<code>&lt;…&gt;</code> 表示必选项，<code>...</code> 常表示可重复，<code>|</code> 表示“或”。</p>
+
+```text
+usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>] [--exec-path[=<path>]] [--html-path] [--man-path]
+           [--info-path] [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare] [--git-dir=<path>]
+           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>] <command> [<args>]
+```
+
+<!--
+用时约 2 分钟。现场展示 git --version、git --help、git status -h，无需初始化仓库。
+git help status 可能打开浏览器或手册分页器，也可能因未安装手册而失败；可回到简要帮助或官方文档。
+若进入常见的 less 分页器，用 q 退出；不把这当成所有交互程序的通用退出键。
+不要为“试试看”运行会删除、覆盖文件或修改系统配置的示例。
+-->
+
+---
+
+# <Counter /> 在终端里操作
+
+<table class="compact mt-4">
+  <thead><tr><th>操作</th><th>用途</th><th>习惯与边界</th></tr></thead>
+  <tbody>
+    <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>翻阅历史命令</td><td>调回后可以编辑；检查后再按 <kbd>Enter</kbd></td></tr>
+    <tr><td><kbd>Tab</kbd></td><td>尝试补全命令或路径</td><td>有多个候选时，继续输入；具体行为依 Shell 而异</td></tr>
+    <tr><td><kbd>Ctrl</kbd>+<kbd>C</kbd></td><td>取消当前输入，或请求中断前台程序</td><td>不是撤销，已经发生的修改不会自动恢复</td></tr>
+    <tr><td>清屏</td><td>Bash：<code>clear</code><br>PowerShell：<code>Clear-Host</code></td><td>整理显示，不是删除命令历史</td></tr>
+  </tbody>
+</table>
+
+<p class="small muted">快捷键可能被终端或交互程序接管；<kbd>Ctrl</kbd>+<kbd>C</kbd> 不保证所有程序都立即退出。</p>
+
+<!--
+用时约 1.5 分钟。在命令提示符处演示上键调回、编辑和 Tab 补全；避免引入新工具。
+输入一条不执行的命令，按 Ctrl+C 取消；解释运行中的程序也通常可请求中断，但不等于撤销操作。
+复制粘贴快捷键依终端设置而异，不把 Ctrl+C 教成通用复制键。
+-->
 
 ---
 layout: section
 ---
 
-# <Counter :level="1" /> 文件类型与纯文本
+# <Counter :level="1" /> 文件与文件系统
 
-<p>18–32 分钟 · 文件保存的是什么？</p>
-
----
-
-# <Counter /> 文件系统保存的是字节
-
-<div class="flow">
-  <div class="diagram-box text-pink">磁盘上的字节</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">格式约定</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach">软件解释与呈现</div>
-</div>
-
-<div class="card-grid three">
-  <div class="card text-green"><h3>纯文本</h3><p>按字符编码解释的内容。</p></div>
-  <div class="card text-sky"><h3>图片</h3><p>按图像格式解释像素与元数据。</p></div>
-  <div class="card text-pink"><h3>复合文档</h3><p>由多个资源共同描述内容与布局。</p></div>
-</div>
+<p>从文件内容到路径定位</p>
 
 ---
 
-# <Counter /> 扩展名是提示，不是转换器
+# <Counter /> 文件类型
+
+## <Counter :level="3" /> 扩展名提示文件格式，但不决定
 
 <div class="two-col">
   <div class="stack">
@@ -336,24 +701,28 @@ layout: section
 
 ---
 
-# <Counter /> 纯文本为什么适合写代码
-
-<div class="card-grid">
-  <div class="card text-green">
-    <h3>保存的是字符序列</h3>
-    <p>源代码、Markdown、HTML、XML 都可以是纯文本。</p>
-  </div>
-  <div class="card text-blue">
-    <h3>编辑器只是工具</h3>
-    <p>记事本、终端编辑器和 IDE 都可以修改同一份文本。</p>
-  </div>
+<div class="flow">
+  <div class="diagram-box text-pink">磁盘上的字节（二进制数据）</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-mauve">格式约定</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-peach">软件解释与呈现</div>
 </div>
 
-<p class="lead">IDE 能提供导航、补全和检查，但它不是源码存在的前提。</p>
+<br>
+<br>
+
+<div class="card-grid five">
+  <div class="card text-green"><h3>纯文本</h3><p>按字符编码解释的内容。</p></div>
+  <div class="card text-sky"><h3>图片</h3><p>按图像格式解释像素与元数据。</p></div>
+  <div class="card text-blue"><h3>音视频</h3><p>按音频视频格式解释声音画面。</p></div>
+  <div class="card text-pink"><h3>复合文档</h3><p>多个资源共同描述内容与布局。</p></div>
+  <div class="card text-red"><h3>可执行文件</h3><p>可被操作系统直接运行的程序。</p></div>
+</div>
 
 ---
 
-# <Counter /> `.docx` 是一种复合文档格式
+## <Counter :level="3" /> 示例：`.docx` 是一种复合文档格式
 
 <div class="flow">
   <div class="diagram-box text-pink"><code>document.docx</code></div>
@@ -368,159 +737,289 @@ layout: section
   <div class="card text-mauve"><h3>嵌入资源</h3><p>图片等媒体可以作为内部文件保存。</p></div>
 </div>
 
-<p class="small muted">这是 `.docx` 的结构，不代表所有 Word 文件都相同；旧式 `.doc` 是另一种格式。</p>
+<p class="small muted">这是 <code>.docx</code> 的结构，不代表所有 Word 文件都相同；旧式 <code>.doc</code> 是另一种格式。</p>
 
 ---
 
-# <Counter /> 随讲随做：创建一个纯文本文件
+## <Counter :level="3" /> 代码文件：纯文本
 
-<div class="activity-box text-sky">
-  <h3>只验证刚引入的概念</h3>
-  <ol>
-    <li>用普通文本编辑器新建文件。</li>
-    <li>写入一句话并保存。</li>
-    <li>确认文件名、扩展名和位置。</li>
-    <li>重新打开，确认内容仍然是原来的文字。</li>
-  </ol>
+<div class="card-grid">
+  <div class="card text-green">
+    <h3>保存的是字符序列</h3>
+    <p>源代码、Markdown、HTML、XML 都可以是纯文本。</p>
+  </div>
+  <div class="card text-blue">
+    <h3>编辑器只是工具</h3>
+    <p>同一份纯文本可以被不同编辑器打开和修改，不绑定某个软件。</p>
+  </div>
 </div>
 
-<p class="muted">不要把保存文件变成安装编辑器或排查关联程序的任务。</p>
-
----
-layout: section
----
-
-# <Counter :level="1" /> 文件系统、路径与导航
-
-<p>32–47 分钟 · shell 怎样找到文件？</p>
+<p class="lead">IDE 能提供导航、补全和检查，但它不是源码存在的前提。</p>
 
 ---
 
-# <Counter /> 文件系统是一棵目录树
+## <Counter :level="3" /> 常见的纯文本编辑器
 
 <div class="two-col">
-  <div class="stack">
-    <div class="diagram-box text-blue">根位置</div>
-    <div class="diagram-box text-mauve">用户主目录</div>
-    <div class="diagram-box text-pink">当前目录</div>
+  <div class="card text-blue">
+    <h3>Windows · 记事本</h3>
+    <p>系统自带，改一个 <code>.txt</code> 最方便的方式。</p>
+    <p class="mt-3">保存时确认保存类型是 <code>.txt</code>。</p>
   </div>
-  <div class="stack">
-    <div class="diagram-box text-green">子目录</div>
-    <div class="diagram-box text-peach">文件</div>
-    <div class="diagram-box text-red">另一个分支</div>
+  <div class="card text-green">
+    <h3>macOS · TextEdit</h3>
+    <p>系统自带，但新建的是富文本文档。</p>
+    <p class="mt-3">先「格式 → 制作纯文本」，再写 <code>.txt</code>。</p>
   </div>
 </div>
 
-<p class="lead">用户主目录是常用起点，但它不是文件系统的根。</p>
+<div class="callout text-mauve mt-5">
+  <p>第三方编辑器：</p>
+  <ul>
+    <li>GUI 编辑器：<code>VS Code</code>、<code>Sublime Text</code>、<code>Notepad++</code></li>
+    <li>终端编辑器：<code>nano</code>、<code>vim</code></li>
+  </ul>
+</div>
 
 ---
 
-# <Counter /> 绝对路径与相对路径
+# <Counter /> 文件系统：目录树
+
+<div class="filesystem-trees">
+  <section>
+    <h3>Windows</h3>
+    <FilesystemTree os="windows" />
+    <p class="filesystem-system-note"><code>Windows</code>：系统资源，<code>Program Files</code>：应用</p>
+  </section>
+  <section>
+    <h3>Linux</h3>
+    <FilesystemTree os="linux" />
+    <p class="filesystem-system-note"><code>etc</code>：系统配置，<code>usr/bin</code>：程序</p>
+  </section>
+  <section>
+    <h3>macOS</h3>
+    <FilesystemTree os="macos" />
+    <p class="filesystem-system-note"><code>System</code>：系统，<code>Applications</code>：应用</p>
+  </section>
+</div>
+
+<div class="small">
+  <p class="filesystem-hidden">以上都是多用户系统。用户 Alice 和 Bob 各有自己的用户主目录（家目录）。</p>
+  <p class="filesystem-hidden">Linux 和 macOS 中，以 <code>.</code> 开头的文件或目录是隐藏项。</p>
+  <p class="filesystem-hidden">Linux 和 macOS 都是单根文件系统，而 Windows 是多根文件系统（不同盘符就是不同的根）。</p>
+  <p class="filesystem-hidden">在 Linux 中，文件和目录的名称区分大小写；而 Windows 和 macOS 不区分大小写。</p>
+</div>
+
+---
+
+## <Counter :level="3" /> 在文件系统中导航
 
 <div class="two-col">
   <div class="card text-pink">
     <h3>绝对路径</h3>
     <p>从固定的根位置开始。无论当前目录在哪里，指向都不变。</p>
-    <p class="mt-3"><code>/home/student/course/hello.txt</code></p>
+    <p class="mt-3"><code>/usr/bin/git</code></p>
+    <p class="mt-3"><code>/home/Alice/projects/hello.py</code></p>
+    <p class="mt-3"><code>~/courses/MAT2001/Homework1</code></p>
+    <p class="mt-3"><code>~/courses/MAT2001/../CSC3100/Homework1</code></p>
+    <p class="mt-3"><code>"~/courses/GFH1000/Midterm Essay"</code></p>
   </div>
   <div class="card text-peach">
     <h3>相对路径</h3>
-    <p>以当前目录为起点。同一个名字可能在不同位置指向不同文件。</p>
+    <p>以当前目录为起点。同一个名字可能在不同位置指向不同文件/目录。</p>
     <p class="mt-3"><code>./hello.txt</code></p>
+    <p class="mt-3"><code>hello.txt</code></p>
+    <p class="mt-3"><code>./Homework1/main.py</code></p>
+    <p class="mt-3"><code>Homework1/main.py</code></p>
+    <p class="mt-3"><code>../../Bob/projects</code></p>
   </div>
 </div>
 
----
-
-# <Counter /> `.`、`..` 与空格
-
-<div class="card-grid three">
-  <div class="card text-green"><h3><code>.</code></h3><p>当前目录。</p></div>
-  <div class="card text-blue"><h3><code>..</code></h3><p>上一级目录。</p></div>
-  <div class="card text-red"><h3>空格</h3><p>需要让 shell 知道它们属于同一个参数。</p></div>
-</div>
-
-<div class="callout text-mauve mt-5">
-  <p>路径中的引号是给 shell 的边界提示，不会凭空改变文件名。</p>
-</div>
+<p><code>..</code> 表示上一级目录，<code>.</code> 表示当前目录，<code>~</code> 表示当前用户的家目录。</p>
 
 ---
 
-# <Counter /> 随讲随做：每次只完成一个导航动作
+## <Counter :level="3" /> 常用 Shell 命令
 
 <div class="terminal-grid">
   <div>
-    <div class="terminal-label text-blue">PowerShell</div>
+    <div class="terminal-label text-blue">Windows · PowerShell</div>
 
-```text
+```powershell
+PS> Get-Location                      # 显示当前目录
+PS> Get-ChildItem                     # 列出当前目录的文件和子目录
+
+PS> Set-Location projects/homework1   # 切换到指定目录（相对路径）
 PS> Get-Location
-PS> Get-ChildItem
-PS> Set-Location ..
+
+PS> Set-Location ..                   # 切换到上一级目录
 PS> Get-Location
+
+PS> Set-Location ~/courses/ECE3080    # （绝对路径）
+PS> Get-Location
+
+PS> Get-ChildItem ~                   # 列出家目录的文件和子目录
+PS> Get-ChildItem -Force ~            # 包括隐藏文件
 ```
+
   </div>
   <div>
-    <div class="terminal-label text-green">macOS / Linux</div>
+    <div class="terminal-label text-green">macOS / Linux · Bash</div>
 
-```text
+```bash
+$ pwd                    # print working directory
+$ ls                     # list files and directories
+
+$ cd projects/homework1  # change directory
 $ pwd
-$ ls
+
 $ cd ..
 $ pwd
+
+$ cd ~/courses/ECE3080
+$ pwd
+
+$ ls ~                   # list files and directories in home
+$ ls -a ~                # list all files, including hidden ones
 ```
+
   </div>
 </div>
 
-<p class="small muted">课堂不发放一长串命令清单；每个命令只用来验证刚出现的概念。</p>
-
----
-
-# <Counter /> 文件存在，但相对路径仍然可能失败
-
-<div class="two-col">
-  <div class="stack">
-    <div class="diagram-box text-pink">文件真实位置<br><code>course/hello.txt</code></div>
-    <div class="flow-arrow">↑</div>
-    <div class="diagram-box text-peach">当前目录<br><code>course/scripts/</code></div>
-  </div>
-  <div class="callout text-red">
-    <h3>现象</h3>
-    <p>读取 <code>hello.txt</code> 失败。</p>
-    <h3 class="mt-4">变化</h3>
-    <p>切换当前目录，或改用从当前目录出发的正确路径。</p>
-    <h3 class="mt-4">没有变化</h3>
-    <p>文件和源码本身没有改变。</p>
-  </div>
-</div>
+许多 Bash 命令十分经典，PowerShell 也常常提供别名来兼容 Bash 的命令名称（但参数和含义不一定完全等价）。
 
 ---
 layout: section
 ---
 
-# <Counter :level="1" /> 环境变量、PATH、可执行文件与进程
-
-<p>47–60 分钟 · 命令名称怎样变成一次运行？</p>
+# <Counter :level="1" /> 环境变量，PATH
 
 ---
 
-# <Counter /> 环境变量是传给程序的名称和值
+# <Counter /> Shell 变量
 
-<div class="flow">
-  <div class="diagram-box text-pink">shell</div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach"><code>NAME=value</code></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">被启动的程序</div>
-</div>
+<table class="compact mt-4">
+  <thead><tr><th>操作</th><th>Bash / Zsh</th><th>PowerShell</th></tr></thead>
+  <tbody>
+    <tr><td>赋值</td><td><code>name="RM"</code></td><td><code>$name = "RM"</code></td></tr>
+    <tr><td>取值并输出</td><td><code>echo "$name"</code></td><td><code>echo $name</code></td></tr>
+    <tr><td>赋值时注意</td><td>不写 <code>$</code>；等号两侧不能有空格</td><td>写 <code>$name</code>；等号两侧可以有空格</td></tr>
+  </tbody>
+</table>
 
-<div class="card-grid">
-  <div class="card text-blue"><h3>可以表示</h3><p>路径、配置、开关、凭据等信息。</p></div>
-  <div class="card text-red"><h3>不要混淆</h3><p>环境变量不是第三方依赖，也不是自动保存到项目中的配置文件。</p></div>
-</div>
+<p>两边都输出 <code>RM</code>。修改变量的值，后续取到的值也随之改变。</p>
+<p class="lead">普通 Shell 变量不会自动作为环境变量传给新启动的程序。</p>
+<p class="small muted">Bash / Zsh 中用双引号包住 <code>"$name"</code>，可避免含空格的值被意外拆开。</p>
+
+<!--
+用时约 1 分钟。只讲名字、赋值和取值，不讲类型、数组或作用域。
+示例使用新建的普通变量；Bash 中已导出的变量再次赋值仍保留导出属性，不把“不自动传递”讲成绝对不能传递。
+echo "$name" 是 Shell 先取值再作为参数传入，与程序自行读取环境变量不同。
+Zsh 默认的参数拆分行为与 Bash 不完全相同，双引号作为通用习惯介绍。
+-->
 
 ---
 
-# <Counter /> PATH 是一组搜索位置
+# <Counter /> 环境变量：传给新启动的程序
+
+<p>程序启动时会继承父进程的环境变量：一组<strong>名称与字符串值</strong>。</p>
+
+<table class="compact mt-4">
+  <thead><tr><th>操作</th><th>Bash / Zsh</th><th>PowerShell</th></tr></thead>
+  <tbody>
+    <tr><td>设置并传给子程序</td><td><code>export VAR="RM"</code></td><td><code>$env:VAR = "RM"</code></td></tr>
+    <tr><td>查看一个值</td><td><code>printenv VAR</code></td><td><code>$env:VAR</code></td></tr>
+    <tr><td>列出环境变量</td><td><code>printenv</code></td><td><code>Get-ChildItem Env:</code></td></tr>
+  </tbody>
+</table>
+
+<p class="small">Bash / Zsh 用 <code>export</code> 标记变量供子程序继承；PowerShell 用 <code>$env:</code>，与普通变量 <code>$name</code> 区分。</p>
+<p class="lead">这里的设置不永久保存，也不会同步修改已经运行的其他程序。</p>
+<p class="small muted">修改影响当前 Shell 及其后续启动的子程序。列出的环境变量可能包含令牌等凭据，不要直接截图或公开粘贴。</p>
+
+<!--
+用时约 1.5 分钟。环境变量并非只能由 Shell 创建，Shell 本身也从父进程继承环境；这里只教在 Shell 中查看与设置。
+可先尝试 VAR="RM" 再 printenv VAR，对比 export 后的结果；确保演示变量此前未导出。
+继承是启动时复制，不是进程间共享一个实时更新的变量。子程序的修改也不会反向修改父 Shell。
+不讲 shell 配置文件、系统设置面板、setx 或持久化配置。
+参考：https://www.gnu.org/software/bash/manual/html_node/Environment.html
+参考：https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables
+-->
+
+---
+
+## 环境变量有什么用？给程序传配置
+
+<p>先按上一页设置 <code>VAR="RM"</code>，再从<strong>同一个 Shell</strong> 启动 Python：</p>
+
+```bash
+python3 -c "import os; print('Hello,', os.getenv('VAR'))"
+```
+
+```text
+Hello, RM
+```
+
+<p><strong>Shell 设置配置 → Python 读取环境变量 → 改变问候的名字。</strong></p>
+
+<p class="small">把值改成 <code>RoboMaster</code> 后重新运行，输出变为 <code>Hello, RoboMaster</code>；未设置时使用默认值 <code>None</code>。</p>
+<p class="small"><code>VAR</code> 是本例约定的名字，不是系统内置功能。<strong>变量的作用由读取它的程序决定。</strong></p>
+<p class="small muted">Windows 上若使用 <code>python</code>，替换命令名即可。接下来：真实的环境变量 <code>PATH</code> 如何参与查找程序？</p>
+
+<!--
+用时约 1.5 分钟。沿用前面 python -c 的形式，不要求理解 Python 模块机制。
+os.getenv 读取 Python 进程自己的环境变量；第二个参数是变量不存在时的默认值。
+命令中的 VAR 没有 $，不是 Shell 将其替换成值，而是 Python 主动按名字读取。
+示例输出依赖上一页的设置；只设置普通变量不会自动获得同样结果。
+参考：https://docs.python.org/3/library/os.html#os.getenv
+-->
+
+---
+
+# <Counter /> PATH：搜索程序的位置
+
+<div class="two-col">
+  <div class="callout text-red">
+  <p>输入完整路径：明确指定启动哪个程序。</p>
+
+<p class="small muted">Bash：</p>
+
+```bash
+/usr/bin/git --version
+```
+
+<p class="small muted">PowerShell （反引号转义空格或使用 Call Operator 调用）：</p>
+
+```powershell
+C:\Program` Files\Git\bin\git.exe --version
+& "C:\Program Files\Git\bin\git.exe" --version
+```
+
+  </div>
+  <div class="callout text-blue">
+  <p>只输入名称：交给 Shell 按当前环境寻找。</p>
+
+<p class="small muted">Bash：</p>
+
+```bash
+git --version
+```
+
+<p class="small muted">PowerShell：</p>
+
+```powershell
+git --version
+git.exe --version
+```
+
+  </div>
+</div>
+
+<br>
+
+```bash
+printenv PATH          # 显示 PATH 的值
+```
 
 <div class="flow">
   <div class="diagram-box text-mauve"><code>git</code></div>
@@ -529,125 +1028,78 @@ layout: section
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-peach">PATH 位置 2</div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">找到可执行程序</div>
-</div>
-
-<div class="two-col">
-  <div class="callout text-red"><p>输入完整路径：明确指定启动哪个程序。</p></div>
-  <div class="callout text-blue"><p>只输入名称：交给 shell 按当前环境寻找。</p></div>
+  <div class="diagram-box text-green">直到找到可执行程序</div>
 </div>
 
 ---
 
-# <Counter /> “安装了”不等于“命令能找到”
-
-<div class="card-grid three">
-  <div class="card text-pink"><h3>下载完成</h3><p>磁盘上出现了软件或文件。</p></div>
-  <div class="card text-peach"><h3>位置存在</h3><p>它可能在某个目录中，但不在搜索路径里。</p></div>
-  <div class="card text-green"><h3>命令可用</h3><p>当前 shell 的 PATH 能命中正确版本。</p></div>
-</div>
-
-<p class="lead">同名命令还可能因为 shell、Windows/WSL 或版本不同而命中不同位置。</p>
-
----
-
-# <Counter /> 程序文件、脚本文件、数据文件
-
-<div class="card-grid three">
-  <div class="card text-red"><h3>本机可执行文件</h3><p>操作系统可以装载并执行机器指令。</p></div>
-  <div class="card text-mauve"><h3>脚本</h3><p>通常需要对应解释器，启动规则也可能依赖平台。</p></div>
-  <div class="card text-blue"><h3>数据文件</h3><p>通常由其他程序打开，不是文件自身“执行”。</p></div>
-</div>
-
-<p class="small muted">本课不展开 PE、Mach-O、ELF、权限位和平台命令扩展细节。</p>
-
----
-
-# <Counter /> 磁盘上的程序 ≠ 运行中的进程
-
-<div class="flow">
-  <div class="diagram-box text-peach">磁盘上的<br>程序文件</div>
-  <div class="flow-arrow">启动</div>
-  <div class="diagram-box text-pink">进程 A</div>
-  <div class="flow-arrow">再启动</div>
-  <div class="diagram-box text-green">进程 B</div>
-</div>
-
-<div class="callout text-sky">
-  <p>同一个可执行文件通常可以产生多个进程；是否限制单实例是应用策略，不是操作系统的一般要求。</p>
-</div>
-
----
-
-# <Counter /> 随讲随做：确认 Git 命中了哪里
+## 目标程序到底命中了哪里？
 
 <div class="terminal-grid">
   <div>
     <div class="terminal-label text-blue">PowerShell</div>
 
-```text
-PS> Get-Command git
-PS> git --version
+```powershell
+Get-Command git
+where.exe git
 ```
+
   </div>
   <div>
     <div class="terminal-label text-green">macOS / Linux</div>
 
-```text
-$ command -v git
-$ git --version
+```bash
+command -v git
+where git       # Zsh built-in command
+which git
 ```
+
   </div>
 </div>
 
-<div class="activity-box text-peach mt-4">
-  <h3>问题</h3>
-  <p>你看到的是命令名、文件路径，还是一次运行的进程？</p>
-</div>
+`PATH` 是有序的，Shell 会按顺序查找每个目录，直到找到第一个可执行文件。
 
----
+如果有多个同名程序，Shell 只会执行第一个找到的。
 
-# 到这里，第一张大图已经闭合
+<v-click>
+【思考】如果你有两个项目，一个使用 Python 3.9，另一个使用 Python 3.11，如何在同一台电脑上同时安装并切换使用？
+</v-click>
 
-<div class="flow">
-  <div class="diagram-box text-pink">操作系统<br><span class="small">提供文件系统与进程</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-mauve">shell<br><span class="small">提供文本操作入口</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-red">路径<br><span class="small">定位文件</span></div>
-  <div class="flow-arrow">→</div>
-  <div class="diagram-box text-peach">PATH<br><span class="small">寻找程序</span></div>
-</div>
-
-<p class="lead text-center">接下来：源码怎样经过工具链产生行为？</p>
+<!--
+Google 搜索一下 pyenv，展示 AI 概览对其的解释：pyenv 通过修改环境变量 `PATH`，把自己的垫片（shims）路径放在最前面。
+-->
 
 ---
 layout: section
 ---
 
-# <Counter :level="1" /> Python、JavaScript、C 与 Rust 怎样运行
+# <Counter :level="1" /> 代码如何运行
 
-<p>65–82 分钟 · 源码到行为的不同路径</p>
+<p>源码到行为的不同路径</p>
 
 ---
 
-# <Counter /> CPU 最终执行机器指令
+# <Counter /> CPU 执行机器指令
+
+<br>
+<br>
+<br>
 
 <div class="flow">
-  <div class="diagram-box text-pink">人写的源码<br><span class="small">纯文本</span></div>
+  <div class="diagram-box text-pink">纯文本的源代码</div>
   <div class="flow-arrow">→</div>
   <div class="diagram-box text-peach">解释器、运行时<br>或编译器</div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-green">机器指令<br><span class="small">CPU 执行</span></div>
+  <div class="diagram-box text-green">二进制机器指令</div>
   <div class="flow-arrow">→</div>
-  <div class="diagram-box text-blue">程序行为</div>
+  <div class="diagram-box text-blue">CPU 执行</div>
 </div>
 
 <p class="muted">不同语言的区别之一，是源码到机器执行之间经过了哪些工具和中间结果。</p>
 
 ---
 
-# <Counter /> Python 与 JavaScript：由运行时读取
+## 脚本语言/解释型语言：由运行时读取
 
 <div class="stack">
   <div class="diagram-box text-pink">Python / JavaScript 源码</div>
@@ -663,16 +1115,16 @@ layout: section
 
 ---
 
-# <Counter /> C 与 Rust：先编译，再启动
+## 编译型语言：先编译，再启动
 
 <div class="stack">
-  <div class="diagram-box text-pink">C / Rust 源码</div>
+  <div class="diagram-box text-pink">C / C++ / Rust 源码</div>
   <div class="flow-arrow">↓</div>
   <div class="diagram-box text-mauve">编译与必要的链接</div>
   <div class="flow-arrow">↓</div>
   <div class="diagram-box text-peach">本机可执行文件</div>
   <div class="flow-arrow">↓</div>
-  <div class="diagram-box text-green">操作系统启动进程</div>
+  <div class="diagram-box text-green">操作系统启动进程（仍然可能需要相应的环境，比如动态链接库等）</div>
 </div>
 
 <p class="small muted">编译工具链、目标系统和链接所需的库都会影响构建结果。</p>
@@ -926,6 +1378,7 @@ $ git add README.md
 $ git commit -m "补充说明"
 $ git log --oneline -1
 ```
+
 </div>
 
 <div class="activity-box text-sky mt-4">
@@ -1085,7 +1538,7 @@ layout: section
 
 <div class="card-grid">
   <div class="card text-red"><h3>不要提供</h3><p>密码、令牌、私有密钥或不应公开的项目内容。</p></div>
-  <div class="card text-peach"><h3>执行前检查</h3><p>命令会读取、修改还是删除什么？适用于哪个系统和 shell？</p></div>
+  <div class="card text-peach"><h3>执行前检查</h3><p>命令会读取、修改还是删除什么？适用于哪个系统和 Shell？</p></div>
   <div class="card text-green"><h3>结论要复核</h3><p>用官方文档、实际运行、测试或最小实验验证。</p></div>
   <div class="card text-blue"><h3>最终要能解释</h3><p>能运行不等于理解正确；保留的方案需要说得清楚。</p></div>
 </div>

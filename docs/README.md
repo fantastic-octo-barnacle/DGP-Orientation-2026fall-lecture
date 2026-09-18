@@ -20,6 +20,11 @@
 
 - [客户端—服务端项目任务与协议](./drafts/projects/python-client-server.md)
 - [项目起始仓库设计](./drafts/projects/python-starter.md)
+Rust 项目配套草案：
+
+- [起始仓库与分层任务](./drafts/projects/rust-starter.md)
+- [通信协议与生命周期要求](./drafts/projects/rust-protocol.md)
+- [独立参考程序](./drafts/projects/rust-reference-program.md)
 
 ## 决策记录
 
