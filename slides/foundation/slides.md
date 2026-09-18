@@ -1045,7 +1045,7 @@ where.exe git
 
 ```bash
 command -v git
-where git
+where git       # Zsh built-in command
 which git
 ```
   </div>
@@ -1054,6 +1054,10 @@ which git
 `PATH` 是有序的，Shell 会按顺序查找每个目录，直到找到第一个可执行文件。
 
 如果有多个同名程序，Shell 只会执行第一个找到的。
+
+<v-click>
+【思考】如果你有两个项目，一个使用 Python 3.9，另一个使用 Python 3.11，如何在同一台电脑上同时安装并切换使用？
+</v-click>
 
 ---
 layout: section
