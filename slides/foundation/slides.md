@@ -1059,6 +1059,10 @@ which git
 【思考】如果你有两个项目，一个使用 Python 3.9，另一个使用 Python 3.11，如何在同一台电脑上同时安装并切换使用？
 </v-click>
 
+<!--
+Google 搜索一下 pyenv，展示 AI 概览对其的解释：pyenv 通过修改环境变量 `PATH`，把自己的垫片（shims）路径放在最前面。
+-->
+
 ---
 layout: section
 ---
