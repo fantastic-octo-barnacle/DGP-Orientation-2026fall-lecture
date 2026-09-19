@@ -1,6 +1,7 @@
 {
   "name": "@rm-orientation/foundation-slides",
   "private": true,
+  "packageManager": "pnpm@12.4.2",
   "scripts": {
     "dev": "slidev slides.md",
     "build": "slidev build slides.md",
