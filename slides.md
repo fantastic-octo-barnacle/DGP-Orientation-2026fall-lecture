@@ -21,6 +21,21 @@ class: cover-slide
 <div class="cover-meta">RM 软件组招新培训</div>
 
 ---
+
+# TOC
+
+<div class="course-toc" role="list" aria-label="课程目录">
+  <div class="course-toc-item text-blue" role="listitem"><span class="course-toc-number">01</span><strong>操作系统与 WSL</strong></div>
+  <div class="course-toc-item text-green" role="listitem"><span class="course-toc-number">05</span><strong>环境与依赖管理</strong></div>
+  <div class="course-toc-item text-blue" role="listitem"><span class="course-toc-number">02</span><strong>终端、Shell 与命令行</strong></div>
+  <div class="course-toc-item text-green" role="listitem"><span class="course-toc-number">06</span><strong>开发规范与代码质量管理</strong></div>
+  <div class="course-toc-item text-blue" role="listitem"><span class="course-toc-number">03</span><strong>文件与文件系统</strong></div>
+  <div class="course-toc-item text-green" role="listitem"><span class="course-toc-number">07</span><strong>Git 与版本控制</strong></div>
+  <div class="course-toc-item text-blue" role="listitem"><span class="course-toc-number">04</span><strong>环境变量，PATH</strong></div>
+  <div class="course-toc-item text-green" role="listitem"><span class="course-toc-number">08</span><strong>编辑器集成</strong></div>
+</div>
+
+---
 layout: section
 ---
 
@@ -2015,7 +2030,7 @@ Agent 自带 checkpoint 与 Git 历史不能一概视为同一种机制。
 layout: section
 ---
 
-# <Counter :level="1" /> IDE 的魔法
+# <Counter :level="1" /> 编辑器集成
 
 <p>开发工具链 + 编辑器集成 = IDE</p>
 
