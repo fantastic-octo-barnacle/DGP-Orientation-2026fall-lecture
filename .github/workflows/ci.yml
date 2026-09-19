@@ -23,11 +23,11 @@ jobs:
       contents: read
       pages: read
     steps:
-      - uses: actions/checkout@v7.0.1
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v6.1.0
+      - uses: pnpm/action-setup@v6
 
-      - uses: actions/setup-node@v7.0.0
+      - uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: pnpm
@@ -41,7 +41,7 @@ jobs:
       - name: Configure Pages
         if: github.event_name != 'pull_request'
         id: pages
-        uses: actions/configure-pages@v6.0.0
+        uses: actions/configure-pages@v6
 
       - name: Build slides
         env:
@@ -50,7 +50,7 @@ jobs:
 
       - name: Upload Pages artifact
         if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v5.0.0
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
@@ -72,4 +72,4 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v5.0.1
+        uses: actions/deploy-pages@v5
