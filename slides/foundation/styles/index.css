@@ -537,6 +537,74 @@
   opacity: 0.58;
 }
 
+.git-archives {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.3fr 1.3fr;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+.git-archives strong,
+.git-archives span {
+  display: block;
+}
+
+.git-archives strong {
+  font-size: 0.95rem;
+}
+
+.git-archives span {
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+.git-hub-map {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem 2rem;
+  margin: 1.25rem auto;
+  max-width: 44rem;
+  text-align: center;
+}
+
+.git-hub-center {
+  grid-column: 1 / -1;
+  width: 70%;
+  justify-self: center;
+}
+
+#app #slide-content .slidev-layout .git-hub-map h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+#app #slide-content .slidev-layout .git-hub-map p {
+  margin: 0;
+}
+
+.git-hub-link {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+
+.git-agent-loop {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 1.3rem 0;
+}
+
+.git-agent-loop strong {
+  display: block;
+  margin-bottom: 0.55rem;
+  font-size: 1rem;
+}
+
+.git-agent-loop p {
+  font-size: 0.9rem;
+}
+
 .slidev-layout table.compact {
   font-size: 0.9rem;
 }

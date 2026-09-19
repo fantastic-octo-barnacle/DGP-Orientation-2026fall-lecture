@@ -1680,7 +1680,7 @@ FAILED tests/test_api_faults.py::test_stale_encoder_fault_via_api - AssertionErr
 <div class="two-col">
   <div class="card text-blue">
     <h3>CI：重复执行约定</h3>
-    <p>在干净、可重复的环境中运行 fmt、typecheck / buildcheck、lint 和 test，避免“我本机能过”成为唯一证据。</p>
+    <p>在干净、可重复的环境中运行检查，避免“我本机能过”成为唯一证据。</p>
     <p class="small">CI 只会执行配置中写明的检查，不会自动提高质量标准。</p>
   </div>
   <div class="card text-pink">
@@ -1728,103 +1728,289 @@ layout: section
 
 # <Counter :level="1" /> Git 与版本控制
 
-<p>94–106 分钟 · 怎样记录项目及其变化？</p>
+<p>把变化留下来，让尝试与协作有据可查</p>
 
 ---
 
-# <Counter /> Git 与 GitHub 是两个对象
+# <Counter /> 版本控制，从手动存档开始
 
-<div class="two-col">
-  <div class="card text-pink">
-    <h3>Git</h3>
-    <p>记录文件版本和变化历史的工具，可以只在本地使用。</p>
-  </div>
-  <div class="card text-blue">
-    <h3>GitHub</h3>
-    <p>托管 Git 仓库并支持协作的平台，不等于 Git 本身。</p>
-  </div>
+<p class="lead">改动之前，先留一份“还能用的版本”。</p>
+
+<div class="git-archives">
+  <div class="card text-blue"><strong>项目.zip</strong><span>第一次跑通</span></div>
+  <div class="card text-peach"><strong>项目_修改版.zip</strong><span>加了些东西</span></div>
+  <div class="card text-pink"><strong>项目_最终版.zip</strong><span>到底改了什么？</span></div>
+  <div class="card text-pink"><strong>项目_最终最终版.zip</strong><span>这次真的行了</span></div>
 </div>
 
-<p class="lead">本地 commit 不会自动出现在 GitHub；push 才会发送相应提交。</p>
-
----
-
-# <Counter /> 从修改到提交，再到远程
-
-<div class="flow">
-  <div class="diagram-box text-pink">工作区<br><span class="small">文件正在变化</span></div>
-  <div class="flow-arrow">add</div>
-  <div class="diagram-box text-peach">暂存区<br><span class="small">选择本次变化</span></div>
-  <div class="flow-arrow">commit</div>
-  <div class="diagram-box text-green">本地历史</div>
-  <div class="flow-arrow">push</div>
-  <div class="diagram-box text-blue">远程仓库</div>
-</div>
-
-<p class="small muted">pull 则是把远程已有的变化带回本地工作流程；clone 还会取得仓库历史和远程信息。</p>
-
----
-
-# <Counter /> 四个命令，观察四种状态
-
-<div class="card-grid">
-  <div class="card text-pink"><h3><code>git status</code></h3><p>现在有什么变化？</p></div>
-  <div class="card text-peach"><h3><code>git diff</code></h3><p>具体改了什么？</p></div>
-  <div class="card text-green"><h3><code>git log</code></h3><p>已经记录过什么？</p></div>
-  <div class="card text-blue"><h3><code>git push</code></h3><p>哪些本地提交要发送到远程？</p></div>
+<div class="two-col mt-6">
+  <div class="callout text-green"><h3>它已经在做版本控制</h3><p>保留过去的状态，给自己留下退路。</p></div>
+  <div class="callout text-peach"><h3>版本一多，就难管理</h3><p>哪份最新？两份差在哪？谁改的？<br>想拿回其中一个改动怎么办？</p></div>
 </div>
 
 ---
 
-# <Counter /> 一次提交应该能说明一个变化
+# <Counter /> Git：分布式版本控制系统
 
-<div class="two-col">
-  <div class="callout text-green">
-    <h3>好的描述</h3>
-    <p>“补充路径示例”<br>“修正错误分类”</p>
-  </div>
-  <div class="callout text-red">
-    <h3>需要警惕</h3>
-    <p>把很多互不相关的改动塞进一个提交，只留下“保存一下”。</p>
-  </div>
+## <Counter :level="3" /> 自主选择提交的时机
+
+<div class="flow mt-6">
+  <div class="diagram-box text-orange">修改、保存文件<br>
+  <span class="small">&nbsp;&nbsp;&nbsp;可以反复很多次</span></div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">一个有意义的改动完成<br>
+  <span class="small">&nbsp;&nbsp;&nbsp;检查后 commit</span></div>
 </div>
 
-<p class="muted">提交不是上传，也不是自动备份；它首先是本地历史中的一个节点。</p>
+<p class="small muted">例如：“修正温度单位”与“补充安装说明”可以分别提交，方便以后理解和处理。</p>
+
+### Commit（提交）：记录一次选定的改动
+
+由你决定时机、范围，并写下 message，说明这次做了什么。
+
+<p class="small mt-3">记录保存在本地 Git 仓库中，不需要联网。</p>
+
+---
+clicks: 2
+---
+
+## <Counter :level="3" /> 历史记录：既能看清变化，也方便回到过去
+
+<p>每次提交留下版本、作者、时间和说明；可以比较，也可以回到已记录的版本。</p>
+
+<GitHistory kind="history" :step="$clicks" />
+
+<p class="small muted">图中的 A、B、C、D 是提交的简写。能回溯的是已提交且仍保留的历史。</p>
 
 ---
 
-# <Counter /> 一个项目目录里有什么
+## <Counter :level="3" /> Diff：两个 Commit 之间具体改了什么内容？
 
-<div class="card-grid three">
-  <div class="card text-pink"><h3>长期维护</h3><p>源码、<code>README.md</code>、测试。</p></div>
-  <div class="card text-peach"><h3>环境描述</h3><p>项目清单、锁文件、工具配置。</p></div>
-  <div class="card text-blue"><h3>本机生成</h3><p><code>.venv/</code>、<code>target/</code> 等可重建内容。</p></div>
-</div>
+```python {monaco-diff} {height:'auto'}
+import banana
 
-<div class="callout text-red mt-4">
-  <p><code>.gitignore</code> 只影响尚未被跟踪的文件；它不会把已经提交的文件从历史中删除。</p>
-</div>
 
----
+class Monkey:
+    # Bananas the monkey can eat.
+    capacity: int
 
-# <Counter /> 随讲随做：观察一次纯文本修改
+    def eat(self, n: int) -> None:
+        """Make the monkey eat n bananas!"""
+        self.capacity -= n * banana.size
+        return
 
-<div class="terminal-single">
+    def feeding_frenzy(self) -> str:
+        self.eat(9)
+        return "Yum yum"
 
-```bash
-git status
-git diff
-git add README.md
-git commit -m "补充说明"
-git log --oneline -1
+~~~
+import banana
+
+
+class Monkey:
+    # Bananas the monkey can eat.
+    # New feature: the monkey can eat fractional bananas!
+    capacity: float
+
+    def eat(self, n: float) -> None:
+        """Make the monkey eat n bananas!"""
+        self.capacity -= n * banana.size
+
+    def feeding_frenzy(self) -> str:
+        self.eat(9.25)
+        return "Yum yum"
+
 ```
 
+<div class="two-col mt-5">
+  <div><h3>编辑时实时查看</h3><p>编辑器可在行旁标记增删改，随时展开差异。</p></div>
+  <div><h3>提交前检查</h3><p>是否有误改、遗漏，或混入了另一件事？</p></div>
 </div>
 
-<div class="activity-box text-sky mt-4">
-  <h3>课堂安排</h3>
-  <p>候选人先修改并观察 status / diff；讲师演示 add、commit 和 log。账号、权限或身份配置不在课堂集中排障。</p>
+<!--
+编辑器集成参考：https://code.visualstudio.com/docs/sourcecontrol/overview
+这是离线可用的编辑器示意，不是特定产品的截图。
+-->
+
+---
+clicks: 2
+---
+
+## <Counter :level="3" /> 分支：独立尝试，准备好再合并
+
+<GitHistory kind="branch" :step="$clicks" />
+
+<div class="callout text-peach mt-2">
+  <p><strong>合并与冲突：</strong>能自动整合的变化由 Git 处理；无法自动决定时，Git 会标出冲突，提供处理与完成合并的机制，由人判断最终内容。</p>
 </div>
+
+---
+clicks: 1
+---
+
+## <Counter :level="3" /> Revert：为撤销留下记录
+
+<p>已经提交的某个改动不想要了，可以新增一次提交来撤销它。</p>
+
+<GitHistory kind="revert" :step="$clicks" />
+
+<p class="small muted">这里的文档改动与提示音互不依赖。复杂情况下，撤销也可能需要处理冲突。</p>
+
+---
+clicks: 1
+---
+
+## <Counter :level="3" /> Cherry-pick：只取需要的那次改动
+
+<GitHistory kind="cherry-pick" :step="$clicks" />
+
+<p class="small muted">实线表示历史关系；虚线表示应用改动。C′ 是新提交。选中的改动若依赖其他改动，仍需处理依赖或冲突。</p>
+
+---
+
+## <Counter :level="3" /> 多人协作
+
+<div class="two-col">
+  <div class="card text-blue"><h3>Alice · 日志分支</h3><p>增加日志 → 补充日志测试</p><p class="small mt-3">每次提交都围绕日志功能。</p></div>
+  <div class="card text-peach"><h3>Bob · 界面分支</h3><p>调整布局 → 修复按钮状态</p><p class="small mt-3">每次提交都围绕界面功能。</p></div>
+</div>
+
+<div class="flow">
+  <div class="diagram-box text-blue">各自推进、各自提交</div>
+  <div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">审阅，再合并到主线</div>
+</div>
+
+<p>实时共享编辑适合同步讨论、一起写；Git 还支持<strong>异步开发、隔离未完成的工作、按主题审阅和撤销</strong>。</p>
+<p class="small muted">不同人的不同改动可以分成清楚的 commit；分支不会自动消除冲突，仍然需要沟通。</p>
+
+---
+clicks: 3
+---
+
+## <Counter :level="3" /> Remote：在两个 Git 仓库之间同步
+
+<GitHistory kind="remote" :step="$clicks" />
+
+<p class="small muted">将另一个 Git 仓库添加为 remote，从而可以在两个仓库之间同步提交；添加 remote 不会开启自动同步 commit，而是在需要时手动执行同步操作。</p>
+
+---
+
+# <Counter /> GitHub：共同的远程仓库
+
+<p><strong>Git 是版本控制工具；GitHub 是托管 Git 仓库的协作平台。</strong></p>
+
+<div class="git-hub-map">
+  <div class="card text-green git-hub-center"><h3>GitHub 上的团队仓库</h3><p>集中托管，作为共同的 remote</p></div>
+  <div class="git-hub-link">↕ 同步提交与分支</div>
+  <div class="git-hub-link">↕ 同步提交与分支</div>
+  <div class="card text-blue"><h3>Alice 的本地仓库</h3><p>独立工作，按需发送和获取</p></div>
+  <div class="card text-peach"><h3>Bob 的本地仓库</h3><p>独立工作，按需发送和获取</p></div>
+</div>
+
+<p class="small muted">有相应权限时，大家可以同步同一仓库。Git 不依赖 GitHub：也可以用 GitLab、Gitea 或自建 Git 服务。</p>
+
+<!--
+平台定位参考：https://docs.github.com/en/get-started/start-your-journey/what-is-github
+图示采用团队成员都有权限的共同仓库，不引入 fork 工作流。
+-->
+
+---
+
+## GitHub 的协作能力
+
+<div class="card-grid three">
+  <div class="card text-blue">
+    <h3>Issues</h3>
+    <p>记录问题、需求和讨论。</p>
+    <ul class="small mt-3">
+      <li>Bug report</li>
+      <li>Feature request</li>
+      <li>Question</li>
+    </ul>
+  </div>
+  <div class="card text-peach">
+    <h3>Pull Requests</h3>
+    <p>提出合并请求，展示 diff，讨论和审阅改动。</p>
+    <ul class="small mt-3">
+      <li>“这组提交修复了断线提示，请检查。”</li>
+      <li>“新功能实现：用户登录”</li>
+    </ul>
+  </div>
+  <div class="card text-green">
+    <h3>GitHub Actions</h3>
+    <p>按配置自动运行构建、测试等检查。</p>
+    <ul class="small mt-3">
+      <li>CI/CD 流水线</li>
+      <li>自动化工作流程</li>
+    </ul>
+  </div>
+</div>
+
+<div class="flow mt-6">
+  <div class="diagram-box text-blue">讨论要做什么</div><div class="flow-arrow">→</div>
+  <div class="diagram-box text-peach">审阅具体改动</div><div class="flow-arrow">→</div>
+  <div class="diagram-box text-green">检查后合并</div>
+</div>
+
+---
+
+# <Counter /> Git 和 Coding Agents
+
+<p>Vibe coding 时，Agent 可能一次改动很多文件。越容易生成改动，越需要看清和控制改动。</p>
+
+<div class="git-agent-loop">
+  <div class="card text-blue"><strong>01 · 留基线</strong><p>开始前，记录已知可用的状态。</p></div>
+  <div class="card text-peach"><strong>02 · 看 diff</strong><p>Agent 改完后，检查它究竟动了哪里。</p></div>
+  <div class="card text-pink"><strong>03 · 验证</strong><p>运行、测试，判断是否符合预期。</p></div>
+  <div class="card text-green"><strong>04 · 作决定</strong><p>接受后按主题提交；失败则修正或撤销。</p></div>
+</div>
+
+<p class="small">许多 Agent 已接入 Git 工作流：Cursor 集成 diff 审阅，Claude Code 支持独立工作目录与 PR 流程。</p>
+<p class="lead">有了 Git 进行版本控制，不仅方便人工审查改动，也便于 Agent 进行代码检查和追溯。</p>
+
+<!--
+一次对话不一定对应一次合适的提交；已提交的错误可用 revert，尚未提交的修改也要先检查范围再决定如何撤销。
+Agent 自带 checkpoint 与 Git 历史不能一概视为同一种机制。
+资料：https://cursor.com/docs/agent/overview
+资料：https://code.claude.com/docs/en/common-workflows
+-->
+
+---
+
+# <Counter /> Git 的缺陷：大型二进制资源
+
+<div class="two-col">
+  <div class="card text-green"><h3>代码、配置、Markdown</h3><p>通常是纯文本，按行 diff 能看清增删改，也便于合并。</p></div>
+  <div class="card text-peach"><h3>图片、音视频、压缩包、3D 资源</h3><p>Git 能记录这些文件，但默认很难像文本一样展示内部差异、自动合并。</p></div>
+</div>
+
+<div class="callout text-red mt-5"><h3>文件很大，历史也会变得沉重</h3><p>反复提交大型资源，会增加仓库存储和传输负担；只删除当前文件，不会清掉历史里的旧版本。</p></div>
+
+<p class="small muted">游戏项目中的代码仍适合 Git；大量二进制美术资源，往往需要额外的管理方案。部分格式也能借助专用工具比较。</p>
+
+---
+
+## 按问题选择补充工具或替代方案
+
+<div class="card-grid three">
+  <div class="card text-blue"><h3>大文件：Git LFS</h3><p>Git 中保留指针，大文件内容交给独立存储。</p><p class="small mt-3">改善大文件管理，不会让二进制内容自动变得可合并。</p></div>
+  <div class="card text-peach"><h3>难合并：资源锁定</h3><p>编辑前先锁定，减少多人同时改同一资源。</p><p class="small mt-3">例如 Git LFS 的锁定功能，需要服务端与团队流程配合。</p></div>
+  <div class="card text-green"><h3>其他方案</h3>
+    <ul>
+      <li>Perforce P4：集中式版本控制，适合大型二进制资源。</li>
+      <li>Lore：Epic Games 推出的下一代开源 VCS。</li>
+      <li>SVN、Mercurial 等其他版本控制系统。</li>
+    </ul>
+  </div>
+</div>
+
+<p class="source-note">参考：
+  <a href="https://git-lfs.com/">Git LFS</a> · 
+  <a href="https://github.com/git-lfs/git-lfs/blob/main/docs/api/locking.md">LFS 文件锁定</a> · 
+  <a href="https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/overview-of-helix-core.html">Perforce P4</a> · 
+  <a href="https://lore.org/">Lore</a>
+</p>
 
 ---
 layout: section
