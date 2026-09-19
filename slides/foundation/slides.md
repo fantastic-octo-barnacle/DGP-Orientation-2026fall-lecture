@@ -1535,31 +1535,24 @@ layout: section
 uv run pyrefly check
 ```
 
-```text
- INFO Checking project configured at `/home/Alice/my-project/pyproject.toml`
+```ansi
+ INFO Checking project configured at `/home/Alice/Coding/server-project/pyproject.toml`
+[31mERROR[0m Class `State` has no class attribute `RECOVER` [2m[missing-attribute][0m
+   [1m[94m-->[0m app/core/atom.py:796:51
+    [1m[94m|[0m
+[1m[94m796 |[0m             events.append(self._record_transition(State.RECOVER, "operator reset", source))
+    [1m[94m|[0m                                                   [1m[91m^^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+  Did you mean `RECOVERY`?
+[31mERROR[0m Argument `str | None` is not assignable to parameter `cmd_seq` with type `int` in function `sequencer.check` [2m[bad-argument-type][0m
+   [1m[94m-->[0m app/core/gate.py:148:38
+    [1m[94m|[0m
+[1m[94m148 |[0m         seq_reason = sequencer.check(proposal.cell_id)
+    [1m[94m|[0m                                      [1m[91m^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+  The declared type does not allow `None`. Consider narrowing the value with an `is not None` check.
+ INFO 2 errors (43 suppressed, 2 warnings not shown)
 
-ERROR Class `State` has no class attribute `RECOVERY` [missing-attribute]
-   --> app/core/atom.py:796:51
-    |
-796 |             events.append(self._record_transition(State.RECOVERY, "operator reset", source))
-    |                                                   ^^^^^^^^^^^^^^
-    |
-  Did you mean `RECOVEY`?
-
-ERROR Returned type `Decimal` is not assignable to declared return type `float` [bad-return]
-  --> app/units.py:42:12
-   |
-37 | def scaled_to_percent(scaled: int) -> float:
-   |                                       ----- declared return type
-38 |     """Convert scaled integer units back to a percentage (display-only; lossy).
-39 |
-40 |     For presentation and JSON formatting only — never feed the result back into a decision.
-41 |     """
-42 |     return scaled_to_decimal(scaled)
-   |            ^^^^^^^^^^^^^^^^^^^^^^^^^
-   |
-
- INFO 2 error (43 suppressed, 2 warnings not shown)
 ```
 
 ---
@@ -1589,18 +1582,18 @@ ERROR Returned type `Decimal` is not assignable to declared return type `float` 
 uv run ruff check .
 ```
 
-```text
-E711 Comparison to `None` should be `cond is None`
-   --> app/cli.py:99:21
-    |
- 97 |     atom = build_atom(log_path=log, start_percent=start_percent)
- 98 |     y_axis_id = atom._config.y_axis_id
- 99 |     if y_axis_id == None:
-    |                     ^^^^
-100 |         typer.echo("this cell has no Y axis configured; ALIGN_2D needs one")
-101 |         raise typer.Exit(code=2)
-    |
-help: Replace with `cond is None`
+```ansi
+[1m[91mE711 [0m[1mComparison to `None` should be `cond is None`[0m
+   [1m[94m-->[0m app/cli.py:99:21
+    [1m[94m|[0m
+[1m[94m 97 |[0m     atom = build_atom(log_path=log, start_percent=start_percent)
+[1m[94m 98 |[0m     y_axis_id = atom._config.y_axis_id
+[1m[94m 99 |[0m     if y_axis_id == None:
+    [1m[94m|[0m                     [1m[91m^^^^[0m
+[1m[94m100 |[0m         typer.echo("this cell has no Y axis configured; ALIGN_2D needs one")
+[1m[94m101 |[0m         raise typer.Exit(code=2)
+    [1m[94m|[0m
+[1m[96mhelp[0m: [1mReplace with `cond is None`[0m
 
 Found 1 error.
 No fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option).
@@ -1655,22 +1648,23 @@ No fixes available (1 hidden fix can be enabled with the `--unsafe-fixes` option
 uv run pytest
 ```
 
-```text
-============================================================ FAILURES ============================================================
-________________________________________________ test_stale_encoder_fault_via_api ________________________________________________
+```ansi
+[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31mF[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[32m.[0m[31m [100%]
+============================================================= FAILURES =============================================================
+[31m[1m_________________________________________________ test_stale_encoder_fault_via_api _________________________________________________[0m
 
-client = <starlette.testclient.TestClient object at 0x7fd462447ac0>
+client = <starlette.testclient.TestClient object at 0x7f4365397350>
 
-    def test_stale_encoder_fault_via_api(client: TestClient) -> None:
-        client.post("/v1/simulation/faults", json={"fault": "STALE_ENCODER"})
-        rejected = client.post("/v1/motion/proposals", json=_valid_proposal())
->       assert rejected.json()["rejection_reason"] == "STALE_FEEDBACK"
-E       AssertionError: assert None == 'STALE_FEEDBACK'
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_stale_encoder_fault_via_api[39;49;00m(client: TestClient) -> [94mNone[39;49;00m:[90m[39;49;00m
+        client.post([33m"[39;49;00m[33m/v1/simulation/faults[39;49;00m[33m"[39;49;00m, json={[33m"[39;49;00m[33mfault[39;49;00m[33m"[39;49;00m: [33m"[39;49;00m[33mSTALE_ENCODER[39;49;00m[33m"[39;49;00m})[90m[39;49;00m
+        rejected = client.post([33m"[39;49;00m[33m/v1/motion/proposals[39;49;00m[33m"[39;49;00m, json=_valid_proposal())[90m[39;49;00m
+>       [94massert[39;49;00m rejected.json()[[33m"[39;49;00m[33mrejection_reason[39;49;00m[33m"[39;49;00m] == [33m"[39;49;00m[33mSTALE_FEEDBACK[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: assert None == 'STALE_FEEDBACK'[0m
 
-tests/test_api_faults.py:90: AssertionError
-==================================================== short test summary info =====================================================
-FAILED tests/test_api_faults.py::test_stale_encoder_fault_via_api - AssertionError: assert None == 'STALE_FEEDBACK'
-1 failed, 348 passed in 1.20s
+[1m[31mtests/test_api_faults.py[0m:90: AssertionError
+[36m[1m===================================================== short test summary info ======================================================[0m
+[31mFAILED[0m tests/test_api_faults.py::[1mtest_stale_encoder_fault_via_api[0m - AssertionError: assert None == 'STALE_FEEDBACK'
+[31m[31m[1m1 failed[0m, [32m348 passed[0m[31m in 1.24s[0m[0m
 ```
 
 ---
@@ -2229,87 +2223,7 @@ message = greet("RM")
 -->
 
 ---
-layout: section
+layout: end
 ---
 
-# <Counter :level="1" /> 路线选择与正式项目交接
-
-<p>118–120 分钟 · 从共同语言走向自主学习</p>
-
----
-
-# <Counter /> 两条路线是起点，不是能力等级
-
-<div class="two-col">
-  <div class="card route-card text-pink">
-    <strong>Python 起点</strong>
-    <ul>
-      <li>刚学完变量、分支、循环和函数。</li>
-      <li>在可运行的两端代码上逐步扩展功能。</li>
-    </ul>
-  </div>
-  <div class="card route-card text-blue">
-    <strong>Rust 起点</strong>
-    <ul>
-      <li>已经理解变量、分支、循环和函数。</li>
-      <li>能用任意语言完成简单输入、处理和输出。</li>
-      <li>不要求此前学过 Rust。</li>
-    </ul>
-  </div>
-</div>
-
-<p class="lead text-center">路线可以调整，不登记，也不代表录取优先级。</p>
-
----
-
-# <Counter /> 用自测决定从哪里开始
-
-<div class="check-list">
-  <div><span class="check-icon text-pink">A</span><span>我能否独立创建、运行并修改一个简单程序？</span></div>
-  <div><span class="check-icon text-peach">B</span><span>我是否理解变量、分支、循环和函数？</span></div>
-  <div><span class="check-icon text-green">C</span><span>我能否说明输入、处理和输出分别发生了什么？</span></div>
-</div>
-
-<p class="source-note">尚未掌握基础语法者，先补学再进入项目。<a href="../../training/foundation/route-self-check.md">打开路线选择自测</a></p>
-
----
-
-# <Counter /> 正式项目看重可说明的学习证据
-
-<div class="flow">
-  <div class="diagram-box text-pink">环境</div>
-  <div class="flow-arrow">+</div>
-  <div class="diagram-box text-peach">代码与文档</div>
-  <div class="flow-arrow">+</div>
-  <div class="diagram-box text-blue">运行与检查</div>
-  <div class="flow-arrow">+</div>
-  <div class="diagram-box text-green">问题与迭代</div>
-</div>
-
-<div class="callout text-mauve">
-  <p>可以查资料、使用 AI、讨论和求助；最终需要理解并解释自己的环境、代码和决策。</p>
-</div>
-
----
-
-# <Counter /> 接下来怎么走
-
-<div class="card-grid three">
-  <div class="card text-pink"><h3>1</h3><p>完成或跳过已经掌握的预备内容。</p></div>
-  <div class="card text-peach"><h3>2</h3><p>阅读两条路线的起始任务。</p></div>
-  <div class="card text-green"><h3>3</h3><p>选择合适起点，留下真实、可运行、可说明的成果。</p></div>
-</div>
-
-<div class="callout text-blue mt-4">
-  <p>正式项目入口将在项目 spec 定稿后补充；先从路线自测和起始任务开始。</p>
-</div>
-
----
-layout: statement
----
-
-# 不必一次记住所有命令
-
-先观察现象，再判断边界；做一个小实验，验证一个猜测。
-
-<p class="mt-6 muted">计算机开发基础 · 课程结束</p>
+Thank you
