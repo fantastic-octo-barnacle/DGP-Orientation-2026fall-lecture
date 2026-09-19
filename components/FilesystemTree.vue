@@ -1,49 +1,53 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed } from "vue";
 
-const props = defineProps<{ os: 'windows' | 'linux' | 'macos' }>()
+const props = defineProps<{ os: "windows" | "linux" | "macos" }>();
 interface TreeRow {
-  name: string
-  depth: number
-  muted?: boolean
-  last?: boolean
-  home?: boolean
-  personal?: boolean
-  file?: boolean
-  paired?: boolean
-  ancestors?: boolean[]
+  name: string;
+  depth: number;
+  muted?: boolean;
+  last?: boolean;
+  home?: boolean;
+  personal?: boolean;
+  file?: boolean;
+  paired?: boolean;
+  ancestors?: boolean[];
 }
 
 const rows = computed(() => {
-  const windows = props.os === 'windows'
-  const separator = windows ? '\\' : '/'
-  const system = windows ? ['Windows', 'Program Files'] : ['System', 'Applications']
-  const systemChildren = windows ? ['System32', 'Common Files'] : ['Library', 'Utilities']
+  const windows = props.os === "windows";
+  const separator = windows ? "\\" : "/";
+  const system = windows
+    ? ["Windows", "Program Files"]
+    : ["System", "Applications"];
+  const systemChildren = windows
+    ? ["System32", "Common Files"]
+    : ["Library", "Utilities"];
   const files = windows
-    ? ['todo.txt', 'setup.exe', 'report.docx']
-    : ['photo.png', 'guide.pdf', 'draft.pages']
+    ? ["todo.txt", "setup.exe", "report.docx"]
+    : ["photo.png", "guide.pdf", "draft.pages"];
   const entries: TreeRow[] =
-    props.os === 'linux'
+    props.os === "linux"
       ? [
-          { name: '', depth: 0 },
-          { name: 'etc', depth: 1, muted: true },
-          { name: 'hosts', depth: 2, last: true, muted: true, file: true },
-          { name: 'usr', depth: 1, muted: true },
-          { name: 'bin', depth: 2, last: true },
-          { name: 'bash', depth: 3, file: true, paired: true },
-          { name: 'git', depth: 3, file: true, paired: true },
-          { name: 'python3', depth: 3, last: true, file: true },
-          { name: 'home', depth: 1, last: true },
-          { name: 'Alice', depth: 2, home: true, personal: true },
-          { name: '.bashrc', depth: 3, file: true, paired: true },
-          { name: '.bash_history', depth: 3, file: true, paired: true },
-          { name: '.gitconfig', depth: 3, file: true, paired: true },
-          { name: 'my_projects', depth: 3, last: true, personal: true },
-          { name: 'hello.py', depth: 4, last: true, file: true },
-          { name: 'Bob', depth: 2, last: true, home: true, personal: true },
+          { name: "", depth: 0 },
+          { name: "etc", depth: 1, muted: true },
+          { name: "hosts", depth: 2, last: true, muted: true, file: true },
+          { name: "usr", depth: 1, muted: true },
+          { name: "bin", depth: 2, last: true },
+          { name: "bash", depth: 3, file: true, paired: true },
+          { name: "git", depth: 3, file: true, paired: true },
+          { name: "python3", depth: 3, last: true, file: true },
+          { name: "home", depth: 1, last: true },
+          { name: "Alice", depth: 2, home: true, personal: true },
+          { name: ".bashrc", depth: 3, file: true, paired: true },
+          { name: ".bash_history", depth: 3, file: true, paired: true },
+          { name: ".gitconfig", depth: 3, file: true, paired: true },
+          { name: "my_projects", depth: 3, last: true, personal: true },
+          { name: "hello.py", depth: 4, last: true, file: true },
+          { name: "Bob", depth: 2, last: true, home: true, personal: true },
         ]
       : [
-          { name: windows ? 'C:' : '', depth: 0 },
+          { name: windows ? "C:" : "", depth: 0 },
           ...system.flatMap((name, index): TreeRow[] => [
             { name, depth: 1, muted: true },
             {
@@ -54,28 +58,28 @@ const rows = computed(() => {
             },
             ...(!windows && index === 1
               ? [
-                  { name: 'Firefox.app', depth: 2, muted: true },
-                  { name: 'VLC.app', depth: 2, last: true, muted: true },
+                  { name: "Firefox.app", depth: 2, muted: true },
+                  { name: "VLC.app", depth: 2, last: true, muted: true },
                 ]
               : []),
           ]),
-          { name: 'Users', depth: 1, last: true },
-          { name: 'Alice', depth: 2, home: true, personal: true },
-          { name: 'Desktop', depth: 3, personal: true },
+          { name: "Users", depth: 1, last: true },
+          { name: "Alice", depth: 2, home: true, personal: true },
+          { name: "Desktop", depth: 3, personal: true },
           { name: files[0], depth: 4, last: true, file: true },
-          { name: 'Downloads', depth: 3, personal: true },
+          { name: "Downloads", depth: 3, personal: true },
           { name: files[1], depth: 4, last: true, file: true },
-          { name: 'Documents', depth: 3, last: true, personal: true },
+          { name: "Documents", depth: 3, last: true, personal: true },
           { name: files[2], depth: 4, last: true, file: true },
-          { name: 'Bob', depth: 2, last: true, home: true, personal: true },
-        ]
-  const continuing: boolean[] = []
+          { name: "Bob", depth: 2, last: true, home: true, personal: true },
+        ];
+  const continuing: boolean[] = [];
   return entries.map((row) => {
-    const ancestors = continuing.slice(0, row.depth)
-    continuing[row.depth] = !row.last
-    return { ...row, ancestors, label: row.name + (row.file ? '' : separator) }
-  })
-})
+    const ancestors = continuing.slice(0, row.depth);
+    continuing[row.depth] = !row.last;
+    return { ...row, ancestors, label: row.name + (row.file ? "" : separator) };
+  });
+});
 </script>
 
 <template>
@@ -108,7 +112,7 @@ const rows = computed(() => {
 
 <style scoped>
 .filesystem-tree {
-  font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+  font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 0.85rem;
   line-height: 1rem;
 }
@@ -129,7 +133,7 @@ const rows = computed(() => {
 .continuation::before {
   position: absolute;
   left: 0.35em;
-  content: '';
+  content: "";
   opacity: 0.66;
 }
 

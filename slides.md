@@ -1,5 +1,5 @@
 ---
-theme: '@ktym4a/slidev-theme-ktym4a'
+theme: "@ktym4a/slidev-theme-ktym4a"
 title: 计算机开发基础
 info: RM 软件组招新基础课
 transition: fade
@@ -2043,18 +2043,18 @@ onMounted(() => {
 ```
 
 ```ts twoslash
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
 
 // Reactive state.
-const count = ref(0)
+const count = ref(0);
 
 function increment() {
-  count.value++
+  count.value++;
 }
 
 onMounted(() => {
-  console.log(`The initial count is ${count.value}.`)
-})
+  console.log(`The initial count is ${count.value}.`);
+});
 ```
 
 ::right::
@@ -2103,12 +2103,12 @@ Pyright 本身也有独立语言服务器，但不是本图的部署方式。通
 // @errors: 2322
 // Returns a greeting for the given name.
 function greet(name: string): string {
-  return 'Hello, ' + name
+  return "Hello, " + name;
 }
 
-const message = greet(42)
+const message = greet(42);
 
-console.log(mes)
+console.log(mes);
 //             ^|
 ```
 
