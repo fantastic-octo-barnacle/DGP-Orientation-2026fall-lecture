@@ -2223,6 +2223,17 @@ message = greet("RM")
 -->
 
 ---
+
+# <Counter :level="1" /> 总结
+
+<div class="card-grid">
+  <div class="card text-blue"><h3>程序的运行环境</h3><p>在哪个系统、哪个目录下运行？调用的是哪个程序？依赖装在哪里？一个完整的项目除了代码，也包括环境要求。</p></div>
+  <div class="card text-peach"><h3>检查代码，定位问题</h3><p>用类型检查和 Lint 发现代码中的问题，用测试检查结果是否符合预期；出错时读报错、设断点、看变量，修改后再运行测试确认。</p></div>
+  <div class="card text-green"><h3>用 Git 记录和协作</h3><p>提交前看 diff，确认改了什么、是否正确；把相关改动组织成一次提交，写清修改原因，方便自己回顾和队友理解。</p></div>
+  <div class="card text-pink"><h3>配置顺手的开发环境</h3><p>给编辑器接入项目的工具链，让补全、检查、格式化、测试和调试都能在编辑器里完成。现代化的开发体验来自这些工具的配合。</p></div>
+</div>
+
+---
 layout: end
 ---
 
