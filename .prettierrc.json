@@ -1,8 +1,4 @@
 {
-  "singleQuote": true,
-  "semi": false,
-  "printWidth": 100,
-  "proseWrap": "preserve",
   "endOfLine": "lf",
   "overrides": [
     {
