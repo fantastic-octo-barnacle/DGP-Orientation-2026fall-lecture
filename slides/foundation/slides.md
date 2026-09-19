@@ -1484,10 +1484,15 @@ layout: section
       <li>逗号、运算符和括号附近保持一致的空格。</li>
       <li>import 集中在顶部，顶层定义之间保留空行。</li>
       <li>过长的表达式主动换行，让结构可读。</li>
+      <li>...</li>
     </ul>
   </div>
   <iframe src="https://peps.python.org/pep-0008/#pet-peeves" width="100%" height="350"></iframe>
 </div>
+
+<!--
+VS Code 等编辑器可以依据配置，自动进行空格和 tab 之间的转换。
+-->
 
 ---
 
