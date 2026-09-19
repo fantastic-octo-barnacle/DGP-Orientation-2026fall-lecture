@@ -13,15 +13,6 @@
   font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
 }
 
-.kicker {
-  margin-bottom: 0.45rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  opacity: 0.68;
-  text-transform: uppercase;
-}
-
 .lead {
   font-size: 1.32rem;
   line-height: 1.65;
@@ -48,7 +39,7 @@
 }
 
 .card-grid.five {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 .card,
@@ -446,59 +437,6 @@
 
 .program-example-label {
   margin-top: 0.85rem;
-}
-
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.45rem;
-  align-items: stretch;
-  margin-top: 1.2rem;
-}
-
-.timeline > div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 7rem;
-  border-left: 3px solid currentColor;
-  padding: 0.6rem 0.7rem;
-  background: rgb(255 255 255 / 0.045);
-}
-
-.timeline strong {
-  font-size: 1.15rem;
-}
-
-.big-word {
-  font-size: 4.4rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.quote-mark {
-  font-size: 5rem;
-  line-height: 0.5;
-  opacity: 0.35;
-}
-
-.check-list {
-  display: grid;
-  gap: 0.6rem;
-  margin-top: 1rem;
-}
-
-.check-list > div {
-  display: grid;
-  grid-template-columns: 1.7rem 1fr;
-  gap: 0.55rem;
-  align-items: start;
-  border-bottom: 1px dashed rgb(255 255 255 / 0.18);
-  padding-bottom: 0.55rem;
-}
-
-.check-list > div:last-child {
-  border-bottom: 0;
 }
 
 .check-icon {

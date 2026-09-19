@@ -167,7 +167,7 @@ layout: section
 
 ---
 
-## <CounterDisplay /> WSL
+## WSL 的便利性
 
 <div class="card-grid three">
   <div class="card text-pink">
@@ -2011,6 +2011,224 @@ Agent 自带 checkpoint 与 Git 历史不能一概视为同一种机制。
   <a href="https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/overview-of-helix-core.html">Perforce P4</a> · 
   <a href="https://lore.org/">Lore</a>
 </p>
+
+---
+layout: section
+---
+
+# <Counter :level="1" /> IDE 的魔法
+
+<p>开发工具链 + 编辑器集成 = IDE</p>
+
+<!--
+本章新增于 Git 之后，不调整前面章节与原有时间标注。采用静态示例，无实机演示。
+-->
+
+---
+layout: two-cols
+---
+
+```text
+import { onMounted, ref } from 'vue'
+
+// Reactive state.
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
+```
+
+```ts twoslash
+import { onMounted, ref } from 'vue'
+
+// Reactive state.
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
+```
+
+::right::
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<h3 class="text-center">IDE / 编辑器如何给你的代码上色？</h3>
+
+---
+
+# <Counter /> 语言服务：让编辑器理解代码语法
+
+<div class="flow">
+  <div class="diagram-box text-blue">VS Code<br>显示代码与提示<br>接收用户操作</div>
+  <div class="flow-arrow text-center">⇄<br>扩展 API</div>
+  <div class="diagram-box text-peach">Pylance 扩展的客户端<br>接入编辑器<br>转发请求与结果</div>
+  <div class="flow-arrow text-center">⇄<br>语言服务通信</div>
+  <div class="diagram-box text-green"><div>Pylance 语言服务器<br>分析代码、返回提示<hr>内部使用 Pyright<br>类型分析引擎</div></div>
+</div>
+
+<div class="two-col">
+  <div class="card text-blue"><h3>编辑器 → 服务</h3><p>文件内容变了；光标在这里，需要补全、悬停说明或定义位置。</p></div>
+  <div class="card text-green"><h3>服务 → 编辑器</h3><p>返回候选项、类型信息、位置；发布代码诊断，由界面展示。</p></div>
+</div>
+
+<p class="small">LSP（Language Server Protocol）约定这类通信，让分析能力可以接入不同编辑器。</p>
+
+<!--
+这是职责示意，不是进程数量或部署拓扑。Pylance 扩展提供客户端接入和语言服务器，内部使用 Pyright 的分析能力；不要讲成额外启动一个独立 Pyright 服务器。
+Pyright 本身也有独立语言服务器，但不是本图的部署方式。通用 LSP 架构不代表 Pylance 可在任意编辑器使用。
+资料：https://github.com/microsoft/pylance-release
+资料：https://code.visualstudio.com/api/language-extensions/overview
+资料：https://code.visualstudio.com/api/language-extensions/language-server-extension-guide
+-->
+
+---
+
+## 一个例子
+
+```ts twoslash
+import { onMounted, ref } from 'vue'
+//                   ^?
+
+// Reactive state.
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
+
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
+```
+
+<div class="card-grid five">
+  <div class="card text-sky"><h4>语法高亮</h4></div>
+  <div class="card text-blue"><h4>悬停信息</h4></div>
+  <div class="card text-green"><h4>定义跳转</h4></div>
+  <div class="card text-red"><h4>错误诊断</h4></div>
+</div>
+
+<p class="lead">这些信息来自代码静态分析，而不是实际运行结果。</p>
+
+---
+
+# <Counter /> 检查与格式化：工具结果进入编辑器
+
+<div class="card-grid three">
+  <div class="card text-blue"><h3>类型检查</h3><p>例如 Pylance / Pyright<br>把类型问题定位到代码。</p></div>
+  <div class="card text-peach"><h3>Lint</h3><p>例如 Ruff<br>提示未使用的导入等问题，部分问题可快速修复。</p></div>
+  <div class="card text-green"><h3>格式化</h3><p>例如 Ruff formatter / Black<br>触发格式化后，编辑器应用工具返回的文本修改。</p></div>
+</div>
+
+<div class="callout text-pink mt-5"><h3>界面相似，来源可能不同</h3><p>红线和 Problems 列表可以汇集多个工具的诊断。先看来源，再理解提示；并非所有功能都经过语言服务器。</p></div>
+
+<p class="small">前章的独立工具仍然成立：编辑器中的结果会受工具版本、配置及项目环境影响。</p>
+
+<!--
+不重复前章工具定义与命令行用法。快速修复只覆盖工具支持的修改，应用后仍需检查。
+资料：https://code.visualstudio.com/docs/python/linting
+资料：https://code.visualstudio.com/docs/python/formatting
+-->
+
+---
+
+# <Counter /> 测试集成：从测试文件到结果树
+
+<div class="flow">
+  <div class="diagram-box text-blue">VS Code 测试界面</div><div class="flow-arrow">⇄</div>
+  <div class="diagram-box text-peach">Python 扩展<br>测试集成</div><div class="flow-arrow">⇄</div>
+  <div class="diagram-box text-green">pytest / unittest<br>收集并执行测试</div>
+</div>
+
+<div class="two-col">
+  <div>
+
+```text
+测试结果（示意）
+tests/test_greet.py
+  ✓ test_greet_name
+  ✗ test_greet_empty
+    期望："Hello, guest"
+    实际："Hello, "
+```
+
+  </div>
+  <div class="card text-peach"><h3>同一套测试，多种入口</h3><p>发现 / 收集：形成测试列表。<br>执行：运行单个测试或一组测试。<br>展示：状态、输出与失败位置。</p></div>
+</div>
+
+<!--
+pytest 的 collection 由框架按规则确定测试项，扩展将其接入测试 UI。测试需要在正确环境中执行。
+资料：https://code.visualstudio.com/docs/python/testing
+-->
+
+---
+
+# <Counter /> Git 集成：展示和应用 diff
+
+```diff
+ def greet(name: str) -> str:
+-    return "Hello, " + name
++    return "Hello, " + (name or "guest")
+```
+
+<div class="card-grid three">
+  <div class="card text-blue"><h3>编辑时</h3><p>行号旁显示增删改标记，打开 diff 查看具体变化。</p></div>
+  <div class="card text-peach"><h3>提交前</h3><p>查看文件或局部改动，选择暂存范围，再提交。</p></div>
+  <div class="card text-green"><h3>合并时</h3><p>显示冲突双方的内容，辅助选择或编辑最终结果。</p></div>
+</div>
+
+<p class="lead">VS Code 的 Git 集成提供了 GUI 界面，但底层仍然是在调用 Git</p>
+
+<!--
+静态 diff 是修复空名字测试的示意。行内装饰不是提交记录，也不保证显示任意未保存编辑的 Git 状态。
+资料：https://code.visualstudio.com/docs/sourcecontrol/overview
+-->
+
+---
+
+# <Counter /> 调试器集成
+
+<div class="two-col">
+  <div>
+
+```python {2}
+def greet(name: str) -> str:
+    return "Hello, " + name  # 在此设断点
+
+message = greet("RM")
+```
+
+<p class="small">暂停在第 2 行执行前：<br>变量：<code>name = "RM"</code><br>调用栈：<code>greet → 模块顶层</code></p>
+
+  </div>
+  <div class="card text-peach"><h3>观察正在运行的程序</h3><p>断点：执行到这里时暂停。<br>单步：逐步观察执行过程。<br>变量：查看当前值。<br>调用栈：查看如何调用到这里。</p></div>
+</div>
+
+<div class="flow">
+  <div class="diagram-box text-blue">VS Code 调试界面</div><div class="flow-arrow">⇄</div>
+  <div class="diagram-box text-peach">Python Debugger 扩展<br>debugpy 调试适配与后端</div><div class="flow-arrow">⇄</div>
+  <div class="diagram-box text-green">运行中的 Python 程序</div>
+</div>
+
+<!--
+与语言服务器的静态分析区分：这里观察的是一次实际执行。图中合并调试适配器与后端，不展开 DAP 与进程细节。
+资料：https://code.visualstudio.com/docs/python/debugging
+-->
 
 ---
 layout: section
