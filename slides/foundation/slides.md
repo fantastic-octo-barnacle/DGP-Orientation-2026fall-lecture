@@ -2101,23 +2101,21 @@ Pyright 本身也有独立语言服务器，但不是本图的部署方式。通
 ## 一个例子
 
 ```ts twoslash
-import { onMounted, ref } from 'vue'
-//                   ^?
-
-// Reactive state.
-const count = ref(0)
-
-function increment() {
-  count.value++
+// @errors: 2322
+// Returns a greeting for the given name.
+function greet(name: string): string {
+  return 'Hello, ' + name
 }
 
-onMounted(() => {
-  console.log(`The initial count is ${count.value}.`)
-})
+const message = greet(42)
+
+console.log(mes)
+//             ^|
 ```
 
 <div class="card-grid five">
   <div class="card text-sky"><h4>语法高亮</h4></div>
+  <div class="card text-peach"><h4>自动补全</h4></div>
   <div class="card text-blue"><h4>悬停信息</h4></div>
   <div class="card text-green"><h4>定义跳转</h4></div>
   <div class="card text-red"><h4>错误诊断</h4></div>
