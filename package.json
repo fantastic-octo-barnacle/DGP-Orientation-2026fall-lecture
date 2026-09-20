@@ -1,5 +1,4 @@
 {
-  "name": "@rm-orientation/foundation-slides",
   "private": true,
   "packageManager": "pnpm@12.4.2",
   "scripts": {
