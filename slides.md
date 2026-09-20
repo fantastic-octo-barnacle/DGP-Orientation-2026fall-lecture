@@ -35,6 +35,11 @@ class: cover-slide
   <div class="course-toc-item text-green" role="listitem"><span class="course-toc-number">08</span><strong>编辑器集成</strong></div>
 </div>
 
+<!--
+开场与目录 3 分钟｜累计 00:00–00:03
+净讲课共 120 分钟（含演示）；休息、互动、答疑另计。
+-->
+
 ---
 layout: section
 ---
@@ -42,6 +47,10 @@ layout: section
 # <Counter :level="1" /> 操作系统与 WSL
 
 <p>程序工作的地基</p>
+
+<!--
+本章 8 分钟｜累计 00:03–00:11
+-->
 
 ---
 
@@ -180,6 +189,11 @@ layout: section
 
 <p class="source-note">本课主要以 WSL2 为例；WSL 提供了诸多 Linux 发行版，比如 Ubuntu、Debian、openSUSE 等。</p>
 
+<!--
+【演示】搜索 WSL 文档
+注意：微软官方文档中文翻译很烂
+-->
+
 ---
 
 ## WSL 的便利性
@@ -215,6 +229,10 @@ layout: section
 # <Counter :level="1" /> 终端、Shell 与命令行
 
 <p>如何运行一个程序</p>
+
+<!--
+本章 24 分钟｜累计 00:11–00:35（含演示）
+-->
 
 ---
 layout: two-cols-header
@@ -261,6 +279,19 @@ layout: two-cols-header
   <p>在终端中运行，负责读取并解释命令的程序。它会通过操作系统提供的接口请求内核服务：启动应用或其他程序、读写文件，以及进行其他系统交互。</p>
   <p class="small muted mt-2">例：PowerShell、pwsh、Bash、Zsh、fish、...</p>
 </div>
+
+<!--
+【演示】Win Terminal 同时开多个 shell
+CMD 和 PowerShell 是不同的 shell
+
+
+
+
+`powershell.exe`  → Windows PowerShell 5.1，基于 **.NET Framework**
+`pwsh.exe`        → PowerShell 7+，基于 **.NET（Core）** 的跨平台版本
+
+* 有一定的兼容性和行为变化。
+-->
 
 ---
 
@@ -696,6 +727,10 @@ layout: section
 
 <p>从文件内容到路径定位</p>
 
+<!--
+本章 10 分钟｜累计 00:35–00:45
+-->
+
 ---
 
 # <Counter /> 文件类型
@@ -909,6 +944,10 @@ layout: section
 
 # <Counter :level="1" /> 环境变量，PATH
 
+<!--
+本章 10 分钟｜累计 00:45–00:55
+-->
+
 ---
 
 # <Counter /> Shell 变量
@@ -1089,6 +1128,11 @@ layout: section
 ---
 
 # <Counter :level="1" /> 环境与依赖管理
+
+<!--
+本章 20 分钟｜累计 00:55–01:15（含演示）
+重点：隔离与复现；各语言工具概览快讲。
+-->
 
 ---
 
@@ -1471,6 +1515,11 @@ layout: section
 
 <p>从“能运行”到“可协作、可维护、可验证”</p>
 
+<!--
+本章 14 分钟｜累计 01:15–01:29
+报错示例讲用途，不逐行展开。
+-->
+
 ---
 
 <h2>代码质量检查的几种类型</h2>
@@ -1743,6 +1792,11 @@ layout: section
 # <Counter :level="1" /> Git 与版本控制
 
 <p>把变化留下来，让尝试与协作有据可查</p>
+
+<!--
+本章 19 分钟｜累计 01:29–01:48
+重点：提交、diff、分支与协作；后半补充工具快讲。
+-->
 
 ---
 
@@ -2035,7 +2089,8 @@ layout: section
 <p>开发工具链 + 编辑器集成 = IDE</p>
 
 <!--
-本章新增于 Git 之后，不调整前面章节与原有时间标注。采用静态示例，无实机演示。
+本章 9 分钟｜累计 01:48–01:57
+静态示例，无实机演示。
 -->
 
 ---
@@ -2252,6 +2307,10 @@ message = greet("RM")
   <div class="card text-green"><h3>用 Git 记录和协作</h3><p>提交前看 diff，确认改了什么、是否正确；把相关改动组织成一次提交，写清修改原因，方便自己回顾和队友理解。</p></div>
   <div class="card text-pink"><h3>配置顺手的开发环境</h3><p>给编辑器接入项目的工具链，让补全、检查、格式化、测试和调试都能在编辑器里完成。现代化的开发体验来自这些工具的配合。</p></div>
 </div>
+
+<!--
+总结与结束 3 分钟｜累计 01:57–02:00
+-->
 
 ---
 layout: end
